@@ -18,7 +18,8 @@
 |ユーザーフォロー | |
 
 ## カタログ設計
-[カタログ設計.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050137/-.pdf)
+[カタログ設計.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050315/-.1.pdf)
+
 
 ## テーブル定義
 [テーブル定義.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050138/-.pdf)
