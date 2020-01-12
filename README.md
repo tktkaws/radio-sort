@@ -18,19 +18,24 @@
 |ユーザーフォロー | |
 
 ## カタログ設計
-[カタログ設計.pdf]
+[カタログ設計.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050137/-.pdf)
+
 ## テーブル定義
-[テーブル定義.pdf]
+[テーブル定義.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050138/-.pdf)
+
 
 ## ER図
-![スクリーンショット 2020-01-12 10 57 22]
+![スクリーンショット 2020-01-12 10 57 22](https://user-images.githubusercontent.com/53632056/72213365-42496f80-3531-11ea-8d37-742a78e9961d.png)
+
 
 
 ## 画面遷移図
-![画面遷移図proto2]
+![画面遷移図proto2](https://user-images.githubusercontent.com/53632056/72213368-45dcf680-3531-11ea-8526-a2a43afc9612.png)
+
 
 ## ワイヤーフレーム
-[ワイヤーフレーム.pdf]
+[ワイヤーフレーム.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050139/default.pdf)
+
 
 ## 使用予定Gem
 | gem | usage |
