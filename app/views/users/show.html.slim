@@ -1,0 +1,31 @@
+p#notice
+  = notice
+p
+  strong
+    | Name:
+  / = @user.name
+p
+  strong
+    | Email:
+  = @user.email
+table.table.table.table-striped
+  thead.thead-dark
+    tr
+      th
+        | Title
+      th[colspan="3"]
+        | row_order
+      th[colspan="3"]
+        | point
+  |  <tbody id="firsts_list", class="ui-sortable"> 
+  - @likes.each do |f|
+    = content_tag "tr", id: "like-#{f.id}", class: "item ui-sortable-handle", data: {model_name: f.class.name.underscore, update_url: like_sort_path(f.id)} do
+      td
+        = f.radio.title
+      td
+        = f.row_order
+      td
+        = f.point
+= link_to 'Edit', edit_user_path(@user)
+|  | 
+= link_to 'Back', users_path
