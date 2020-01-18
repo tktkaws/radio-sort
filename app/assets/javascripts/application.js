@@ -10,10 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery3
 //= require rails-ujs
 //= require materialize
+//= require jquery-ui/widgets/sortable
+//= require jquery-ui/effects/effect-highlight
 //= require_tree .
+
+$(function() {
+    Sortable.create($('.list')[0], {
+        animation: 150    });
+});

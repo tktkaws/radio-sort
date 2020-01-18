@@ -1,0 +1,9 @@
+          - if like.pluck(:radio_id).include?(radio.id)
+            td
+              = link_to like_path(id: like.find_by(radio_id: radio.id).id), method: :delete, remote: true, class: 'waves-effect waves-light btn'
+                i.material-icons.md-36 check_box
+                / お気に入り解除
+          - else
+            td
+              = link_to likes_path(radio_id: radio.id), method: :post, remote: true, class: 'waves-effect waves-light btn'
+                i.material-icons.md-36 check_box_outline_blank

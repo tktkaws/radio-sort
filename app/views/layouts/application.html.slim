@@ -1,0 +1,32 @@
+doctype html
+html
+  head
+    title
+      | RadioSort
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    nav
+      .nav-wrapper
+        a.brand-logo href="#"  Radio Sort
+        ul#nav-mobile.right.hide-on-med-and-down
+          li
+            = link_to "Radios", radios_path
+          / li
+          /   = link_to "Users", users_path
+          - if user_signed_in?
+            li
+              = link_to "Profile", user_path(current_user.id) , class: 'nav-link'
+            li
+              = link_to "Logout", destroy_user_session_path, class: 'nav-link', method: :delete
+          - else
+            li
+              = link_to "Sign up", new_user_registration_path, class: 'nav-link'
+            li
+              = link_to "Login", new_user_session_path, class: 'nav-link'
+
+    p.notice= notice
+    p.alert= alert
+    = yield
