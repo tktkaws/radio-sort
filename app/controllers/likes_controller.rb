@@ -1,5 +1,5 @@
 class LikesController < ApplicationController
-  #after_action :reset_row_order, only: [:sort, :create]
+  after_action :reset_row_order, only: [:sort, :create]
   skip_before_action :verify_authenticity_token
 
   def create
@@ -20,7 +20,7 @@ class LikesController < ApplicationController
 
   def reset_row_order
     likes = current_user.likes
-    llikes.rank(:row_order).each_with_index do |f, i|
+    likes.rank(:row_order).each_with_index do |f, i|
       f.update_attribute :row_order, i + 1
       if i > 4
         f.update_attribute :point, 1

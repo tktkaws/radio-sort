@@ -12,20 +12,28 @@ table.table.table.table-striped
   thead.thead-dark
     tr
       th
+        | Image
+      th
         | Title
-      th[colspan="3"]
+      th
         | row_order
-      th[colspan="3"]
+      th
         | point
-  |  <tbody id="firsts_list", class="ui-sortable"> 
-  - @likes.each do |f|
-    = content_tag "tr", id: "like-#{f.id}", class: "item ui-sortable-handle", data: {model_name: f.class.name.underscore, update_url: like_sort_path(f.id)} do
+  |  <tbody id="likes_list", class="ui-sortable">
+  - @likes.each do |like|
+    = content_tag "tr", id: "like-#{like.id}", class: "item ui-sortable-handle", data: {model_name: like.class.name.underscore, update_url: like_sort_path(like.id)} do
       td
-        = f.radio.title
+        = image_tag "#{like.radio.image}", size: '90x45'
       td
-        = f.row_order
+        = like.radio.title
       td
-        = f.point
+        = like.row_order
+      td
+        = like.point
+      td
+        = link_to like_path(id: @likes.find_by(radio_id: like.radio.id).id), method: :delete, class: 'waves-effect waves-light btn'
+          i.material-icons.md-36 check_box
+          / お気に入り解除
 = link_to 'Edit', edit_user_path(@user)
 |  | 
 = link_to 'Back', users_path
