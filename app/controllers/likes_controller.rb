@@ -3,13 +3,19 @@ class LikesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def create
+    @like = current_user.likes
+    @radio = Radio.find(params[:radio_id])
     like = current_user.likes.create(radio_id: params[:radio_id])
-    redirect_to radios_url, notice: "お気に入り登録しました"
+    #redirect_to radios_url, notice: "お気に入り登録しました"
   end
 
   def destroy
-    like = current_user.likes.find_by(id: params[:id]).destroy
-    redirect_to radios_url, notice: "お気に入り解除しました"
+
+    @radio = Radio.find(params[:id])
+    like = current_user.likes.find_by(id: params[:id])
+    like.destroy
+    @like = current_user.likes
+    #redirect_to radios_url, notice: "お気に入り解除しました"
   end
 
   def sort

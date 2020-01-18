@@ -22,15 +22,23 @@ table
         td
           = radio.length / 60
           | min
-        - if @like.pluck(:radio_id).include?(radio.id)
-          td
-            = link_to like_path(id: @like.find_by(radio_id: radio.id).id), method: :delete, class: 'waves-effect waves-light btn'
-              i.material-icons.md-36 check_box
-              / お気に入り解除
-        - else
-          td
-            = link_to likes_path(radio_id: radio.id), method: :post, class: 'waves-effect waves-light btn'
-              i.material-icons.md-36 check_box_outline_blank
+
+          div id="likes_buttons_#{radio.id}"
+            = render partial: 'likes/like', locals: { radio: radio, like: @like }
+
+
+        / - if @like.pluck(:radio_id).include?(radio.id)
+        /   td
+        /     = link_to like_path(id: @like.find_by(radio_id: radio.id).id), method: :delete, remote: true, class: 'waves-effect waves-light btn'
+        /       i.material-icons.md-36 check_box
+        /       / お気に入り解除
+        / - else
+        /   td
+        /     = link_to likes_path(radio_id: radio.id), method: :post, remote: true, class: 'waves-effect waves-light btn'
+        /       i.material-icons.md-36 check_box_outline_blank
+
+
+
         td
           / = link_to 'Show', radio
         td
