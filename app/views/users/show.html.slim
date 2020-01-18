@@ -8,6 +8,13 @@ p
   strong
     | Email:
   = @user.email
+p
+  - @user.comments.each do |c|
+    p
+      = c.radio.title
+      = c.content
+
+
 table.table.table.table-striped
   thead.thead-dark
     tr

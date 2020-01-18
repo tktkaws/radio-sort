@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'radios#index'
 
-  resources :radios
+  resources :radios do
+    resources :comments
+  end
   devise_for :users
   resources :users
   resources :likes, only: [:create, :destroy] do
