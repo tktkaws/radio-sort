@@ -3,7 +3,7 @@
     table
       - if comment.id.present?
         td
-          = link_to "#{comment.user}さん", user_path(comment.user.id)
+          = link_to "#{comment.user.email}", user_path(comment.user.id)
         td
           = comment.content
       - if comment.user == current_user
