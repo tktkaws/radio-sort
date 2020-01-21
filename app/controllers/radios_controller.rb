@@ -7,7 +7,8 @@ class RadiosController < ApplicationController
   end
 
   def show
-    #@first = current_user.firsts.find_by(radio_id: @radio.id)
+    @comments = @radio.comments
+    @comment = @radio.comments.build
   end
 
 
@@ -26,8 +27,8 @@ class RadiosController < ApplicationController
 
   private
 
-  #def set_radio
-  #  @radio = Radio.find(params[:id])
-  #end
+  def set_radio
+    @radio = Radio.find(params[:id])
+  end
 
 end

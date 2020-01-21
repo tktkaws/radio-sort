@@ -8,6 +8,18 @@ p
   strong
     | Email:
   = @user.email
+p
+  - @user.comments.each do |c|
+    p
+      = link_to c.radio
+        = image_tag "#{c.radio.image}", size: '90x45'
+      strong
+        | 番組名:
+      = c.radio.title
+      strong
+        | コメント:
+      = c.content
+
 table.table.table.table-striped
   thead.thead-dark
     tr
@@ -23,7 +35,8 @@ table.table.table.table-striped
   - @likes.each do |like|
     = content_tag "tr", id: "like-#{like.id}", class: "item ui-sortable-handle", data: {model_name: like.class.name.underscore, update_url: like_sort_path(like.id)} do
       td
-        = image_tag "#{like.radio.image}", size: '90x45'
+        = link_to like.radio
+          = image_tag "#{like.radio.image}", size: '90x45'
       td
         = like.radio.title
       td
