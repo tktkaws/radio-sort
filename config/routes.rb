@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resources :radios do
     resources :comments
   end
-  devise_for :users
+  devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
   resources :users
   resources :likes, only: [:create, :destroy] do
     put :sort
