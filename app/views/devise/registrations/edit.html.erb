@@ -9,8 +9,21 @@
   </div>
 
   <div class="field">
+    <%= f.label :age %>
+    <%= f.select :age, User.ages.keys.map {|k| [k, k]} %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :gender %>
+    <%= f.select :gender, User.genders.keys.map {|k| [k, k]} %>
+  </div>
+
+
+
+  <div class="field">
     <%= f.label :image %><br />
-    <%= image_tag(@user.image.url) if @user.image && @user.image.url %>
+    <%= image_tag(@user.image.url, size: '260x180') if @user.image && @user.image.url %>
     <%= f.file_field :image %>
     <%= f.hidden_field :image_cache %>
   </div>

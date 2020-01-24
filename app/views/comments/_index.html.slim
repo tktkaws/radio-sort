@@ -3,7 +3,9 @@
     table
       - if comment.id.present?
         td
-          = link_to "#{comment.user.email}", user_path(comment.user.id)
+          = link_to user_path(comment.user.id)
+            = image_tag "#{comment.user.image}", size: '90x45'
+          = "#{comment.user.name}"
         td
           = comment.content
       - if comment.user == current_user

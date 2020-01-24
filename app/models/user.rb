@@ -6,7 +6,12 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :radios, -> { order(position: :asc) }, through: :likes, source: :radio
+
+  enum gender: { unknown: 0, male: 1, female: 2 }
+  enum age: { unanswered: 0, teenage: 1, twenties: 2, thirties: 3, forties: 4, over_fifties: 5}
+
   mount_uploader :image, ImageUploader
+
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
