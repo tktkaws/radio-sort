@@ -57,10 +57,11 @@ table.table.table.table-striped
         = like.row_order
       td
         = like.point
-      td
-        = link_to like_path(id: @likes.find_by(radio_id: like.radio.id).id), method: :delete, class: 'waves-effect waves-light btn'
-          i.material-icons.md-36 check_box
-          / お気に入り解除
+      - if user_signed_in?
+        td
+          div id="likes_buttons_#{like.radio.id}"
+            = render partial: 'likes/like', locals: {radio: like.radio}
+
 = link_to "Edit", edit_user_registration_path
 |  | 
 = link_to 'Back', users_path

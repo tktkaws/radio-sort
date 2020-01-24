@@ -5,6 +5,10 @@
   p
     strong> タイトル
     | ：#{@radio.title}
+  - if user_signed_in?
+    p
+      div id="likes_buttons_#{@radio.id}"
+        = render partial: 'likes/like', locals: { radio: @radio}
   p コメント
   #comments_area
     = render partial: 'comments/index', locals: {comments: @comments, radio: @radio}
