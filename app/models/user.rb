@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :radios, -> { order(position: :asc) }, through: :likes, source: :radio
+  mount_uploader :image, ImageUploader
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
