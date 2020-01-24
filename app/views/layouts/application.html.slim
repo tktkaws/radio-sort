@@ -26,6 +26,8 @@ html
               = link_to "Sign up", new_user_registration_path, class: 'nav-link'
             li
               = link_to "Login", new_user_session_path, class: 'nav-link'
+            li
+              = link_to 'Twitterログイン', user_twitter_omniauth_authorize_path
 
     p.notice= notice
     p.alert= alert

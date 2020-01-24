@@ -3,7 +3,9 @@ class RadiosController < ApplicationController
 
   def index
     @radios = Radio.all
+    if user_signed_in?
     @like = current_user.likes
+    end
   end
 
   def show

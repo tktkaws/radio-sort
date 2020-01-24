@@ -1,13 +1,11 @@
 p#notice
   = notice
 p
-  strong
-    | Name:
-  / = @user.name
+  = image_tag "#{@user.image}", size: '90x45'
 p
   strong
-    | Email:
-  = @user.email
+    | Name:
+  = @user.name
 p
   - @user.comments.each do |c|
     p
