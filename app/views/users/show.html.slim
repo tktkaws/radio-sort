@@ -7,6 +7,14 @@ p
     | Name:
   = @user.name
 p
+  strong
+    | gender:
+  = @user.gender
+p
+  strong
+    | age:
+  = @user.age
+p
   - @user.comments.each do |c|
     p
       = link_to c.radio
