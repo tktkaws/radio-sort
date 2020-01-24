@@ -15,6 +15,14 @@ p
     | age:
   = @user.age
 p
+  strong
+    | フォロー
+  = @user.following.count
+p
+  strong
+    | フォロワー
+  = @user.followers.count
+p
   - @user.comments.each do |c|
     p
       = link_to c.radio
@@ -53,6 +61,6 @@ table.table.table.table-striped
         = link_to like_path(id: @likes.find_by(radio_id: like.radio.id).id), method: :delete, class: 'waves-effect waves-light btn'
           i.material-icons.md-36 check_box
           / お気に入り解除
-= link_to 'Edit', edit_user_path(@user)
+= link_to "Edit", edit_user_registration_path
 |  | 
 = link_to 'Back', users_path

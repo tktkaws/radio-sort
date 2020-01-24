@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
+    @users = User.all
   end
 
   def new
@@ -14,6 +15,11 @@ class UsersController < ApplicationController
   def show
     @likes = @user.likes.rank(:row_order)
   end
+
+  def show_relations
+    @user = User.find(params[:user_id])
+  end
+
 
   def edit
   end

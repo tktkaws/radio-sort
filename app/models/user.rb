@@ -7,10 +7,30 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :radios, -> { order(position: :asc) }, through: :likes, source: :radio
 
+  has_many :active_relations, foreign_key: 'follower_id', class_name: 'Relation', dependent: :destroy
+  has_many :passive_relations, foreign_key: 'followed_id', class_name: 'Relation', dependent: :destroy
+  has_many :following, through: :active_relations, source: :followed
+  has_many :followers, through: :passive_relations, source: :follower
+
+
+
   enum gender: { unknown: 0, male: 1, female: 2 }
   enum age: { unanswered: 0, teenage: 1, twenties: 2, thirties: 3, forties: 4, over_fifties: 5}
 
   mount_uploader :image, ImageUploader
+
+
+  def follow!(other_user)
+    active_relations.create!(followed_id: other_user.id)
+  end
+
+  def following?(other_user)
+    active_relations.find_by(followed_id: other_user.id)
+  end
+
+  def unfollow!(other_user)
+    active_relations.find_by(followed_id: other_user.id).destroy
+  end
 
 
   def self.find_for_oauth(auth)
