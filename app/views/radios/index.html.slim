@@ -1,51 +1,37 @@
 h1
   | Radios
-table
+table.highlight
   thead
     tr
+      th style=("width: 10%;")
+        | Image
       th
         | Title
-      th[colspan="3"]
+      th
+      th
+      th
+      th
+      th
   tbody
     - @radios.each do |radio|
       tr
-        td
-          = image_tag "#{radio.image}", size: '180x90'
-        td
-          = radio.title
-        td
+        td style=("width: 10%")
+          = link_to radio
+            = image_tag "#{radio.image}", size: '120x60'
+        td style=("width: 20%")
+          = link_to radio
+            = radio.title
+        td style=("width: 20%")
           = radio.personality
-        td
-          = radio.start_time
-        td
-          = radio.end_time
-        td
+        td style=("width: 10%")
+          = radio.start_time.strftime('%a %H時%M分')
+        td style=("width: 10%")
+          = radio.end_time.strftime('%a %H時%M分')
+        td style=("width: 10%")
           = radio.length / 60
-          | min
-
+          | 分
 
         - if user_signed_in?
-          div id="likes_buttons_#{radio.id}"
-            = render partial: 'likes/like', locals: { radio: radio, like: @like }
-
-
-        / - if @like.pluck(:radio_id).include?(radio.id)
-        /   td
-        /     = link_to like_path(id: @like.find_by(radio_id: radio.id).id), method: :delete, remote: true, class: 'waves-effect waves-light btn'
-        /       i.material-icons.md-36 check_box
-        /       / お気に入り解除
-        / - else
-        /   td
-        /     = link_to likes_path(radio_id: radio.id), method: :post, remote: true, class: 'waves-effect waves-light btn'
-        /       i.material-icons.md-36 check_box_outline_blank
-
-
-
-        td
-           = link_to 'Show', radio
-        td
-          / = link_to 'Edit', edit_radio_path(radio)
-        td
-          / = link_to 'Destroy', radio, method: :delete, data: {confirm: 'Are you sure?'}
-br
-/ = link_to 'New Radio', new_radio_path
+          td style=("width: 20%")
+            div id="likes_buttons_#{radio.id}"
+              = render partial: 'likes/like', locals: { radio: radio}
