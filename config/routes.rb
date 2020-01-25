@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'radios#index'
 
-  get 'search', to: 'radioss#search'
+  get 'search', to: 'radios#search'
   resources :radios do
     resources :comments
   end

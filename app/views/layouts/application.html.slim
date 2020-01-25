@@ -19,16 +19,6 @@ html
                 i.material-icons menu
               = link_to "Radio Sort", radios_path, class: 'brand-logo'
 
-    /! LEFT SIDEBAR
-    ul#sidenav-1.sidenav.sidenav-fixed
-      li
-        a.subheader Always out except on mobile
-      li
-        a href="https://github.com/dogfalo/materialize/" target="_blank"  Github
-      li
-        a href="https://twitter.com/MaterializeCSS" target="_blank"  Twitter
-      li
-        a href="http://next.materializecss.com/getting-started.html" target="_blank"  Docs
     /! RIGHT SIDEBAR
     ul#sidenav-2.sidenav
       li
@@ -59,3 +49,14 @@ html
       p.notice= notice
       p.alert= alert
       = yield
+
+    / /! LEFT SIDEBAR
+    / ul#sidenav-1.sidenav.sidenav-fixed
+    /   li
+    /     a.subheader Always out except on mobile
+    /   li
+    /     a href="https://github.com/dogfalo/materialize/" target="_blank"  Github
+    /   li
+    /     a href="https://twitter.com/MaterializeCSS" target="_blank"  Twitter
+    /   li
+    /     a href="http://next.materializecss.com/getting-started.html" target="_blank"  Docs
