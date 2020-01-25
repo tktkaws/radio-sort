@@ -12,8 +12,6 @@
   p コメント
   #comments_area
     = render partial: 'comments/index', locals: {comments: @comments, radio: @radio}
-  = render partial: 'comments/form', locals: {comment: @comment, radio: @radio}
-  = link_to '編集', edit_radio_path(@radio)
-  | |#{link_to '戻る', radios_path}
-
+    - if user_signed_in?
+      = render partial: 'comments/form', locals: {comment: @comment, radio: @radio}
 

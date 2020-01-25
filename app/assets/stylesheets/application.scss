@@ -12,7 +12,23 @@
  *
  */
 @import "materialize/components/color-variables";
-$primary-color: color("orange", "darken-3") !default;
+$primary-color: color("blue-grey", "darken-4") !default;
 $secondary-color: color("grey", "darken-1") !default;
 @import 'materialize';
 @import 'material_icons';
+
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+//.sidenav {
+//  @extend .blue-grey, .lighten-1;
+//  @extend .white-text;
+//
+//}

@@ -2,10 +2,18 @@ class RadiosController < ApplicationController
   before_action :set_radio, only: [:show, :edit, :update, :destroy]
 
   def index
-    @radios = Radio.all
+    @q = Radio.ransack(params[:q])
+    @radios = @q.result(distinct: true)
+
+    #@radios = Radio.all
     if user_signed_in?
     @like = current_user.likes
     end
+  end
+
+  def search
+    @q = Radio.search(search_params)
+    @radios = @q.result(distinct: true)
   end
 
   def show
@@ -13,24 +21,14 @@ class RadiosController < ApplicationController
     @comment = @radio.comments.build
   end
 
-
-  #def new
-  #  @radio = Radio.new
-  #end
-
-  #def destroy
-  #end
-
-  #def update
-  #end
-
-  #def edit
-  #end
-
   private
 
   def set_radio
     @radio = Radio.find(params[:id])
+  end
+
+  def search_params
+    params.require(:q).permit!
   end
 
 end

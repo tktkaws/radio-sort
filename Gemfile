@@ -79,4 +79,5 @@ gem 'jquery-turbolinks'
 gem 'omniauth-twitter'
 gem 'carrierwave', '~> 2.0'
 gem 'enum_select_rails'
+gem 'ransack'
 
