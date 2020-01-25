@@ -9,7 +9,7 @@ ul#sidenav-1.sidenav.sidenav-fixed
   li
     a href="http://next.materializecss.com/getting-started.html" target="_blank"  Docs
 
-  = search_form_for(q, url: search_path) do |f|
+  = search_form_for q do |f|
     p
       = f.label :title_cont, 'title'
       = f.search_field :title_cont
@@ -17,3 +17,5 @@ ul#sidenav-1.sidenav.sidenav-fixed
       = f.label :personality_cont, 'personality'
       = f.search_field :personality_cont
     = f.submit
+  p
+    = link_to "clear", radios_path,type: "button"

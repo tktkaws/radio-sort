@@ -11,14 +11,14 @@ class RadiosController < ApplicationController
     end
   end
 
-  def search
-    @q = Radio.search(search_params)
-    @radios = @q.result(distinct: true)
-
-    if user_signed_in?
-      @like = current_user.likes
-    end
-  end
+  #def search
+  #  @q = Radio.search(search_params)
+  #  @radios = @q.result(distinct: true)
+  #
+  #  if user_signed_in?
+  #    @like = current_user.likes
+  #  end
+  #end
 
   def show
     @comments = @radio.comments
