@@ -1,16 +1,16 @@
-h1
+= render partial: 'radios/sidenav', locals: { radio: @radios, q: @q}
+h1.center
   | Radios
 table.highlight
   thead
     tr
-      th style=("width: 10%;")
+      th
         | Image
-      th
-        | Title
-      th
-      th
-      th
-      th
+      th= sort_link(@q, :title, "title")
+      th= sort_link(@q, :personality, "personality")
+      th= sort_link(@q, :start_time, "start_time")
+      th= sort_link(@q, :end_time, "end_time")
+      th= sort_link(@q, :length, "length")
       th
   tbody
     - @radios.each do |radio|

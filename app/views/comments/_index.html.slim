@@ -1,4 +1,3 @@
-
   - comments.each do |comment|
     table
       - if comment.id.present?
@@ -8,7 +7,7 @@
           = "#{comment.user.name}"
         td
           = comment.content
-      - if comment.user == current_user
+      - if comment.user == current_user && user_signed_in?
         td
           = link_to radio_comment_path(comment.radio_id, comment.id), method: :delete, remote: true
             i.material-icons clear
