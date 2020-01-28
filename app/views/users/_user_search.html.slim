@@ -32,6 +32,9 @@ ul#sidenav-1.sidenav.sidenav-fixed
       = f.label :age_eq, '年齢'
       = f.select :age_eq, User.ages.map { |k, v| [User.ages_i18n[k], v] }, include_blank: true
     p
+      = f.label :likes_radio_title_cont_all, 'title'
+      = f.search_field :likes_radio_title_cont_all
+    p
       = f.submit
   p
     = link_to "clear", users_path,type: "button"
