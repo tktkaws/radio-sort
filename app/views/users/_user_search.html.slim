@@ -1,0 +1,37 @@
+/! LEFT SIDEBAR
+ul#sidenav-1.sidenav.sidenav-fixed
+  li
+    a.subheader Always out except on mobile
+  li
+    = link_to "Radios", radios_path
+  - if user_signed_in?
+    li
+      = link_to "Profile", user_path(current_user.id) , class: 'nav-link'
+    li
+      = link_to "Following/Follwed", user_show_relations_path(current_user.id)
+    li
+      = link_to "Users", users_path
+    li
+      = link_to "Logout", destroy_user_session_path, class: 'nav-link', method: :delete
+    edit_user_registration
+    li
+      = link_to "Edit", edit_user_registration_path, class: 'nav-link'
+  - else
+    li
+      = link_to "Sign up", new_user_registration_path, class: 'nav-link'
+    li
+      = link_to "Login", new_user_session_path, class: 'nav-link'
+    li
+      = link_to 'Twitterログイン', user_twitter_omniauth_authorize_path
+
+  = search_form_for q do |f|
+    p
+      = f.label :gender_eq, '性別'
+      = f.select :gender_eq, User.genders.map{|k, v| [User.genders_i18n[k], v]}, include_blank: true
+    p
+      = f.label :age_eq, '年齢'
+      = f.select :age_eq, User.ages.map { |k, v| [User.ages_i18n[k], v] }, include_blank: true
+    p
+      = f.submit
+  p
+    = link_to "clear", users_path,type: "button"

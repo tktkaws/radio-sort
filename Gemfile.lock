@@ -294,6 +294,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  enum_help
   enum_select_rails
   faker
   gimei

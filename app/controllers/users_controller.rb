@@ -3,7 +3,10 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @users = User.all
+    #@users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true)
+
   end
 
   def new
