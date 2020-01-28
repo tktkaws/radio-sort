@@ -27,8 +27,16 @@ header, main, footer {
   }
 }
 
-//.sidenav {
-//  @extend .blue-grey, .lighten-1;
-//  @extend .white-text;
-//
-//}
+.headline {
+  background-color: #fff;
+  clear: both;
+  margin-bottom:1rem;
+  overflow: hidden;
+  padding: 0.5rem;
+  border-bottom: 1px solid #434343;
+}
+.headline__title{
+  color:#434343;
+  font-size: 2rem;
+  text-align: center;
+}
