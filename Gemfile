@@ -80,4 +80,9 @@ gem 'omniauth-twitter'
 gem 'carrierwave', '~> 2.0'
 gem 'enum_select_rails'
 gem 'ransack'
+gem 'seed-fu', '~> 2.3'
+gem 'faker'
+gem 'gimei'
+gem 'enum_help'
+
 

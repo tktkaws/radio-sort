@@ -8,21 +8,39 @@ html
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header
+    .navbar-fixed
       nav
         .nav-wrapper
-          .row
-            .col.s12
-              a.left.sidenav-trigger.hide-on-medium-and-up data-target="sidenav-1" href="#"
-                i.material-icons menu
-              a.right.sidenav-trigger.show-on-medium-and-up data-target="sidenav-2" href="#"
-                i.material-icons menu
-              = link_to "Radio Sort", radios_path, class: 'brand-logo'
+          a.left.sidenav-trigger data-target="sidenav-1" href="#"
+            i.material-icons menu
+          = link_to "Radio Sort", radios_path, class: 'brand-logo'
+          a.right.sidenav-trigger data-target="sidenav-2" href="#"
+            i.material-icons menu
+          ul.right.hide-on-med-and-down
+            li
+              = link_to "Radios", radios_path
+            - if user_signed_in?
+              li
+                = link_to "Profile", user_path(current_user.id) , class: 'nav-link'
+              li
+                = link_to "Following/Follwed", user_show_relations_path(current_user.id)
+              li
+                = link_to "Users", users_path
+              li
+                = link_to "Logout", destroy_user_session_path, class: 'nav-link', method: :delete
+              edit_user_registration
+              li
+                = link_to "Edit", edit_user_registration_path, class: 'nav-link'
+            - else
+              li
+                = link_to "Sign up", new_user_registration_path, class: 'nav-link'
+              li
+                = link_to "Login", new_user_session_path, class: 'nav-link'
+              li
+                = link_to 'Twitterログイン', user_twitter_omniauth_authorize_path
 
-    /! RIGHT SIDEBAR
-    ul#sidenav-2.sidenav
-      li
-        a.subheader Menu
+
+    ul#sidenav-2.sidenav.sidenav
       li
         = link_to "Radios", radios_path
       - if user_signed_in?
@@ -49,14 +67,3 @@ html
       p.notice= notice
       p.alert= alert
       = yield
-
-    / /! LEFT SIDEBAR
-    / ul#sidenav-1.sidenav.sidenav-fixed
-    /   li
-    /     a.subheader Always out except on mobile
-    /   li
-    /     a href="https://github.com/dogfalo/materialize/" target="_blank"  Github
-    /   li
-    /     a href="https://twitter.com/MaterializeCSS" target="_blank"  Twitter
-    /   li
-    /     a href="http://next.materializecss.com/getting-started.html" target="_blank"  Docs

@@ -3,7 +3,16 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @users = User.all
+    #@users = User.all
+    if params[:q] != nil
+      params[:q]['likes_radio_title_cont_all'] = params[:q]['likes_radio_title_cont_all'].split(/[\p{blank}\s]+/)
+      @q = User.ransack(params[:q])
+      @users = @q.result(distinct: true)
+      else
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true)
+    end
+
   end
 
   def new

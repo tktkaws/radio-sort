@@ -1,14 +1,10 @@
-/! LEFT SIDEBAR
 ul#sidenav-1.sidenav.sidenav-fixed
+  nav
+    .nav-wrapper
+      = link_to "Radio Sort", radios_path, class: 'brand-logo center'
   li
-    a.subheader Always out except on mobile
-  li
-    a href="https://github.com/dogfalo/materialize/" target="_blank"  Github
-  li
-    a href="https://twitter.com/MaterializeCSS" target="_blank"  Twitter
-  li
-    a href="http://next.materializecss.com/getting-started.html" target="_blank"  Docs
-
+    .headline
+      .h4.headline__title Radio Search
   = search_form_for q do |f|
     p
       = f.label :title_cont, 'title'
@@ -16,6 +12,12 @@ ul#sidenav-1.sidenav.sidenav-fixed
     p
       = f.label :personality_cont, 'personality'
       = f.search_field :personality_cont
-    = f.submit
-  p
-    = link_to "clear", radios_path,type: "button"
+    p.center
+      = button_tag type: 'submit', class: 'waves-effect waves-light btn-large' do
+        i.material-icons.right search
+        |search
+
+    p.center
+        = link_to radios_path, class: 'waves-effect waves-light btn-large' do
+          i.material-icons.right clear
+          |clear
