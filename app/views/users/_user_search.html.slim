@@ -16,7 +16,12 @@ ul#sidenav-1.sidenav.sidenav-fixed
     p
       = f.label :likes_radio_title_cont_all, '番組名'
       = f.search_field :likes_radio_title_cont_all
-    p
-      = f.submit
-  p
-    = link_to "clear", users_path,type: "button"
+    p.center
+        = button_tag type: 'submit', class: 'waves-effect waves-light btn-large' do
+          i.material-icons.right search
+          |search
+
+    p.center
+        = link_to users_path , class: 'waves-effect waves-light btn-large' do
+          i.material-icons.right clear
+          |clear
