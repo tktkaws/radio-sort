@@ -1,0 +1,40 @@
+ul#sidenav-1.sidenav.sidenav-fixed
+  nav
+    .nav-wrapper
+      = link_to "Radio Sort", radios_path, class: 'brand-logo center'
+
+  .blue-grey.lighten-5
+    li.center
+      = image_tag "#{user.image}", size: '180x180', class: "sidnav circle"
+    li.center-align
+      h5
+        = user.name
+    li.center-align
+      h5
+        = user.gender_i18n
+    li.center-align
+      h5
+        = user.age_i18n
+    li.center-align
+      = link_to user_relations_index_path(current_user.id)
+        |フォロー：#{user.following.count}人
+    li.center-align
+      = link_to user_relations_index_path(current_user.id)
+        |フォロワー：#{user.followers.count}人
+    li
+      .divider
+
+  li.center-align
+    = link_to edit_user_registration_path
+     |Edit
+  li.center-align
+    = link_to destroy_user_session_path, method: :delete
+      |LogOut
+
+  li
+    .divider
+  li.center-align
+    = link_to "https://github.com/tktkaws/radio-sort", class: 'collection-item', target: :_blank do
+      = image_tag 'number/GitHub-Mark-120px-plus.png' ,width: "10%"
+      span
+        ' tktkaws

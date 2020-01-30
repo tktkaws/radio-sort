@@ -1,27 +1,7 @@
+= render partial: 'profile', locals: {user: @user, q: @q}
+
 p#notice
   = notice
-p
-  = image_tag "#{@user.image}", size: '90x45'
-p
-  strong
-    | Name:
-  = @user.name
-p
-  strong
-    | gender:
-  = @user.gender_i18n
-p
-  strong
-    | age:
-  = @user.age_i18n
-p
-  strong
-    | フォロー
-  = @user.following.count
-p
-  strong
-    | フォロワー
-  = @user.followers.count
 p
   - @user.comments.each do |c|
     p

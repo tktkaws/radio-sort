@@ -2,10 +2,6 @@ ul#sidenav-1.sidenav.sidenav-fixed
   nav
     .nav-wrapper
       = link_to "Radio Sort", radios_path, class: 'brand-logo center'
-  li
-    .headline
-      .h4.headline__title User Search
-
   = search_form_for q do |f|
     p
       = f.label :gender_eq, '性別'
