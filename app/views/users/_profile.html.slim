@@ -16,10 +16,10 @@ ul#sidenav-1.sidenav.sidenav-fixed
     h5
       = user.age_i18n
   li.center-align
-    = link_to user_relations_index_path(current_user.id)
+    = link_to user_relations_index_path(user.id)
       |フォロー：#{user.following.count}人
   li.center-align
-    = link_to user_relations_index_path(current_user.id)
+    = link_to user_relations_index_path(user.id)
       |フォロワー：#{user.followers.count}人
   li
     .divider
@@ -36,7 +36,7 @@ ul#sidenav-1.sidenav.sidenav-fixed
     .divider
   li.center-align
     = link_to "https://github.com/tktkaws/radio-sort", class: 'collection-item', target: :_blank do
-      = image_tag 'number/GitHub-Mark-120px-plus.png' ,width: "10%"
+      = image_tag 'number/GitHub.png' ,width: "10%"
       span
         '
         ' tktkaws
