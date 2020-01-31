@@ -4,7 +4,7 @@
       .row.collection-title
         .col.s2.m2.l2
           = link_to user_path(user.id)
-            = image_tag "#{user.image}", class: "circle responsive-img"
+            = image_tag "#{user.image}", size: "45x45", class: "circle"
         .col.s5.m5.l5
           p.truncate
             = link_to user_path(user.id)
