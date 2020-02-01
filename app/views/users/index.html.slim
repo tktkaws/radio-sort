@@ -2,3 +2,4 @@
 .row
   - @users.each do |user|
     = render partial: 'user_index', locals: {user: user}
+= paginate @users

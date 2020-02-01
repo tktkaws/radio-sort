@@ -3,7 +3,7 @@ class RadiosController < ApplicationController
 
   def index
     @q = Radio.ransack(params[:q])
-    @radios = @q.result(distinct: true)
+    @radios = @q.result(distinct: true).page(params[:page])
 
     if user_signed_in?
     @like = current_user.likes
