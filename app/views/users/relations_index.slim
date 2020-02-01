@@ -1,0 +1,16 @@
+= render partial: 'user_search', locals: {user: @user, q: @q}
+.row
+  .col.s12
+    ul.tabs
+      li.tab.col.m6.l6
+        = link_to "#test1", class: 'active' do
+          |フォロー：#{@user.following.count}人
+      li.tab.col.m6.l6
+        = link_to "#test2" do
+          |フォロワー：#{@user.followers.count}人
+  #test1.col.s12
+    - @user.following.each do |user|
+      = render partial: 'user_index', locals: {user: user}
+  #test2.col.s12
+    - @user.followers.each do |user|
+      = render partial: 'user_index', locals: {user: user}

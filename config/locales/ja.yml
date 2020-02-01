@@ -2,7 +2,7 @@ ja:
   enums:
     user:
       gender:
-        unknown: 未回答
+        unknown: 不明
         male: 男性
         female: 女性
       age:
@@ -11,4 +11,4 @@ ja:
         twenties: 20代
         thirties: 30代
         forties: 40代
-        over_fifties: 50代以上
+        over_fifties: 50代~

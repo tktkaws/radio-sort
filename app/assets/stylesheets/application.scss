@@ -12,6 +12,7 @@
  *
  */
 @import "materialize/components/color-variables";
+//$primary-color: color("indigo", "darken-4") !default;
 $primary-color: color("blue-grey", "darken-4") !default;
 $secondary-color: color("cyan", "darken-2") !default;
 $link-color: color("cyan", "darken-2") !default;
@@ -28,23 +29,32 @@ header, main, footer {
   }
 }
 
-.headline {
-  background-color: #fff;
-  clear: both;
-  margin-bottom:1rem;
-  overflow: hidden;
-  padding: 0.5rem;
-  border-bottom: 1px solid #434343;
-}
-.headline__title{
-  color:#434343;
-  font-size: 2rem;
-  text-align: center;
-}
-
 .waves-button-input{
   color:#fff;
 }
 .btn-large{
   width: 95%;
+}
+
+.row.collection-title {
+  margin-bottom:0px;
+}
+
+.btn-floating.btn-small {
+  margin-right: 10px;
+}
+
+img.sidnav.circle {
+  margin: 10px;
+}
+
+a.nav-link{
+  color: black;
+}
+a.brand-logo{
+  color: black;
+  font-size: 20px;
+}
+i.icon-menu {
+  color: black;
 }

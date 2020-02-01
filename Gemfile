@@ -84,5 +84,6 @@ gem 'seed-fu', '~> 2.3'
 gem 'faker'
 gem 'gimei'
 gem 'enum_help'
+gem 'kaminari'
 
 

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   }
 
   resources :users, only: [:index, :show] do
-    get :show_relations
+    get :relations_index
   end
 
   resources :likes do

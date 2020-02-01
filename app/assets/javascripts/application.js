@@ -42,3 +42,32 @@ $(document).ready(function(){
     $('#sidenav-1').sidenav({ edge: 'left' });
     $('#sidenav-2').sidenav({ edge: 'right' });
 });
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.tooltipped');
+    var instances = M.Tooltip.init(elems, options);
+});
+
+// Or with jQuery
+
+$(document).ready(function(){
+    $('.tooltipped').tooltip();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var instances = M.Collapsible.init(elems, options);
+});
+
+// Or with jQuery
+
+$(document).ready(function(){
+    $('.collapsible').collapsible();
+});
+
+$(document).ready(function(){
+    $('.tabs').tabs();
+});

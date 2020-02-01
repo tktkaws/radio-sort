@@ -9,26 +9,27 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body
     .navbar-fixed
-      nav
+      nav.white
         .nav-wrapper
           a.left.sidenav-trigger data-target="sidenav-1" href="#"
-            i.material-icons menu
-          = link_to "Radio Sort", radios_path, class: 'brand-logo'
+            i.material-icons.icon-menu menu
+          = link_to radios_path, class: 'brand-logo' do
+            i.material-icons.icon-menu radio
+            |Radio Sort
           a.right.sidenav-trigger data-target="sidenav-2" href="#"
-            i.material-icons menu
+            i.material-icons.icon-menu menu
           ul.right.hide-on-med-and-down
             li
-              = link_to "Radios", radios_path
+              = link_to "Radios", radios_path, class: 'nav-link'
             - if user_signed_in?
               li
                 = link_to "Profile", user_path(current_user.id) , class: 'nav-link'
               li
-                = link_to "Following/Follwed", user_show_relations_path(current_user.id)
+                = link_to "Following/Follwed", user_relations_index_path(current_user.id), class: 'nav-link'
               li
-                = link_to "Users", users_path
+                = link_to "Users", users_path, class: 'nav-link'
               li
                 = link_to "Logout", destroy_user_session_path, class: 'nav-link', method: :delete
-              edit_user_registration
               li
                 = link_to "Edit", edit_user_registration_path, class: 'nav-link'
             - else
@@ -37,7 +38,7 @@ html
               li
                 = link_to "Login", new_user_session_path, class: 'nav-link'
               li
-                = link_to 'Twitterログイン', user_twitter_omniauth_authorize_path
+                = link_to 'Twitterログイン', user_twitter_omniauth_authorize_path, class: 'nav-link'
 
 
     ul#sidenav-2.sidenav.sidenav
@@ -47,12 +48,11 @@ html
         li
           = link_to "Profile", user_path(current_user.id) , class: 'nav-link'
         li
-          = link_to "Following/Follwed", user_show_relations_path(current_user.id)
+          = link_to "Following/Follwed", user_relations_index_path(current_user.id), class: 'nav-link'
         li
-          = link_to "Users", users_path
+          = link_to "Users", users_path, class: 'nav-link'
         li
           = link_to "Logout", destroy_user_session_path, class: 'nav-link', method: :delete
-        edit_user_registration
         li
           = link_to "Edit", edit_user_registration_path, class: 'nav-link'
       - else
@@ -62,6 +62,7 @@ html
           = link_to "Login", new_user_session_path, class: 'nav-link'
         li
           = link_to 'Twitterログイン', user_twitter_omniauth_authorize_path
+
 
     main
       p.notice= notice
