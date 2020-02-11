@@ -11,13 +11,16 @@ ul#sidenav-1.sidenav.sidenav-fixed
     p
       = f.label :personality_cont, 'personality'
       = f.search_field :personality_cont
+    p
+      = f.label :station_eq, 'station'
+      = f.select :station_eq, Radio.pluck(:station).uniq, include_blank: true, selected: ""
     p.center
-      = button_tag type: 'submit', class: 'waves-effect waves-light btn-large' do
+      = button_tag type: 'submit', class: 'waves-effect waves-light btn search' do
         i.material-icons.right search
-        |Radio Search
+        |Search
 
     p.center
-        = link_to radios_path, class: 'waves-effect waves-light btn-large' do
+        = link_to radios_path, class: 'waves-effect waves-light btn search' do
           i.material-icons.right clear
           |clear
   / footer

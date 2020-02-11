@@ -13,6 +13,9 @@ class RadiosController < ApplicationController
   def show
     @comments = @radio.comments
     @comment = @radio.comments.build
+
+    @q = Radio.ransack(params[:q])
+    @radios = @q.result(distinct: true).page(params[:page])
   end
 
   private
