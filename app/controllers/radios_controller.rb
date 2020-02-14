@@ -3,6 +3,7 @@ class RadiosController < ApplicationController
 
   def index
     @q = Radio.ransack(params[:q])
+    @q.sorts = 'start_time asc' if @q.sorts.empty?
     @radios = @q.result(distinct: true).page(params[:page])
 
     if user_signed_in?

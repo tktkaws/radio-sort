@@ -6,9 +6,11 @@ class UsersController < ApplicationController
     if params[:q] != nil
       params[:q]['likes_radio_title_cont_all'] = params[:q]['likes_radio_title_cont_all'].split(/[\p{blank}\s]+/)
       @q = User.ransack(params[:q])
+      @q.sorts = 'id asc' if @q.sorts.empty?
       @users = @q.result(distinct: true).page(params[:page])
     else
     @q = User.ransack(params[:q])
+    @q.sorts = 'id asc' if @q.sorts.empty?
     @users = @q.result(distinct: true).page(params[:page])
     end
   end
@@ -28,9 +30,11 @@ class UsersController < ApplicationController
     if params[:q] != nil
       params[:q]['likes_radio_title_cont_all'] = params[:q]['likes_radio_title_cont_all'].split(/[\p{blank}\s]+/)
       @q = User.ransack(params[:q])
+      @q.sorts = 'id asc' if @q.sorts.empty?
       @users = @q.result(distinct: true).page(params[:page])
     else
       @q = User.ransack(params[:q])
+      @q.sorts = 'id asc' if @q.sorts.empty?
       @users = @q.result(distinct: true).page(params[:page])
     end
 

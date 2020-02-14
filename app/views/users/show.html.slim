@@ -3,11 +3,15 @@
 .row
   = yield
   .col.s12.m9.l9
+    - if @user.likes.blank?
+      .collection
+        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do
+          |ラジオにLikeをつけてみましょう
     table.highlight
       |  <tbody id="likes_list", class="ui-sortable">
       - @likes.each_with_index do |like,i|
         = content_tag "tr", id: "like-#{like.id}", class: "item ui-sortable-handle", data: {model_name: like.class.name.underscore, update_url: like_sort_path(like.id)} do
-          th name="num data"
+          th
             = "#{i+1}位"
           td
             = link_to like.radio
@@ -22,6 +26,11 @@
                 = render partial: 'likes/like', locals: {radio: like.radio}
 
   .col.s12.m3.l3
+    - if @user.comments.blank?
+      .collection
+        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do
+          |好きなラジオにコメントをしてみましょう
+
     - @user.comments.each do |c|
       .collection
         = link_to c.radio, class: 'a collection-item collection-header blue-grey lighten-5' do

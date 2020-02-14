@@ -3,7 +3,7 @@ require "open-uri"
 require "FileUtils"
 
 def save_image(url,fileName)
-  dirName = "/Users/takayukitakahashi/RubymineProjects/radio-sort/app/assets/images/LFR/"
+  dirName = "/Users/takayukitakahashi/RubymineProjects/radio-sort/app/assets/images/TFM/"
   filePath = dirName + fileName
 
   FileUtils.mkdir_p(dirName) unless FileTest.exist?(dirName)
@@ -15,7 +15,7 @@ def save_image(url,fileName)
   end
 end
 
-CSV.foreach('/Users/takayukitakahashi/RubymineProjects/radio-sort/db/xml/LFRnotnill.csv', headers: true) do |row|
+CSV.foreach('/Users/takayukitakahashi/RubymineProjects/radio-sort/db/xml/TFMweekly加工済.csv', headers: true) do |row|
   img = row['image']
   filename = row['filename']
   p filename

@@ -20,7 +20,7 @@ br
     / = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)
     br
     = link_to omniauth_authorize_path(resource_name, provider) do
-      |Sign in with #{OmniAuth::Utils.camelize(provider)}
+      |Log in with #{OmniAuth::Utils.camelize(provider)}
       '
       '
       = image_tag 'number/Twitter3.png', width: "5%",style: "vertical-align:middle;"

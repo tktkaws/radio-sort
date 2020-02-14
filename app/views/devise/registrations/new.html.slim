@@ -1,7 +1,5 @@
 = render partial: 'radios/sidenav', locals: {radio: @radios, q: @q}
 .container
-  h2
-    | Sign up
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
     = render "devise/shared/error_messages", resource: resource
     .field
@@ -9,7 +7,7 @@
       br
       = f.email_field :email, autofocus: true, autocomplete: "email"
     .field
-      = f.label :password
+      = f.label :"パスワード(#{@minimum_password_length}文字以上)"
       br
       = f.password_field :password, autocomplete: "new-password"
     .field

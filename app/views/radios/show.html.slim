@@ -5,9 +5,10 @@
     li.collection-item #{@radio.title}
     li.collection-item #{@radio.personality}
     - if @radio.start_time.present?
-      li.collection-item #{@radio.start_time.strftime('%a %H時%M分')}
+      li.collection-item #{@radio.start_time.strftime("(#{%w(日 月 火 水 木 金 土)[@radio.start_time.wday]}) %H時%M分")}~
     - if @radio.end_time.present?
-      li.collection-item #{@radio.end_time.strftime('%a %H時%M分')}
+      li.collection-item #{@radio.end_time.strftime("(#{%w(日 月 火 水 木 金 土)[@radio.end_time.wday]}) %H時%M分")}
+    li.collection-item #{@radio.length / 60}分
     li.collection-item #{@radio.station}
 
   - if user_signed_in?
