@@ -1,18 +1,20 @@
+= render partial: 'radios/radio_ranking_search', locals: { radio: @radios, q: @q}
+
+
+ul.collection.with-header
+  li.collection-header.blue-grey.lighten-5
+    h5
+      - if params[:q].present?
+        |#{@gender}・#{@age} から人気の番組ランキング (#{@station})
+      - else
+        |性別問わず・全年代 から人気の番組ランキング (全放送局)
+
 table.highlight
-  thead
-    tr
-      th
-      th= sort_link(@q, :title, "title")
-      th= sort_link(@q, :personality, "personality")
-      th= sort_link(@q, :station, "station")
-      th= sort_link(@q, :start_time, "start_time")
-      th= sort_link(@q, :end_time, "end_time")
-      th= sort_link(@q, :length, "length")
-      - if user_signed_in?
-        th
   tbody
-    - @radios.each do |radio|
+    - @radios.each_with_index do |radio,i|
       tr
+        th style="width:5%"
+          = "#{i + 1}位"
         td style="width:10%"
           = link_to radio
             = image_tag "#{radio.image}", size: '120x60'
@@ -23,18 +25,21 @@ table.highlight
           = radio.personality
         td style="width:10%"
           = radio.station
-        td style="width:10%"
+        td style="width:5%"
           - if radio.start_time.present?
             = radio.start_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.start_time.wday]}) %H時%M分")
-        td style="width:10%"
+        td style="width:5%"
           - if radio.end_time.present?
             = radio.end_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.end_time.wday]}) %H時%M分")
         td style="width:10%"
           = radio.length / 60
           | 分
+        td style="width:5%"
+          | #{@points[i]}pt
 
         - if user_signed_in?
           td style="width:10%"
             div id="likes_buttons_#{radio.id}"
               = render partial: 'likes/like', locals: { radio: radio}
-= paginate radio
+
+= paginate @radios
