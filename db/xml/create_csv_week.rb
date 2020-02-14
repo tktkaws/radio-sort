@@ -2,8 +2,8 @@ require 'nokogiri'
 require 'csv'
 require 'open-uri'
 
-CSV.open("FMJ.csv", "w") do |csv|
-  f = File.open("FMJ.xml")
+CSV.open("FMTweekly2.csv", "w") do |csv|
+  f = File.open("FMTweekly2.xml")
   doc = Nokogiri::XML(f)
   f.close
   csv << ["title", "pfm","ft","to","dur","image"] # csvへの書き込み

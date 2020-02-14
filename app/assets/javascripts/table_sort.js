@@ -13,7 +13,8 @@ $(function(){
             });
         },
         stop: function(e, ui){
-            ui.item.children('td').not('.item__status').effect('highlight', { color: "#FFFFCC" }, 500)
+            ui.item.children('td').not('.item__status').effect('highlight', { color: "#0097a7" }, 500)
+            ui.item.children('th').not('.item__status').effect('highlight', { color: "#0097a7" }, 500)
         }
     });
 });

@@ -32,7 +32,7 @@ header, main, footer {
 .waves-button-input{
   color:#fff;
 }
-.btn-large{
+.btn.search{
   width: 95%;
 }
 
@@ -57,4 +57,17 @@ a.brand-logo{
 }
 i.icon-menu {
   color: black;
+}
+
+.waves-effect img {
+  margin: 6px;
+}
+
+.material-icons.likes {
+  vertical-align: bottom;
+}
+
+
+.item.ui-sortable-handle {
+    cursor: row-resize;
 }

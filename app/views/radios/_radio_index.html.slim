@@ -1,39 +1,39 @@
 table.highlight
   thead
     tr
-      th Image
-      th Station
+      th
       th= sort_link(@q, :title, "title")
       th= sort_link(@q, :personality, "personality")
+      th= sort_link(@q, :station, "station")
       th= sort_link(@q, :start_time, "start_time")
       th= sort_link(@q, :end_time, "end_time")
       th= sort_link(@q, :length, "length")
-      th Likes
+      th
   tbody
     - @radios.each do |radio|
       tr
-        td
+        td style="width:10%"
           = link_to radio
             = image_tag "#{radio.image}", size: '120x60'
-        td
-          = radio.station
-        td
+        td style="width:20%"
           = link_to radio
             = radio.title
-        td
+        td style="width:20%"
           = radio.personality
-        td
+        td style="width:10%"
+          = radio.station
+        td style="width:10%"
           - if radio.start_time.present?
-            = radio.start_time.strftime('%a %H時%M分')
-        td
+            = radio.start_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.start_time.wday]}) %H時%M分")
+        td style="width:10%"
           - if radio.end_time.present?
-            = radio.end_time.strftime('%a %H時%M分')
-        td
+            = radio.end_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.end_time.wday]}) %H時%M分")
+        td style="width:10%"
           = radio.length / 60
           | 分
 
         - if user_signed_in?
-          td
+          td style="width:10%"
             div id="likes_buttons_#{radio.id}"
               = render partial: 'likes/like', locals: { radio: radio}
 = paginate radio

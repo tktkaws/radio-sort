@@ -1,17 +1,22 @@
+= render partial: 'radios/sidenav', locals: { radio: @radios, q: @q}
 .container
-  p#notice= notice
-  p
-    = image_tag "#{@radio.image}", size: '600x300'
-  p
-    strong> タイトル
-    | ：#{@radio.title}
+  ul.collection
+    = image_tag "#{@radio.image}", width: "100%", height: "300"
+    li.collection-item #{@radio.title}
+    li.collection-item #{@radio.personality}
+    - if @radio.start_time.present?
+      li.collection-item #{@radio.start_time.strftime("(#{%w(日 月 火 水 木 金 土)[@radio.start_time.wday]}) %H時%M分")}~
+    - if @radio.end_time.present?
+      li.collection-item #{@radio.end_time.strftime("(#{%w(日 月 火 水 木 金 土)[@radio.end_time.wday]}) %H時%M分")}
+    li.collection-item #{@radio.length / 60}分
+    li.collection-item #{@radio.station}
+
   - if user_signed_in?
     p
       div id="likes_buttons_#{@radio.id}"
         = render partial: 'likes/like', locals: { radio: @radio}
-  p コメント
+  .divider
   #comments_area
     = render partial: 'comments/index', locals: {comments: @comments, radio: @radio}
     - if user_signed_in?
       = render partial: 'comments/form', locals: {comment: @comment, radio: @radio}
-

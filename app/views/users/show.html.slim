@@ -1,47 +1,39 @@
 = render partial: 'profile', locals: {user: @user, q: @q}
 
-p#notice
-  = notice
-p
-  - @user.comments.each do |c|
-    p
-      = link_to c.radio
-        = image_tag "#{c.radio.image}", size: '90x45'
-      strong
-        | 番組名:
-      = c.radio.title
-      strong
-        | コメント:
-      = c.content
+.row
+  = yield
+  .col.s12.m9.l9
+    - if @user.likes.blank?
+      .collection
+        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do
+          |ラジオにLikeをつけてみましょう
+    table.highlight
+      |  <tbody id="likes_list", class="ui-sortable">
+      - @likes.each_with_index do |like,i|
+        = content_tag "tr", id: "like-#{like.id}", class: "item ui-sortable-handle", data: {model_name: like.class.name.underscore, update_url: like_sort_path(like.id)} do
+          th
+            = "#{i+1}位"
+          td
+            = link_to like.radio
+              = image_tag "#{like.radio.image}", size: '90x45'
+          td
+            = like.radio.title
+          td
+            = "#{like.point}点"
+          - if user_signed_in?
+            td
+              div id="likes_buttons_#{like.radio.id}"
+                = render partial: 'likes/like', locals: {radio: like.radio}
 
-table.table.table.table-striped
-  thead.thead-dark
-    tr
-      th
-        | Image
-      th
-        | Title
-      th
-        | row_order
-      th
-        | point
-  |  <tbody id="likes_list", class="ui-sortable">
-  - @likes.each do |like|
-    = content_tag "tr", id: "like-#{like.id}", class: "item ui-sortable-handle", data: {model_name: like.class.name.underscore, update_url: like_sort_path(like.id)} do
-      td
-        = link_to like.radio
-          = image_tag "#{like.radio.image}", size: '90x45'
-      td
-        = like.radio.title
-      td
-        = like.row_order
-      td
-        = like.point
-      - if user_signed_in?
-        td
-          div id="likes_buttons_#{like.radio.id}"
-            = render partial: 'likes/like', locals: {radio: like.radio}
+  .col.s12.m3.l3
+    - if @user.comments.blank?
+      .collection
+        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do
+          |好きなラジオにコメントをしてみましょう
 
-= link_to "Edit", edit_user_registration_path
-|  | 
-= link_to 'Back', users_path
+    - @user.comments.each do |c|
+      .collection
+        = link_to c.radio, class: 'a collection-item collection-header blue-grey lighten-5' do
+          = c.radio.title
+        = link_to c.radio, class: 'a collection-item' do
+          = c.content

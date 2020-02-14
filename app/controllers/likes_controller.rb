@@ -16,8 +16,10 @@ class LikesController < ApplicationController
 
   def sort
     like = Like.find(params[:like_id])
+    if like.user_id == correct_user.id
     like.update(like_params)
     render body: nil
+    end
   end
 
   def reset_row_order
@@ -35,5 +37,10 @@ class LikesController < ApplicationController
   private
   def like_params
     params.require(:like).permit(:row_order_position)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
   end
 end

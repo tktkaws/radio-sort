@@ -15,12 +15,12 @@ ul#sidenav-1.sidenav.sidenav-fixed
       = f.label :likes_radio_title_cont_all, '番組名'
       = f.search_field :likes_radio_title_cont_all
     p.center
-        = button_tag type: 'submit', class: 'waves-effect waves-light btn-large' do
+        = button_tag type: 'submit', class: 'waves-effect waves-light btn search' do
           i.material-icons.right search
-          |user search
+          |search
 
     p.center
-        = link_to users_path , class: 'waves-effect waves-light btn-large' do
+        = link_to users_path , class: 'waves-effect waves-light btn search' do
           i.material-icons.right clear
           |clear
   / footer
@@ -28,7 +28,7 @@ ul#sidenav-1.sidenav.sidenav-fixed
     .divider
   li.center-align
     = link_to "https://github.com/tktkaws/radio-sort", class: 'collection-item', target: :_blank do
-      = image_tag 'number/GitHub.png' ,width: "10%"
-      span
-        '
-        ' tktkaws
+      |tktkaws
+      '
+      '
+      = image_tag 'number/GitHub.png', width: "10%", style: "vertical-align:middle;"
