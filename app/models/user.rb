@@ -51,6 +51,12 @@ class User < ApplicationRecord
     user
   end
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.password = "111111"
+    end
+  end
+
   private
 
   def self.dummy_email(auth)
