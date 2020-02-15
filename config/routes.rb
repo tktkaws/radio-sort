@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'radios#index'
 
+  post 'tweet', to: 'twitter#tweet'
+  post 'confirm', to: 'twitter#confirm'
+
   get 'ranking', to: 'radios#ranking'
   resources :radios do
     resources :comments

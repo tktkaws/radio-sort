@@ -1,8 +1,13 @@
 = render partial: 'profile', locals: {user: @user, q: @q}
 
 .row
-  = yield
   .col.s12.m9.l9
+    - if @user == current_user
+      = link_to confirm_path, method: :post do
+        = image_tag 'number/Twitter3.png', width: "4%", style: "vertical-align:middle;"
+        '
+        |Tweet
+      br
     - if @user.likes.blank?
       .collection
         = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do

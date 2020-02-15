@@ -1,0 +1,8 @@
+= render partial: 'users/profile', locals: {user: @user, q: @q}
+.container
+  h5 以下の内容でtweet
+  p
+    = simple_format @tweet
+  p
+    = link_to tweet_path, class: 'waves-effect waves-light btn', method: :post
+      |tweet
