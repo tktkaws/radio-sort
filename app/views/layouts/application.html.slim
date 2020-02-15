@@ -65,6 +65,5 @@ html
           = link_to "Login", new_user_session_path, class: 'nav-link'
 
     main
-      p.notice= notice
-      p.alert= alert
+      = render("layouts/toast")
       = yield
