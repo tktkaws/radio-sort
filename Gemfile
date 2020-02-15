@@ -85,5 +85,6 @@ gem 'faker'
 gem 'gimei'
 gem 'enum_help'
 gem 'kaminari'
+gem 'twitter'
 
 
