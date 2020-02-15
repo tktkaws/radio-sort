@@ -30,17 +30,14 @@
       div
         | Currently waiting confirmation for:
         = resource.unconfirmed_email
-    / - if @minimum_password_length
-          / br
-          / em
-          /   = @minimum_password_length
-          /   |  文字以上
     .field
-      = f.label :"パスワード(#{@minimum_password_length}文字以上)"
+      = f.label :"新しいパスワード(#{@minimum_password_length}文字以上)"
       = f.password_field :password, autocomplete: "new-password"
     .field
       = f.label :password_confirmation
       = f.password_field :password_confirmation, autocomplete: "new-password"
+    br
+    br
     .field
       = f.label :current_password
       = f.password_field :current_password, autocomplete: "current-password"
@@ -49,4 +46,4 @@
         i.material-icons.right send
         |update
   p
-    = button_to "Cancel my account", registration_path(resource_name), data: {confirm: "Are you sure?"}, method: :delete, class: 'btn waves-effect waves-light grey'
+    = button_to "Cancel account", registration_path(resource_name), data: {confirm: "本当に退会しますか?"}, method: :delete, class: 'btn waves-effect waves-light grey'

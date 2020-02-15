@@ -27,7 +27,7 @@ html
               = link_to "Ranking", ranking_path, class: 'nav-link'
             - if user_signed_in?
               li
-                = link_to "Profile", user_path(current_user.id) , class: 'nav-link'
+                = link_to "Sort", user_path(current_user.id) , class: 'nav-link'
               li
                 = link_to "Follower", user_relations_index_path(current_user.id), class: 'nav-link'
               li
@@ -50,7 +50,7 @@ html
         = link_to "Ranking", ranking_path, class: 'nav-link'
       - if user_signed_in?
         li
-          = link_to "Profile", user_path(current_user.id) , class: 'nav-link'
+          = link_to "Sort", user_path(current_user.id) , class: 'nav-link'
         li
           = link_to "Follower", user_relations_index_path(current_user.id), class: 'nav-link'
         li

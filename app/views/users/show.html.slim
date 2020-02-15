@@ -2,7 +2,8 @@
 
 .row
   .col.s12.m9.l9
-    - if @user == current_user
+    - if @user == current_user && @user.likes.present?
+      br
       = link_to confirm_path, method: :post do
         = image_tag 'number/Twitter3.png', width: "4%", style: "vertical-align:middle;"
         '

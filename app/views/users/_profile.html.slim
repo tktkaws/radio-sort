@@ -21,16 +21,16 @@ ul#sidenav-1.sidenav.sidenav-fixed
   li.center-align
     = link_to user_relations_index_path(user.id)
       |フォロワー：#{user.followers.count}人
-  li
-    .divider
-
-  - unless current_user.email == "guest@example.com"
+  - if user_signed_in?
+    li
+      .divider
+    - unless current_user.email == "guest@example.com"
+      li.center-align
+        = link_to edit_user_registration_path
+         |Edit
     li.center-align
-      = link_to edit_user_registration_path
-       |Edit
-  li.center-align
-    = link_to destroy_user_session_path, method: :delete
-      |LogOut
+      = link_to destroy_user_session_path, method: :delete
+        |LogOut
 
   / footer
   li
