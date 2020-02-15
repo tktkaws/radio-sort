@@ -24,9 +24,10 @@ ul#sidenav-1.sidenav.sidenav-fixed
   li
     .divider
 
-  li.center-align
-    = link_to edit_user_registration_path
-     |Edit
+  - unless current_user.email == "guest@example.com"
+    li.center-align
+      = link_to edit_user_registration_path
+       |Edit
   li.center-align
     = link_to destroy_user_session_path, method: :delete
       |LogOut

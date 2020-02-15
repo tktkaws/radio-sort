@@ -32,8 +32,9 @@ html
                 = link_to "Follower", user_relations_index_path(current_user.id), class: 'nav-link'
               li
                 = link_to "Logout", destroy_user_session_path, class: 'nav-link', method: :delete
-              li
-                = link_to "Edit", edit_user_registration_path, class: 'nav-link'
+              - unless current_user.email == "guest@example.com"
+                li
+                  = link_to "Edit", edit_user_registration_path, class: 'nav-link'
             - else
               li
                 = link_to "Sign up", new_user_registration_path, class: 'nav-link'
@@ -54,8 +55,9 @@ html
           = link_to "Follower", user_relations_index_path(current_user.id), class: 'nav-link'
         li
           = link_to "Logout", destroy_user_session_path, class: 'nav-link', method: :delete
-        li
-          = link_to "Edit", edit_user_registration_path, class: 'nav-link'
+        - unless current_user.email == "guest@example.com"
+          li
+            = link_to "Edit", edit_user_registration_path, class: 'nav-link'
       - else
         li
           = link_to "Sign up", new_user_registration_path, class: 'nav-link'

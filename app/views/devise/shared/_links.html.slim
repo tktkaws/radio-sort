@@ -1,4 +1,9 @@
 br
+  = link_to users_guest_sign_in_path, method: :post, class: 'btn waves-effect waves-light' do
+    i.material-icons.right send
+    |Guest Login
+  / = link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post
+br
 - if controller_name != 'sessions'
   / = link_to "Log in", new_session_path(resource_name)
   = link_to new_session_path(resource_name) do
@@ -21,7 +26,6 @@ br
     br
     = link_to omniauth_authorize_path(resource_name, provider) do
       |Log in with #{OmniAuth::Utils.camelize(provider)}
-      '
       '
       = image_tag 'number/Twitter3.png', width: "5%",style: "vertical-align:middle;"
     br
