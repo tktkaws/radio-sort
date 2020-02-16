@@ -20,49 +20,49 @@ html
             i.material-icons.icon-menu menu
           ul.right.hide-on-med-and-down
             li
-              = link_to "Radios", radios_path, class: 'nav-link'
+              = link_to "ラジオ", radios_path, class: 'nav-link'
             li
-              = link_to "Users", users_path, class: 'nav-link'
+              = link_to "ユーザー", users_path, class: 'nav-link'
             li
-              = link_to "Ranking", ranking_path, class: 'nav-link'
+              = link_to "ランキング", ranking_path, class: 'nav-link'
             - if user_signed_in?
               li
-                = link_to "Sort", user_path(current_user.id) , class: 'nav-link'
+                = link_to "ソート", user_path(current_user.id) , class: 'nav-link'
               li
-                = link_to "Follower", user_relations_index_path(current_user.id), class: 'nav-link'
+                = link_to "フォロワー", user_relations_index_path(current_user.id), class: 'nav-link'
               li
-                = link_to "Logout", destroy_user_session_path, class: 'nav-link', method: :delete
+                = link_to "ログアウト", destroy_user_session_path, class: 'nav-link', method: :delete
               - unless current_user.email == "guest@example.com"
                 li
-                  = link_to "Edit", edit_user_registration_path, class: 'nav-link'
+                  = link_to "編集", edit_user_registration_path, class: 'nav-link'
             - else
               li
-                = link_to "Sign up", new_user_registration_path, class: 'nav-link'
+                = link_to "登録", new_user_registration_path, class: 'nav-link'
               li
-                = link_to "Login", new_user_session_path, class: 'nav-link'
+                = link_to "ログイン", new_user_session_path, class: 'nav-link'
 
     ul#sidenav-2.sidenav.sidenav
       li
-        = link_to "Radios", radios_path
+        = link_to "ラジオ", radios_path
       li
-        = link_to "Users", users_path, class: 'nav-link'
+        = link_to "ユーザー", users_path, class: 'nav-link'
       li
-        = link_to "Ranking", ranking_path, class: 'nav-link'
+        = link_to "ランキング", ranking_path, class: 'nav-link'
       - if user_signed_in?
         li
-          = link_to "Sort", user_path(current_user.id) , class: 'nav-link'
+          = link_to "ソート", user_path(current_user.id) , class: 'nav-link'
         li
-          = link_to "Follower", user_relations_index_path(current_user.id), class: 'nav-link'
+          = link_to "フォロワー", user_relations_index_path(current_user.id), class: 'nav-link'
         li
-          = link_to "Logout", destroy_user_session_path, class: 'nav-link', method: :delete
+          = link_to "ログアウト", destroy_user_session_path, class: 'nav-link', method: :delete
         - unless current_user.email == "guest@example.com"
           li
-            = link_to "Edit", edit_user_registration_path, class: 'nav-link'
+            = link_to "編集", edit_user_registration_path, class: 'nav-link'
       - else
         li
-          = link_to "Sign up", new_user_registration_path, class: 'nav-link'
+          = link_to "登録", new_user_registration_path, class: 'nav-link'
         li
-          = link_to "Login", new_user_session_path, class: 'nav-link'
+          = link_to "ログイン", new_user_session_path, class: 'nav-link'
 
     main
       = render("layouts/toast")

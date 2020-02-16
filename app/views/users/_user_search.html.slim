@@ -12,17 +12,17 @@ ul#sidenav-1.sidenav.sidenav-fixed
       = f.label :age_eq, User.human_attribute_name(:age)
       = f.select :age_eq, User.ages.map { |k, v| [User.ages_i18n[k], v] }, include_blank: true
     p
-      = f.label :likes_radio_title_cont_all, Radio.human_attribute_name(:title)
+      = f.label :likes_radio_title_cont_all, "好きな番組"
       = f.search_field :likes_radio_title_cont_all
     p.center
         = button_tag type: 'submit', class: 'waves-effect waves-light btn search' do
           i.material-icons.right search
-          |user search
+          |ユーザー検索
 
     p.center
         = link_to users_path , class: 'waves-effect waves-light btn search' do
           i.material-icons.right clear
-          |clear
+          |クリア
   / footer
   li
     .divider

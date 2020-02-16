@@ -1,5 +1,7 @@
 = render partial: 'radios/radio_search', locals: {radio: @radios, q: @q}
 .container
+  h5 ログイン
+  .divider
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
       = f.label :email
@@ -13,6 +15,6 @@
     .actions
       = button_tag type: 'submit', class: 'btn waves-effect waves-light' do
         i.material-icons.right send
-        |LogIn
+        |ログイン
   = render "devise/shared/links"
 

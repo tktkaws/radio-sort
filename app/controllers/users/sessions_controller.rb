@@ -6,7 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   def new_guest
     user = User.guest
     sign_in user
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。※ユーザー情報の変更・削除はできません。'
+    redirect_to root_path, notice: 'ゲストユーザーはアカウントの変更・削除はできません。'
   end
    #GET /resource/sign_in
    #def new
