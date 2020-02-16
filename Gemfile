@@ -66,6 +66,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 追加gem
 gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
 gem 'faker'
 gem 'bcrypt', '3.1.11'
 gem 'ranked-model'
@@ -86,5 +88,6 @@ gem 'gimei'
 gem 'enum_help'
 gem 'kaminari'
 gem 'twitter'
+
 
 

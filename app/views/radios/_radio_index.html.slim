@@ -2,12 +2,12 @@ table.highlight
   thead
     tr
       th
-      th= sort_link(@q, :title, "title")
-      th= sort_link(@q, :personality, "personality")
-      th= sort_link(@q, :station, "station")
-      th= sort_link(@q, :start_time, "start_time")
-      th= sort_link(@q, :end_time, "end_time")
-      th= sort_link(@q, :length, "length")
+      th= sort_link(@q, :title, "番組名")
+      th= sort_link(@q, :personality, "パーソナリティ")
+      th= sort_link(@q, :station, "放送局")
+      th= sort_link(@q, :start_time, "開始時間")
+      / th= sort_link(@q, :end_time, "終了時間")
+      th= sort_link(@q, :length, "番組時間")
       - if user_signed_in?
         th
   tbody
@@ -26,9 +26,9 @@ table.highlight
         td style="width:10%"
           - if radio.start_time.present?
             = radio.start_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.start_time.wday]}) %H時%M分")
-        td style="width:10%"
-          - if radio.end_time.present?
-            = radio.end_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.end_time.wday]}) %H時%M分")
+        / td style="width:10%"
+        /   - if radio.end_time.present?
+        /     = radio.end_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.end_time.wday]}) %H時%M分")
         td style="width:10%"
           = radio.length / 60
           | 分

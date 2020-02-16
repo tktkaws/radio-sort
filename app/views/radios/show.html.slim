@@ -1,4 +1,4 @@
-= render partial: 'radios/sidenav', locals: { radio: @radios, q: @q}
+= render partial: 'radios/radio_search', locals: { radio: @radios, q: @q}
 .container
   ul.collection
     = image_tag "#{@radio.image}", width: "100%", height: "300"
@@ -18,23 +18,45 @@
       = render partial: 'comments/form', locals: {comment: @comment, radio: @radio}
       = render partial: 'likes/like', locals: {radio: @radio}
 
-  - @radio.likes.each do |like|
-    ul.collection
-      li.collection-item.blue-grey.lighten-5
-        .row.collection-title
-          .col.s2.m2.l2
-            = link_to like.user
-              = image_tag "#{like.user.image}", size: "45x45", class: "circle"
-          .col.s5.m5.l5
-            p.truncate
-              = link_to like.user
-                = like.user.name
-          .col.s3.m3.l3
-            span
-              = like.user.gender_i18n
-              br/
-              = like.user.age_i18n
-          .col.s2.m1.l1
-            p #{like.row_order}位
-          .col.s2.m1.l1
-            p #{like.point}pt
+  / ul.collection
+  /  - @radio.likes.each do |like|
+  /     li.collection-item
+  /       .row.collection-title
+  /         .col.s2.m2.l2
+  /           = link_to like.user
+  /             = image_tag "#{like.user.image}", size: "45x45", class: "circle"
+  /         .col.s5.m5.l5
+  /           p.truncate
+  /             = link_to like.user
+  /               = like.user.name
+  /         .col.s3.m3.l3
+  /           span
+  /             = like.user.gender_i18n
+  /             br/
+  /             = like.user.age_i18n
+  /         .col.s2.m1.l1
+  /           p #{like.row_order}位
+  /         .col.s2.m1.l1
+  /           p #{like.point}pt
+  .divider
+  table
+    - @radio.likes.each do |like|
+      tr
+        td style="width:10%"
+          = link_to like.user
+            = image_tag "#{like.user.image}", size: '30x30', class: "circle"
+        td style="width:20%"
+          = link_to like.user
+            = like.user.name
+        td style="width:10%"
+          = like.user.gender_i18n
+        td style="width:20%"
+          = like.user.age_i18n
+        td style="width:10%"
+          |#{like.row_order}位
+        td style="width:20%"
+          |#{like.point}pt
+        - if user_signed_in?
+          td style="width:10%"
+            = render 'users/follow_form', user: like.user
+

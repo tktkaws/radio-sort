@@ -6,23 +6,23 @@ ul#sidenav-1.sidenav.sidenav-fixed
         |Radio Sort
   = search_form_for q do |f|
     p
-      = f.label :gender_eq, '性別'
+      = f.label :gender_eq, User.human_attribute_name(:gender)
       = f.select :gender_eq, User.genders.map{|k, v| [User.genders_i18n[k], v]}, include_blank: true
     p
-      = f.label :age_eq, '年齢'
+      = f.label :age_eq, User.human_attribute_name(:age)
       = f.select :age_eq, User.ages.map { |k, v| [User.ages_i18n[k], v] }, include_blank: true
     p
-      = f.label :likes_radio_title_cont_all, '番組名'
+      = f.label :likes_radio_title_cont_all, "好きな番組"
       = f.search_field :likes_radio_title_cont_all
     p.center
         = button_tag type: 'submit', class: 'waves-effect waves-light btn search' do
           i.material-icons.right search
-          |search
+          |ユーザー検索
 
     p.center
         = link_to users_path , class: 'waves-effect waves-light btn search' do
           i.material-icons.right clear
-          |clear
+          |クリア
   / footer
   li
     .divider

@@ -1,18 +1,17 @@
 br
   = link_to users_guest_sign_in_path, method: :post, class: 'btn waves-effect waves-light' do
     i.material-icons.right send
-    |Guest Login
-  / = link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post
+    |ゲスト ログイン
 br
 - if controller_name != 'sessions'
   / = link_to "Log in", new_session_path(resource_name)
   = link_to new_session_path(resource_name) do
-    |Log in
+    |ログイン
   br
 - if devise_mapping.registerable? && controller_name != 'registrations'
   / = link_to "Sign up", new_registration_path(resource_name)
   = link_to new_registration_path(resource_name) do
-    |Sign up
+    |アカウント登録
   br
 - if devise_mapping.confirmable? && controller_name != 'confirmations'
   = link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name)
@@ -25,7 +24,7 @@ br
     / = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider)
     br
     = link_to omniauth_authorize_path(resource_name, provider) do
-      |Log in with #{OmniAuth::Utils.camelize(provider)}
+      |#{OmniAuth::Utils.camelize(provider)}ログイン
       '
       = image_tag 'number/Twitter3.png', width: "5%",style: "vertical-align:middle;"
     br

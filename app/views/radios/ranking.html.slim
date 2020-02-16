@@ -1,13 +1,11 @@
-= render partial: 'radios/radio_ranking_search', locals: { radio: @radios, q: @q}
-
-
-ul.collection.with-header
-  li.collection-header.blue-grey.lighten-5
-    h5
-      - if params[:q].present?
-        |#{@gender}・#{@age} から人気の番組ランキング (#{@station})
-      - else
-        |性別問わず・全年代 から人気の番組ランキング (全放送局)
+= render partial: 'radios/ranking_search', locals: { radio: @radios, q: @q}
+.container
+  h5
+    - if params[:q].present?
+      |#{@gender}・#{@age} から人気の番組ランキング (#{@station})
+    - else
+      |性別問わず・全年代 から人気の番組ランキング (全放送局)
+.divider
 
 table.highlight
   tbody

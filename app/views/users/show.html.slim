@@ -2,16 +2,17 @@
 
 .row
   .col.s12.m9.l9
-    - if @user == current_user
+    - if @user == current_user && @user.likes.present?
+      br
       = link_to confirm_path, method: :post do
         = image_tag 'number/Twitter3.png', width: "4%", style: "vertical-align:middle;"
         '
-        |Tweet
+        |Twitterで共有する
       br
     - if @user.likes.blank?
       .collection
         = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do
-          |ラジオにLikeをつけてみましょう
+          |ラジオにお気に入りに登録してみましょう
     table.highlight
       |  <tbody id="likes_list", class="ui-sortable">
       - @likes.each_with_index do |like,i|
@@ -34,7 +35,7 @@
     - if @user.comments.blank?
       .collection
         = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do
-          |好きなラジオにコメントをしてみましょう
+          |ラジオにコメントをしてみましょう
 
     - @user.comments.each do |c|
       .collection

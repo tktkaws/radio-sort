@@ -24,17 +24,12 @@ class TwitterController < ApplicationController
 
   def tweet_rank
     @likes = current_user.likes.rank(:row_order)
-    likes = @likes
-    <<~"EOS"
-      #ラジオソート
+    string = "#ラジオソート\n\n"
 
-      1位: #{likes[0].radio.title}
-      2位: #{likes[1].radio.title}
-      3位: #{likes[2].radio.title}
-      4位: #{likes[3].radio.title}
-      5位: #{likes[4].radio.title}
-      
-      本番環境のurl
-    EOS
+    @likes.first(5).each_with_index do |like,i|
+      string << "#{i+1}位: #{like.radio.title}\n"
+    end
+    string << "\n本番環境のurl\n"
+    string
   end
 end

@@ -1,5 +1,7 @@
-= render partial: 'radios/sidenav', locals: {radio: @radios, q: @q}
+= render partial: 'radios/radio_search', locals: {radio: @radios, q: @q}
 .container
+  h5 アカウント登録
+  .divider
   = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
     = render "devise/shared/error_messages", resource: resource
     .field
@@ -17,5 +19,5 @@
     .actions
       = button_tag type: 'submit', class: 'btn waves-effect waves-light' do
         i.material-icons.right send
-        |Sign up
+        |登録
   = render "devise/shared/links"
