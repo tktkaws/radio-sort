@@ -24,7 +24,7 @@ ul#sidenav-1.sidenav.sidenav-fixed
   - if user_signed_in?
     li
       .divider
-    - unless current_user.email == "guest@example.com"
+    - if current_user.email != "guest@example.com" && user == current_user
       li.center-align
         = link_to edit_user_registration_path
          |編集
