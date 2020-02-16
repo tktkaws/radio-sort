@@ -16,28 +16,9 @@
     = render partial: 'comments/index', locals: {comments: @comments, radio: @radio}
     - if user_signed_in?
       = render partial: 'comments/form', locals: {comment: @comment, radio: @radio}
-      = render partial: 'likes/like', locals: {radio: @radio}
+      div id="likes_buttons_#{@radio.id}"
+        = render partial: 'likes/like', locals: {radio: @radio}
 
-  / ul.collection
-  /  - @radio.likes.each do |like|
-  /     li.collection-item
-  /       .row.collection-title
-  /         .col.s2.m2.l2
-  /           = link_to like.user
-  /             = image_tag "#{like.user.image}", size: "45x45", class: "circle"
-  /         .col.s5.m5.l5
-  /           p.truncate
-  /             = link_to like.user
-  /               = like.user.name
-  /         .col.s3.m3.l3
-  /           span
-  /             = like.user.gender_i18n
-  /             br/
-  /             = like.user.age_i18n
-  /         .col.s2.m1.l1
-  /           p #{like.row_order}位
-  /         .col.s2.m1.l1
-  /           p #{like.point}pt
   .divider
   table
     - @radio.likes.each do |like|

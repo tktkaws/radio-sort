@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   root 'top#index'
 
-
   get 'ranking', to: 'radios#ranking'
+
   resources :radios do
     resources :comments
   end
