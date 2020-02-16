@@ -1,0 +1,27 @@
+= render partial: 'radios/radio_search', locals: { radio: @radios, q: @q}
+.container
+  h4
+    |Radio Sort
+  .divider
+  p
+    |好きなラジオに順位をつけて、共有しましょう
+    br
+    |人気ランキングを閲覧しましょう
+    br
+    |ユーザーをフォローしましょう
+    br
+    |ラジオにコメントしましょう
+  .slider
+    ul.slides
+      li
+        = image_tag 'number/sortdemo2.jpg'
+      li
+        = image_tag 'number/rankingdemo.jpg'
+      li
+        = image_tag 'number/user_search_demo.jpg'
+      li
+        = image_tag 'number/comment_demo.jpg'
+  p.center
+    = link_to users_guest_sign_in_path, method: :post, class: 'btn waves-effect waves-light' do
+      i.material-icons.right input
+      |ゲスト ログイン

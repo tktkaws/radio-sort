@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  root 'radios#index'
+  root 'top#index'
 
-  post 'tweet', to: 'twitter#tweet'
-  post 'confirm', to: 'twitter#confirm'
 
   get 'ranking', to: 'radios#ranking'
   resources :radios do
@@ -24,6 +22,8 @@ Rails.application.routes.draw do
   resources :likes do
     put :sort
   end
-
   resources :relations, only: [:create, :destroy]
+
+  post 'tweet', to: 'twitter#tweet'
+  post 'confirm', to: 'twitter#confirm'
 end
