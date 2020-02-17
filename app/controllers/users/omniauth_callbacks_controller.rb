@@ -5,6 +5,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     callback_from :twitter
   end
 
+  def after_sign_in_path_for(user)
+    user_url(user)
+  end
+
   private
   def callback_from(provider)
     provider = provider.to_s
