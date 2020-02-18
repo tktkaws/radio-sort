@@ -1,23 +1,21 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :radios, -> { order(position: :asc) }, through: :likes, source: :radio
-
   has_many :active_relations, foreign_key: 'follower_id', class_name: 'Relation', dependent: :destroy
   has_many :passive_relations, foreign_key: 'followed_id', class_name: 'Relation', dependent: :destroy
   has_many :following, through: :active_relations, source: :followed
   has_many :followers, through: :passive_relations, source: :follower
 
-
+  validates :name,  presence: true, length: { maximum: 30 }
 
   enum gender: { unknown: 0, male: 1, female: 2 }
   enum age: { unanswered: 0, teenage: 1, twenties: 2, thirties: 3, forties: 4, over_fifties: 5}
 
   mount_uploader :image, ImageUploader
+
 
 
   def follow!(other_user)
@@ -35,7 +33,6 @@ class User < ApplicationRecord
 
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
-
     unless user
       user = User.create(
         uid:      auth.uid,
@@ -47,9 +44,9 @@ class User < ApplicationRecord
         nickname: auth.info.nickname,
         )
     end
-
     user
   end
+
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -63,3 +60,5 @@ class User < ApplicationRecord
     "#{auth.uid}-#{auth.provider}@example.com"
     end
 end
+
+

@@ -14,11 +14,10 @@
   .divider
   #comments_area
     = render partial: 'comments/index', locals: {comments: @comments, radio: @radio}
-    - if user_signed_in?
-      = render partial: 'comments/form', locals: {comment: @comment, radio: @radio}
-      div id="likes_buttons_#{@radio.id}"
-        = render partial: 'likes/like', locals: {radio: @radio}
-
+  - if user_signed_in?
+    = render partial: 'comments/form', locals: {comment: @comment, radio: @radio}
+    div id="likes_buttons_#{@radio.id}"
+      = render partial: 'likes/like', locals: {radio: @radio}
   .divider
   table
     - @radio.likes.each do |like|
