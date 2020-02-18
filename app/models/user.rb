@@ -9,7 +9,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relations, source: :followed
   has_many :followers, through: :passive_relations, source: :follower
 
-  validates :name,  presence: true, length: { maximum: 30 }
+  validates :name, length: { maximum: 30 }
 
   enum gender: { unknown: 0, male: 1, female: 2 }
   enum age: { unanswered: 0, teenage: 1, twenties: 2, thirties: 3, forties: 4, over_fifties: 5}
