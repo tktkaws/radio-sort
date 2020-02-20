@@ -24,7 +24,7 @@ RSpec.describe Relation, type: :system do
       expect(page).to_not have_selector '#follow_form_3', text: 'add'
     end
 
-    fit 'follow解除すること' do
+    it 'follow解除すること' do
       visit users_path
       find('#follow_form_2 button').click
       sleep 1

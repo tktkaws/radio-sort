@@ -1,35 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :system do
-  #before(:all) do
-  #  # 15.times {@user = create(:user)}
-  #  15.times { @user = create(:user) do |u|
-  #    u.tasks.create(attributes_for(:task))
-  #  end
-  #  }
-  #  @user = create(:admin_user)
-  #  2.times {@task = create(:admin_task)}
-  #end
-  #after(:all) do
-  #  DatabaseCleaner.clean_with(:truncation)
-  #end
-
-
-  describe 'アカウント登録'do
-    context 'ログイン成功' do
-      fit 'ユーザー詳細ページに遷移すること' do
-        visit new_user_registration_path
-        fill_in 'session[email]', with: 'admin@test.com'
-        fill_in 'session[password]', with: '111111'
-        click_on 'commit'
-
-        expect(page).to have_content '管理者権限'
+RSpec.describe User, type: :model do
+  describe 'バリデーション' do
+    context 'name' do
+      n = "n"
+      it "nameが30文字以内であればバリデーションが通る" do
+        user = User.new(name: n * 30 , email: "test@test.com", password: "111111", age: 1, gender: 1)
+        expect(user).to be_valid
       end
-
+      it "nameが31文字以上であればバリデーションが通らない" do
+        user = User.new(name: n * 31 , email: "test@test.com", password: "111111", age: 1, gender: 1)
+        expect(user).to_not be_valid
       end
-      context 'ログイン失敗' do
-        it 'エラーメッセージ””が表示されること' do
-          expect(page).to have_content '管理者権限'
-        end
-
-      end
+    end
+  end
+end
