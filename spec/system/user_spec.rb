@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.describe User, type: :system do
   before(:all) do
      15.times {@user = create(:user)}
+     15.times {@radio = create(:radio)}
+     15.times {@like = create(:like)}
   end
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
@@ -88,6 +90,34 @@ RSpec.describe User, type: :system do
         click_on '退会'
         page.accept_confirm "本当に退会しますか?"
         expect(page).to have_content 'アカウントを削除しました。'
+      end
+    end
+    context 'user検索'do
+      it '性別(男性)で検索すると、男性のユーザーのみが表示されること' do
+        visit users_path
+        first(".dropdown-trigger").click
+        find('div.select-wrapper li', text: '男性').click
+        click_on 'ユーザー検索'
+
+        expect(page).to_not have_content '女性'
+        expect(page).to have_content '男性'
+      end
+      it '年齢(10代)で検索すると、10代のユーザーのみが表示されること' do
+        visit users_path
+        all('.dropdown-trigger')[1].click
+        find('div.select-wrapper li', text: '10代').click
+        click_on 'ユーザー検索'
+
+        expect(page).to_not have_content '20代'
+        expect(page).to have_content '10代'
+      end
+      it '好きな番組(title15)で検索すると、title15をlikeしたユーザーのみが表示されること' do
+        visit users_path
+
+        fill_in 'q[likes_radio_title_cont_all]', with: 'title15'
+        click_on 'ユーザー検索'
+        expect(page).to have_selector 'ul.collection', text: 'title15'
+        expect(page).to_not have_content 'title14'
       end
     end
   end
