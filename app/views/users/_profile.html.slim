@@ -1,9 +1,5 @@
 ul#sidenav-1.sidenav.sidenav-fixed
-  nav.white
-    .nav-wrapper
-      = link_to radios_path, class: 'brand-logo center' do
-        i.material-icons.icon-menu radio
-        |Radio Sort
+  = render("layouts/sidenav_header")
   li.center
     = image_tag "#{user.image}", size: '180x180', class: "sidnav circle"
   li.center-align
@@ -36,12 +32,4 @@ ul#sidenav-1.sidenav.sidenav-fixed
         = link_to destroy_user_session_path, method: :delete
           |ログアウト
 
-  / footer
-  li
-    .divider
-  li.center-align
-    = link_to "https://github.com/tktkaws/radio-sort", class: 'collection-item', target: :_blank do
-      |tktkaws
-      '
-      '
-      = image_tag 'number/GitHub.png', width: "10%", style: "vertical-align:middle;"
+  = render("layouts/sidenav_footer")

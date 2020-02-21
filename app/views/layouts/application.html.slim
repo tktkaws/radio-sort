@@ -13,57 +13,16 @@ html
         .nav-wrapper
           a.left.sidenav-trigger data-target="sidenav-1" href="#"
             i.material-icons.icon-menu menu
-          = link_to radios_path, class: 'brand-logo' do
+          = link_to root_path, class: 'brand-logo' do
             i.material-icons.icon-menu radio
             |Radio Sort
           a.right.sidenav-trigger data-target="sidenav-2" href="#"
             i.material-icons.icon-menu menu
           ul.right.hide-on-med-and-down
-            li
-              = link_to "ラジオ", radios_path, class: 'nav-link'
-            li
-              = link_to "ユーザー", users_path, class: 'nav-link'
-            li
-              = link_to "ランキング", ranking_path, class: 'nav-link'
-            - if user_signed_in?
-              li
-                = link_to "ソート", user_path(current_user.id) , class: 'nav-link'
-              li
-                = link_to "フォロワー", user_relations_index_path(current_user.id), class: 'nav-link'
-              li
-                = link_to "ログアウト", destroy_user_session_path, class: 'nav-link', method: :delete
-              - unless current_user.email == "guest@example.com"
-                li
-                  = link_to "編集", edit_user_registration_path, class: 'nav-link'
-            - else
-              li
-                = link_to "登録", new_user_registration_path, class: 'nav-link'
-              li
-                = link_to "ログイン", new_user_session_path, class: 'nav-link'
+            = render("layouts/nav_contents")
 
     ul#sidenav-2.sidenav.sidenav
-      li
-        = link_to "ラジオ", radios_path
-      li
-        = link_to "ユーザー", users_path, class: 'nav-link'
-      li
-        = link_to "ランキング", ranking_path, class: 'nav-link'
-      - if user_signed_in?
-        li
-          = link_to "ソート", user_path(current_user.id) , class: 'nav-link'
-        li
-          = link_to "フォロワー", user_relations_index_path(current_user.id), class: 'nav-link'
-        li
-          = link_to "ログアウト", destroy_user_session_path, class: 'nav-link', method: :delete
-        - unless current_user.email == "guest@example.com"
-          li
-            = link_to "編集", edit_user_registration_path, class: 'nav-link'
-      - else
-        li
-          = link_to "登録", new_user_registration_path, class: 'nav-link'
-        li
-          = link_to "ログイン", new_user_session_path, class: 'nav-link'
-
+      = render("layouts/nav_contents")
     main
       = render("layouts/toast")
       = yield

@@ -1,24 +1,8 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: %i(show edit update destroy)
+  before_action :set_search, only: %i(index relations_index)
   skip_before_action :verify_authenticity_token
-
   def index
-    if params[:q] != nil
-      params[:q]['likes_radio_title_cont_all'] = params[:q]['likes_radio_title_cont_all'].split(/[\p{blank}\s]+/)
-      @q = User.ransack(params[:q])
-      @q.sorts = 'id asc' if @q.sorts.empty?
-      @users = @q.result(distinct: true).page(params[:page])
-    else
-    @q = User.ransack(params[:q])
-    @q.sorts = 'id asc' if @q.sorts.empty?
-    @users = @q.result(distinct: true).page(params[:page])
-    end
-  end
-
-  def new
-  end
-
-  def create
   end
 
   def show
@@ -27,27 +11,6 @@ class UsersController < ApplicationController
 
   def relations_index
     @user = User.find(params[:user_id])
-    if params[:q] != nil
-      params[:q]['likes_radio_title_cont_all'] = params[:q]['likes_radio_title_cont_all'].split(/[\p{blank}\s]+/)
-      @q = User.ransack(params[:q])
-      @q.sorts = 'id asc' if @q.sorts.empty?
-      @users = @q.result(distinct: true).page(params[:page])
-    else
-      @q = User.ransack(params[:q])
-      @q.sorts = 'id asc' if @q.sorts.empty?
-      @users = @q.result(distinct: true).page(params[:page])
-    end
-
-  end
-
-
-  def edit
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   private
@@ -58,5 +21,14 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :password, :like_id,
                                  :password_confirmation, :row_order_position)
+  end
+
+  def set_search
+    if params[:q] != nil
+      params[:q]['likes_radio_title_cont_all'] = params[:q]['likes_radio_title_cont_all'].split(/[\p{blank}\s]+/)
+    end
+    @q = User.ransack(params[:q])
+    @q.sorts = 'id asc' if @q.sorts.empty?
+    @users = @q.result(distinct: true).page(params[:page])
   end
 end

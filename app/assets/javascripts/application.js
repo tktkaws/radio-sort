@@ -18,24 +18,6 @@
 //= require jquery-ui/effects/effect-highlight
 //= require_tree .
 
-$(function() {
-    Sortable.create($('.list')[0], {
-        animation: 150    });
-});
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('select');
-    var instances = M.FormSelect.init(elems, options);
-});
-
-// Or with jQuery
-
-$(document).ready(function(){
-    $('select').formSelect();
-});
-
-
 // Sidenav
 $(document).ready(function(){
     $('.sidenav').sidenav();
@@ -43,42 +25,13 @@ $(document).ready(function(){
     $('#sidenav-2').sidenav({ edge: 'right' });
 });
 
-
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.tooltipped');
-    var instances = M.Tooltip.init(elems, options);
-});
-
-// Or with jQuery
-
 $(document).ready(function(){
-    $('.tooltipped').tooltip();
-});
-
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.collapsible');
-    var instances = M.Collapsible.init(elems, options);
-});
-
-// Or with jQuery
-
-$(document).ready(function(){
-    $('.collapsible').collapsible();
+    $('select').formSelect();
 });
 
 $(document).ready(function(){
     $('.tabs').tabs();
 });
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.slider');
-    var instances = M.Slider.init(elems, options);
-});
-
-// Or with jQuery
 
 $(document).ready(function(){
     $('.slider').slider();

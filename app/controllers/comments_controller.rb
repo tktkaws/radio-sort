@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   def create
     @radio = Radio.find(params[:radio_id])
     @comment = @radio.comments.build(comment_params)
