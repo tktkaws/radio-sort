@@ -10,45 +10,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_24_061244) do
+ActiveRecord::Schema.define(version: 2020_02_18_000603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "radio_id"
-    t.text "content"
+    t.bigint "radio_id", null: false
+    t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.integer "user_id", null: false
     t.index ["radio_id"], name: "index_comments_on_radio_id"
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "radio_id"
-    t.integer "position"
-    t.integer "row_order"
-    t.integer "point"
+    t.integer "user_id", null: false
+    t.integer "radio_id", null: false
+    t.integer "row_order", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "point", default: 0, null: false
+    t.index ["radio_id"], name: "index_likes_on_radio_id"
+    t.index ["user_id", "radio_id"], name: "index_likes_on_user_id_and_radio_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "radios", force: :cascade do |t|
-    t.string "title"
-    t.string "personality"
+    t.string "title", null: false
+    t.string "personality", null: false
     t.string "image"
-    t.string "station"
-    t.datetime "start_time"
+    t.string "station", null: false
+    t.datetime "start_time", null: false
     t.datetime "end_time"
-    t.integer "length"
+    t.integer "length", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "relations", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followed_id"
+    t.integer "follower_id", null: false
+    t.integer "followed_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["followed_id"], name: "index_relations_on_followed_id"
@@ -69,8 +71,8 @@ ActiveRecord::Schema.define(version: 2020_01_24_061244) do
     t.string "name"
     t.string "nickname"
     t.string "image"
-    t.integer "gender", default: 0
-    t.integer "age", default: 0
+    t.integer "gender", default: 0, null: false
+    t.integer "age", default: 0, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
