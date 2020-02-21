@@ -18,3 +18,8 @@ $(function(){
         }
     });
 });
+
+$(function() {
+    Sortable.create($('.list')[0], {
+        animation: 150    });
+});

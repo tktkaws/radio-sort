@@ -1,5 +1,6 @@
 class TwitterController < ApplicationController
   before_action :set_twitter_client
+  before_action :authenticate_user!
 
   def confirm
     @tweet = tweet_rank

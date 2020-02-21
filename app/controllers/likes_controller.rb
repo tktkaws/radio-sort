@@ -1,6 +1,7 @@
 class LikesController < ApplicationController
   after_action :reset_row_order, only: [:sort, :create]
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
 
   def create
     @radio = Radio.find(params[:radio_id])
