@@ -17,12 +17,12 @@
         .col.s2.m2.l2
           - if user_signed_in?
             = render 'follow_form', user: user
-
-    - if user.likes.present?
-      - user.likes.first(5).each_with_index do |like,i|
-        li.collection-item
-          th
-            = "#{i + 1}位  "
-          td
-             = link_to radio_path(like.radio_id)
-              = like.radio.title
+    - (0..4).each do |i|
+      li.collection-item
+        span.truncate
+          = "#{i + 1}位  "
+          - if user.likes.present?
+            - likes = user.likes.rank(:row_order)
+            - if likes[i].present?
+              = link_to radio_path(likes[i].radio.id)
+                = likes[i].radio.title
