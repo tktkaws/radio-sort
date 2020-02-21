@@ -1,9 +1,5 @@
 ul#sidenav-1.sidenav.sidenav-fixed
-  nav.white
-    .nav-wrapper
-      = link_to radios_path, class: 'brand-logo center' do
-        i.material-icons.icon-menu radio
-        |Radio Sort
+  = render("layouts/sidenav_header")
   = search_form_for q do |f|
     p
       = f.label :title_cont, Radio.human_attribute_name(:title)
@@ -23,12 +19,4 @@ ul#sidenav-1.sidenav.sidenav-fixed
         = link_to radios_path, class: 'waves-effect waves-light btn search' do
           i.material-icons.right clear
           |クリア
-  / footer
-  li
-    .divider
-  li.center-align
-    = link_to "https://github.com/tktkaws/radio-sort", class: 'collection-item', target: :_blank do
-      |tktkaws
-      '
-      '
-      = image_tag 'number/GitHub.png' ,width: "10%",style: "vertical-align:middle;"
+  = render("layouts/sidenav_footer")
