@@ -14,7 +14,9 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
+ gem 'mini_racer', platforms: :ruby
+
+gem 'unicorn'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -45,6 +47,14 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'pry-rails'
+
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
