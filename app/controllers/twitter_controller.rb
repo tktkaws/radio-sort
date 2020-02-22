@@ -16,10 +16,10 @@ class TwitterController < ApplicationController
 
   def set_twitter_client
     @twitter = Twitter::REST::Client.new do |config|
-      config.consumer_key        = Rails.application.credentials.twitter[:twitter_api_key]
-      config.consumer_secret     = Rails.application.credentials.twitter[:twitter_api_secret]
-      config.access_token        = Rails.application.credentials.twitter[:twitter_access_token]
-      config.access_token_secret = Rails.application.credentials.twitter[:twitter_access_token_secret]
+      config.consumer_key        = ENV['twitter_api_key']
+      config.consumer_secret     = ENV['twitter_api_secret']
+      config.access_token        = ENV['twitter_access_token']
+      config.access_token_secret = ENV['twitter_access_token_secret']
     end
   end
 
