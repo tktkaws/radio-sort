@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_18_000603) do
+ActiveRecord::Schema.define(version: 2020_02_22_063230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2020_02_18_000603) do
 
   create_table "radios", force: :cascade do |t|
     t.string "title", null: false
-    t.string "personality", null: false
+    t.string "personality"
     t.string "image"
     t.string "station", null: false
     t.datetime "start_time", null: false
