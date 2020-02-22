@@ -10,7 +10,29 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
 //= require activestorage
-//= require turbolinks
+//= require jquery3
+//= require rails-ujs
+//= require materialize
+//= require jquery-ui/widgets/sortable
+//= require jquery-ui/effects/effect-highlight
 //= require_tree .
+
+// Sidenav
+$(document).ready(function(){
+    $('.sidenav').sidenav();
+    $('#sidenav-1').sidenav({ edge: 'left' });
+    $('#sidenav-2').sidenav({ edge: 'right' });
+});
+
+$(document).ready(function(){
+    $('select').formSelect();
+});
+
+$(document).ready(function(){
+    $('.tabs').tabs();
+});
+
+$(document).ready(function(){
+    $('.slider').slider();
+});

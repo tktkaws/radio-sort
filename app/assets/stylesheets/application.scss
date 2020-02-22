@@ -1,0 +1,82 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ */
+@import "materialize/components/color-variables";
+//$primary-color: color("indigo", "darken-4") !default;
+$primary-color: color("blue-grey", "darken-4") !default;
+$secondary-color: color("cyan", "darken-2") !default;
+$link-color: color("cyan", "darken-2") !default;
+@import 'materialize';
+@import 'material_icons';
+
+header, main, footer {
+  padding-left: 300px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+}
+
+.waves-button-input{
+  color:#fff;
+}
+.btn.search{
+  width: 95%;
+}
+
+.row.collection-title {
+  margin-bottom:0px;
+}
+
+.btn-floating.btn-small {
+  margin-right: 10px;
+}
+
+img.sidnav.circle {
+  margin: 10px;
+}
+
+a.nav-link{
+  color: black;
+  font-weight: bold;
+}
+a.brand-logo{
+  color: black;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+i.icon-menu {
+  color: black;
+}
+
+.waves-effect img {
+  margin: 6px;
+}
+
+.material-icons.likes {
+  vertical-align: bottom;
+}
+
+
+.item.ui-sortable-handle {
+    cursor: row-resize;
+}
+
+.divider {
+  height: 1px;
+  overflow: hidden;
+  background-color: #9e9e9e;
+}

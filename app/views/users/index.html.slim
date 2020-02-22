@@ -1,0 +1,5 @@
+= render partial: 'user_search', locals: {user: @user, q: @q}
+.row
+  - @users.each do |user|
+    = render partial: 'user_index', locals: {user: user}
+= paginate @users

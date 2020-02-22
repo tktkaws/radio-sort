@@ -1,0 +1,15 @@
+  - comments.each do |comment|
+    table
+      - if comment.id.present?
+        td style="width:10%"
+          = link_to user_path(comment.user.id)
+            = image_tag "#{comment.user.image}", size: '30x30', class: "circle"
+        td style="width:25%"
+          = link_to user_path(comment.user.id)
+            = "#{comment.user.name}"
+        td style="width:60%"
+          = comment.content
+      - if comment.user == current_user && user_signed_in?
+        td style="width:5%"
+          = link_to radio_comment_path(comment.radio_id, comment.id), method: :delete, remote: true
+            i.material-icons clear

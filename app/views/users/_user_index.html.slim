@@ -1,0 +1,28 @@
+.col.s12.m6.l6
+  ul.collection
+    li.collection-item.blue-grey.lighten-5
+      .row.collection-title
+        .col.s2.m2.l2
+          = link_to user_path(user.id)
+            = image_tag "#{user.image}", size: "45x45", class: "circle"
+        .col.s5.m5.l5
+          p.truncate
+            = link_to user_path(user.id)
+              = user.name
+        .col.s3.m3.l3
+          span
+            = user.gender_i18n
+            br/
+            = user.age_i18n
+        .col.s2.m2.l2
+          - if user_signed_in?
+            = render 'follow_form', user: user
+    - (0..4).each do |i|
+      li.collection-item
+        span.truncate
+          = "#{i + 1}位  "
+          - if user.likes.present?
+            - likes = user.likes.rank(:row_order)
+            - if likes[i].present?
+              = link_to radio_path(likes[i].radio.id)
+                = likes[i].radio.title

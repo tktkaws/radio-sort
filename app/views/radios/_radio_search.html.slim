@@ -1,0 +1,22 @@
+ul#sidenav-1.sidenav.sidenav-fixed
+  = render("layouts/sidenav_header")
+  = search_form_for q do |f|
+    p
+      = f.label :title_cont, Radio.human_attribute_name(:title)
+      = f.search_field :title_cont
+    p
+      = f.label :personality_cont, Radio.human_attribute_name(:personality)
+      = f.search_field :personality_cont
+    p
+      = f.label :station_eq, Radio.human_attribute_name(:station)
+      = f.select :station_eq, Radio.pluck(:station).uniq, include_blank: true, selected: ""
+    p.center
+      = button_tag type: 'submit', class: 'waves-effect waves-light btn search' do
+        i.material-icons.right search
+        |ラジオ検索
+
+    p.center
+        = link_to radios_path, class: 'waves-effect waves-light btn search' do
+          i.material-icons.right clear
+          |クリア
+  = render("layouts/sidenav_footer")

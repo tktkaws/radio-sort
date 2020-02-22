@@ -1,0 +1,16 @@
+= form_with(model: [radio, comment]) do |form|
+  - if comment.errors.any?
+    #error_explanation
+      h2
+        = pluralize(comment.errors.count, "error")
+        | prohibited this comment from being saved:
+      ul
+        - comment.errors.full_messages.each do |message|
+          li= message
+  .input-field
+    = form.label :comment, for: "textarea1"
+    = form.text_area :content, class: "materialize-textarea", id: "textarea1"
+  .actions
+    = button_tag type: 'submit', class: 'waves-effect waves-light btn' do
+      i.material-icons.right send
+      |投稿

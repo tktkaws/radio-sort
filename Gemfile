@@ -14,7 +14,9 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'mini_racer', platforms: :ruby
+ gem 'mini_racer', platforms: :ruby
+
+gem 'unicorn'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
@@ -28,7 +30,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+ gem 'mini_magick', '~> 4.8'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -39,6 +41,20 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'database_cleaner'
+  gem 'pry-rails'
+
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
+  gem 'ed25519'
+  gem 'bcrypt_pbkdf'
 end
 
 group :development do
@@ -48,6 +64,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
+
 end
 
 group :test do
@@ -56,7 +74,37 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+  gem 'webdrivers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# 追加gem
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-i18n-views'
+gem 'bcrypt', '3.1.11'
+gem 'ranked-model'
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'slim-rails'
+gem 'html2slim'
+gem 'materialize-sass', '~> 1.0.0'
+gem 'material_icons'
+gem 'jquery-turbolinks'
+gem 'omniauth-twitter'
+gem 'carrierwave', '~> 2.0'
+gem 'enum_select_rails'
+gem 'ransack'
+gem 'seed-fu', '~> 2.3'
+gem 'faker'
+gem 'gimei'
+gem 'enum_help'
+gem 'kaminari'
+gem 'twitter'
+gem 'fog-aws'
+gem 'dotenv-rails'
+
+
+

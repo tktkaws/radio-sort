@@ -1,0 +1,11 @@
+= render partial: 'users/profile', locals: {user: @user, q: @q}
+.container
+  h5 以下の内容で投稿する
+  .divider
+  p
+    = simple_format @tweet
+  .divider
+  p
+    = link_to tweet_path, class: 'waves-effect waves-light btn', method: :post
+      i.material-icons.right send
+      |投稿

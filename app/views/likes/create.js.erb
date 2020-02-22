@@ -1,0 +1,4 @@
+//$('#likes_buttons_<%= @radio.id %>').html("<%= j(render partial: 'likes/like', locals: {radio: @radio, like: @like}) %>");
+
+$('#likes_buttons_<%= @radio.id %>').html("<%= j(render partial: 'likes/like', locals: {radio: @radio}) %>");
+

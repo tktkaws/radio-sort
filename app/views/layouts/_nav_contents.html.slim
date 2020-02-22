@@ -1,0 +1,21 @@
+li
+  = link_to "ラジオ", radios_path, class: 'nav-link'
+li
+  = link_to "ユーザー", users_path, class: 'nav-link'
+li
+  = link_to "ランキング", ranking_path, class: 'nav-link'
+- if user_signed_in?
+  li
+    = link_to "ソート", user_path(current_user.id) , class: 'nav-link'
+  li
+    = link_to "フォロワー", user_relations_index_path(current_user.id), class: 'nav-link'
+  li
+    = link_to "ログアウト", destroy_user_session_path, class: 'nav-link', method: :delete
+  - unless current_user.email == "guest@example.com"
+    li
+      = link_to "編集", edit_user_registration_path, class: 'nav-link'
+- else
+  li
+    = link_to "登録", new_user_registration_path, class: 'nav-link'
+  li
+    = link_to "ログイン", new_user_session_path, class: 'nav-link'

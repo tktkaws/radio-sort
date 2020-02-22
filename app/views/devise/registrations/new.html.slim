@@ -1,0 +1,23 @@
+= render partial: 'radios/radio_search', locals: {radio: @radios, q: @q}
+.container
+  h5 アカウント登録
+  .divider
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+    = render "devise/shared/error_messages", resource: resource
+    .field
+      = f.label :email
+      br
+      = f.email_field :email, autofocus: true, autocomplete: "email"
+    .field
+      = f.label :"パスワード(#{@minimum_password_length}文字以上)"
+      br
+      = f.password_field :password, autocomplete: "new-password"
+    .field
+      = f.label :password_confirmation
+      br
+      = f.password_field :password_confirmation, autocomplete: "new-password"
+    .actions
+      = button_tag type: 'submit', class: 'btn waves-effect waves-light', value: "save" do
+        i.material-icons.right input
+        |登録
+  = render "devise/shared/links"

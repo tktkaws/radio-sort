@@ -1,0 +1,35 @@
+ul#sidenav-1.sidenav.sidenav-fixed
+  = render("layouts/sidenav_header")
+  li.center
+    = image_tag "#{user.image}", size: '180x180', class: "sidnav circle"
+  li.center-align
+    h5
+      = user.name
+  li.center-align
+    h5
+      = user.gender_i18n
+  li.center-align
+    h5
+      = user.age_i18n
+  li.center-align
+    = link_to user_relations_index_path(user.id)
+      |フォロー：#{user.following.count}人
+  li.center-align
+    = link_to user_relations_index_path(user.id)
+      |フォロワー：#{user.followers.count}人
+  - if user_signed_in?
+    li
+      .divider
+    - if current_user.email != "guest@example.com" && user == current_user
+      li.center-align
+        = link_to edit_user_registration_path
+         |編集
+    - if user != current_user
+      li.collection-item.center-align
+        = render 'users/follow_form', user: user
+    - if user_signed_in? && user == current_user
+      li.center-align
+        = link_to destroy_user_session_path, method: :delete
+          |ログアウト
+
+  = render("layouts/sidenav_footer")
