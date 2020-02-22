@@ -93,6 +93,8 @@ gem 'gimei'
 gem 'enum_help'
 gem 'kaminari'
 gem 'twitter'
+gem 'fog-aws'
+gem 'dotenv-rails'
 
 
 
