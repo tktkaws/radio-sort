@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root 'top#index'
 
   get 'ranking', to: 'radios#ranking'
+  get 'timetable', to: 'radios#timetable'
 
   resources :radios do
     resources :comments

@@ -1,6 +1,6 @@
 class RadiosController < ApplicationController
   before_action :set_radio, only: %i(show edit update destroy)
-  before_action :set_search, only: %i(index show)
+  before_action :set_search, only: %i(index show timetable)
 
   def index
     if user_signed_in?
@@ -11,6 +11,12 @@ class RadiosController < ApplicationController
   def show
     @comments = @radio.comments
     @comment = @radio.comments.build
+  end
+
+  def timetable
+    @monday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: '2020-02-3'.in_time_zone.all_day)
+
+
   end
 
   def ranking
