@@ -1,93 +1,205 @@
 = render partial: 'radios/radio_search', locals: { radio: @radios, q: @q}
-.container
-  h1 timetable
-  hr/
-  .row.no-gutters
-    /! 左側の時間帯
-    .col style="height:1440px;"
-      .hour-name style="height:60px;"  5:00
-      .hour-name style="height:60px;"  6:00
-      .hour-name style="height:60px;"  7:00
-      .hour-name style="height:60px;"  8:00
-      .hour-name style="height:60px;"  9:00
-      .hour-name style="height:60px;"  10:00
-      .hour-name style="height:60px;"  11:00
-      .hour-name style="height:60px;"  12:00
-      .hour-name style="height:60px;"  13:00
-      .hour-name style="height:60px;"  14:00
-      .hour-name style="height:60px;"  15:00
-      .hour-name style="height:60px;"  16:00
-      .hour-name style="height:60px;"  17:00
-      .hour-name style="height:60px;"  18:00
-      .hour-name style="height:60px;"  19:00
-      .hour-name style="height:60px;"  20:00
-      .hour-name style="height:60px;"  21:00
-      .hour-name style="height:60px;"  22:00
-      .hour-name style="height:60px;"  23:00
-      .hour-name style="height:60px;"  24:00
-      .hour-name style="height:60px;"  25:00
-      .hour-name style="height:60px;"  26:00
-      .hour-name style="height:60px;"  27:00
-      .hour-name style="height:60px;"  28:00
-    /! 右側の1番目スケジュール
-    .collection style="height:1440px;"
-      - @monday_tbs_radios.each do |radio|
-        - unless radio.length / 60 < 30
-          .collection-item.teal.lighten-2 style="height:#{radio.length / 60}px; width:120px;"
-            = link_to "#modal#{radio.id}",class:"modal-trigger" do
-              span.truncate
-                = radio.title
-          div id="modal#{radio.id}" class="modal"
-            .modal-content
-              ul.collection
-                = image_tag "#{radio.image}", width: "100%", height: "300"
-                li.collection-item #{radio.title}
-                li.collection-item #{radio.personality}
-                - if radio.start_time.present?
-                  li.collection-item #{radio.start_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.start_time.wday]}) %H時%M分")}~
-                - if radio.end_time.present?
-                  li.collection-item #{radio.end_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.end_time.wday]}) %H時%M分")}
-                li.collection-item #{radio.length / 60}分
-                li.collection-item #{radio.station}
-            .modal-footer
-              a.modal-close.waves-effect.waves-green.btn-flat href="#!"  閉じる
+.row
+  .col.s12
+    ul.tabs
+      li.tab.col.m3.l3
+        = link_to "#tab1", class: 'active' do
+          |TBSラジオ
+      li.tab.col.m3.l3
+        = link_to "#tab2" do
+          |ニッポン放送
+      li.tab.col.m3.l3
+        = link_to "#tab3" do
+          |J-Wave
+      li.tab.col.m3.l3
+        = link_to "#tab4" do
+          |TOKYO FM
 
-        - else
-          .blue-grey.lighten-5 style="height:#{radio.length / 60}px; width:120px;"
-    .col.minute-wrapper style="height:1440px;"
-table.highlight
-  thead
-    tr
-      th
-      th= sort_link(@q, :title, "番組名")
-      th= sort_link(@q, :personality, "パーソナリティ")
-      th= sort_link(@q, :station, "放送局")
-      th= sort_link(@q, :start_time, "開始時間")
-      / th= sort_link(@q, :end_time, "終了時間")
-      th= sort_link(@q, :length, "番組時間")
-      - if user_signed_in?
-        th
-  tbody
-    - @monday_tbs_radios.each do |radio|
-      tr
-        td style="width:10%"
-          = link_to radio
-            = image_tag "#{radio.image}", size: '120x60'
-        td style="width:20%"
-          = link_to radio
-            = radio.title
-        td style="width:20%"
-          = radio.personality
-        td style="width:10%"
-          = radio.station
-        td style="width:10%"
-          - if radio.start_time.present?
-            = radio.start_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.start_time.wday]}) %H時%M分")
-        td style="width:10%"
-          = radio.length / 60
-          | 分
-
-        - if user_signed_in?
-          td style="width:10%"
-            div id="likes_buttons_#{radio.id}"
-              = render partial: 'likes/like', locals: { radio: radio}
+  #tab1.col.s12
+    .container.timetable
+      h2.center TBSラジオ 週間番組表
+      .row style="margin-bottom:0px"
+        .col style="height:60px; width: 90px"
+          .hour-name.title style="height:60px;"  時刻
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  月曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  火曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  水曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  木曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  金曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  土曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  日曜日
+      .row
+        /! 左側の時間帯
+        .col style="height:1440px; width: 90px"
+          - 5.upto(28) do |n|
+            .hour-name.title style="height:60px;"  #{n}時
+        /! 右側の1番目スケジュール
+        .col.collection style="height:1440px; width: 120px"
+          - @monday_tbs_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @tuesday_tbs_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @wendsday_tbs_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @thursday_tbs_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @friday_tbs_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @saturday_tbs_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @sunday_tbs_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+  #tab2.col.s12
+    .container.timetable
+      h2.center ニッポン放送 週間番組表
+      .row style="margin-bottom:0px"
+        .col style="height:60px; width: 90px"
+          .hour-name.title style="height:60px;"  時刻
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  月曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  火曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  水曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  木曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  金曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  土曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  日曜日
+      .row
+        /! 左側の時間帯
+        .col style="height:1440px; width: 90px"
+          - 5.upto(28) do |n|
+            .hour-name.title style="height:60px;"  #{n}時
+        /! 右側の1番目スケジュール
+        .col.collection style="height:1440px; width: 120px"
+          - @monday_lf_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @tuesday_lf_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @wendsday_lf_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @thursday_lf_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @friday_lf_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @saturday_lf_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @sunday_lf_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+  #tab3.col.s12
+    .container.timetable
+      h2.center J-Wave 週間番組表
+      .row style="margin-bottom:0px"
+        .col style="height:60px; width: 90px"
+          .hour-name.title style="height:60px;"  時刻
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  月曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  火曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  水曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  木曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  金曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  土曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  日曜日
+      .row
+        /! 左側の時間帯
+        .col style="height:1440px; width: 90px"
+          - 5.upto(28) do |n|
+            .hour-name.title style="height:60px;"  #{n}時
+        /! 右側の1番目スケジュール
+        .col.collection style="height:1440px; width: 120px"
+          - @monday_fmj_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @tuesday_fmj_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @wendsday_fmj_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @thursday_fmj_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @friday_fmj_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @saturday_fmj_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @sunday_fmj_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+  #tab4.col.s12
+    .container.timetable
+      h2.center TOKYO FM 週間番組表
+      .row style="margin-bottom:0px"
+        .col style="height:60px; width: 90px"
+          .hour-name.title style="height:60px;"  時刻
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  月曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  火曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  水曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  木曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  金曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  土曜日
+        .col style="height:60px; width: 120px"
+          .hour-name.title style="height:60px;"  日曜日
+      .row
+        /! 左側の時間帯
+        .col style="height:1440px; width: 90px"
+          - 5.upto(28) do |n|
+            .hour-name.title style="height:60px;"  #{n}時
+        /! 右側の1番目スケジュール
+        .col.collection style="height:1440px; width: 120px"
+          - @monday_tfm_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @tuesday_tfm_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @wendsday_tfm_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @thursday_tfm_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @friday_tfm_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @saturday_tfm_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}
+        .col.collection style="height:1440px; width: 120px"
+          - @sunday_tfm_radios.each do |radio|
+            = render partial: 'radios/modal_content', locals: {radio: radio}

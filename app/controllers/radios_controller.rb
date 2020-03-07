@@ -1,6 +1,6 @@
 class RadiosController < ApplicationController
   before_action :set_radio, only: %i(show edit update destroy)
-  before_action :set_search, only: %i(index show timetable)
+  before_action :set_search, only: %i(index show timetable tbs lfr fmj tfm)
 
   def index
     if user_signed_in?
@@ -13,11 +13,47 @@ class RadiosController < ApplicationController
     @comment = @radio.comments.build
   end
 
-  def timetable
-    @monday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: '2020-02-3'.in_time_zone.all_day)
-
-
+  def tbs
+    @monday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,3,5,00,00)...Time.local(2020,2,4,5,00,00))
+    @tuesday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,4,5,00,00)...Time.local(2020,2,5,5,00,00))
+    @wendsday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,5,5,00,00)...Time.local(2020,2,6,5,00,00))
+    @thursday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,6,5,00,00)...Time.local(2020,2,7,5,00,00))
+    @friday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,7,5,00,00)...Time.local(2020,2,8,5,00,00))
+    @saturday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,8,5,00,00)...Time.local(2020,2,9,5,00,00))
+    @sunday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,9,5,00,00)...Time.local(2020,2,10,5,00,00))
   end
+
+  def lfr
+    @monday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,20,5,00,00)...Time.local(2020,1,21,5,00,00))
+    @tuesday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,21,5,00,00)...Time.local(2020,1,22,5,00,00))
+    @wendsday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,22,5,00,00)...Time.local(2020,1,23,5,00,00))
+    @thursday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,23,5,00,00)...Time.local(2020,1,24,5,00,00))
+    @friday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,24,5,00,00)...Time.local(2020,1,25,5,00,00))
+    @saturday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,25,5,00,00)...Time.local(2020,1,26,5,00,00))
+    @sunday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,26,5,00,00)...Time.local(2020,1,27,5,00,00))
+  end
+
+  def fmj
+    @monday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,20,5,00,00)...Time.local(2020,1,21,5,00,00))
+    @tuesday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,21,5,00,00)...Time.local(2020,1,22,5,00,00))
+    @wendsday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,22,5,00,00)...Time.local(2020,1,23,5,00,00))
+    @thursday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,23,5,00,00)...Time.local(2020,1,24,5,00,00))
+    @friday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,24,5,00,00)...Time.local(2020,1,25,5,00,00))
+    @saturday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,25,5,00,00)...Time.local(2020,1,26,5,00,00))
+    @sunday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,26,5,00,00)...Time.local(2020,1,27,5,00,00))
+  end
+
+  def tfm
+    @monday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,3,5,00,00)...Time.local(2020,2,4,5,00,00))
+    @tuesday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,4,5,00,00)...Time.local(2020,2,5,5,00,00))
+    @wendsday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,5,5,00,00)...Time.local(2020,2,6,5,00,00))
+    @thursday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,6,5,00,00)...Time.local(2020,2,7,5,00,00))
+    @friday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,7,5,00,00)...Time.local(2020,2,8,5,00,00))
+    @saturday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,8,5,00,00)...Time.local(2020,2,9,5,00,00))
+    @sunday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,9,5,00,00)...Time.local(2020,2,10,5,00,00))
+  end
+
+
 
   def ranking
     @q = Radio.ransack(params[:q])

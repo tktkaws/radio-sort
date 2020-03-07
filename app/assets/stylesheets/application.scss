@@ -88,10 +88,20 @@ i.icon-menu {
 }
 
 .hour-name {
-  padding: 10px;
-  text-align: right;
+  padding: 20px;
+  text-align: center;
   border: 1px solid #eceeef;
+  font-weight: bold;
 }
+.hour-name.title {
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #eceeef;
+  font-weight: bold;
+  background-color: color("blue-grey", "darken-4");
+  color: white;
+}
+
 
 .just-hour {
   border-top: 1px solid #eceeef;
@@ -99,4 +109,34 @@ i.icon-menu {
 
 .program {
   border-top: 1px solid #eceeef;
+}
+
+
+.modal {
+  max-height: 90%;
+  width: 60%;
+}
+
+.row .col {
+  padding: 0px;
+}
+
+.modal-trigger.tooltipped {
+  color: white;
+}
+
+.collection {
+  margin-top: 0px;
+}
+
+.collection a.collection-item {
+  padding: 10px 0px;
+}
+
+.container.timetable {
+  min-width: 950px;
+}
+
+.collection a.collection-item.cyan.darken-2 {
+  border-top: 1px solid white;
 }
