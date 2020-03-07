@@ -13,44 +13,30 @@ class RadiosController < ApplicationController
     @comment = @radio.comments.build
   end
 
+
+
   def tbs
-    @monday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,3,5,00,00)...Time.local(2020,2,4,5,00,00))
-    @tuesday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,4,5,00,00)...Time.local(2020,2,5,5,00,00))
-    @wendsday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,5,5,00,00)...Time.local(2020,2,6,5,00,00))
-    @thursday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,6,5,00,00)...Time.local(2020,2,7,5,00,00))
-    @friday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,7,5,00,00)...Time.local(2020,2,8,5,00,00))
-    @saturday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,8,5,00,00)...Time.local(2020,2,9,5,00,00))
-    @sunday_tbs_radios = Radio.where(station: "TBSラジオ").where(start_time: Time.local(2020,2,9,5,00,00)...Time.local(2020,2,10,5,00,00))
+    station = "TBSラジオ"
+    start_time = Time.local(2020,2,3,5,00,00)
+    set_timetable(station,start_time)
   end
 
   def lfr
-    @monday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,20,5,00,00)...Time.local(2020,1,21,5,00,00))
-    @tuesday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,21,5,00,00)...Time.local(2020,1,22,5,00,00))
-    @wendsday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,22,5,00,00)...Time.local(2020,1,23,5,00,00))
-    @thursday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,23,5,00,00)...Time.local(2020,1,24,5,00,00))
-    @friday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,24,5,00,00)...Time.local(2020,1,25,5,00,00))
-    @saturday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,25,5,00,00)...Time.local(2020,1,26,5,00,00))
-    @sunday_lf_radios = Radio.where(station: "ニッポン放送").where(start_time: Time.local(2020,1,26,5,00,00)...Time.local(2020,1,27,5,00,00))
+    station = "ニッポン放送"
+    start_time = Time.local(2020,1,20,5,00,00)
+    set_timetable(station,start_time)
   end
 
   def fmj
-    @monday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,20,5,00,00)...Time.local(2020,1,21,5,00,00))
-    @tuesday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,21,5,00,00)...Time.local(2020,1,22,5,00,00))
-    @wendsday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,22,5,00,00)...Time.local(2020,1,23,5,00,00))
-    @thursday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,23,5,00,00)...Time.local(2020,1,24,5,00,00))
-    @friday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,24,5,00,00)...Time.local(2020,1,25,5,00,00))
-    @saturday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,25,5,00,00)...Time.local(2020,1,26,5,00,00))
-    @sunday_fmj_radios = Radio.where(station: "J-Wave").where(start_time: Time.local(2020,1,26,5,00,00)...Time.local(2020,1,27,5,00,00))
+    station = "J-Wave"
+    start_time = Time.local(2020,1,20,5,00,00)
+    set_timetable(station,start_time)
   end
 
   def tfm
-    @monday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,3,5,00,00)...Time.local(2020,2,4,5,00,00))
-    @tuesday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,4,5,00,00)...Time.local(2020,2,5,5,00,00))
-    @wendsday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,5,5,00,00)...Time.local(2020,2,6,5,00,00))
-    @thursday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,6,5,00,00)...Time.local(2020,2,7,5,00,00))
-    @friday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,7,5,00,00)...Time.local(2020,2,8,5,00,00))
-    @saturday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,8,5,00,00)...Time.local(2020,2,9,5,00,00))
-    @sunday_tfm_radios = Radio.where(station: "TOKYO FM").where(start_time: Time.local(2020,2,9,5,00,00)...Time.local(2020,2,10,5,00,00))
+    station = "TOKYO FM"
+    start_time = Time.local(2020,2,3,5,00,00)
+    set_timetable(station,start_time)
   end
 
 
@@ -102,4 +88,17 @@ class RadiosController < ApplicationController
     @q.sorts = 'start_time asc' if @q.sorts.empty?
     @radios = @q.result(distinct: true).page(params[:page])
   end
+
+  def set_timetable(station,start_time)
+    day = 24*60*60
+    @radios_day1 = Radio.where(station: station).where(start_time: start_time...start_time+ day).order(id: "ASC")
+    @radios_day2 = Radio.where(station: station).where(start_time: start_time+ day...start_time+day*2).order(id: "ASC")
+    @radios_day3 = Radio.where(station: station).where(start_time: start_time+ day*2...start_time+day*3).order(id: "ASC")
+    @radios_day4 = Radio.where(station: station).where(start_time: start_time+ day*3...start_time+day*4).order(id: "ASC")
+    @radios_day5 = Radio.where(station: station).where(start_time: start_time+ day*4...start_time+day*5).order(id: "ASC")
+    @radios_day6 = Radio.where(station: station).where(start_time: start_time+ day*5...start_time+day*6).order(id: "ASC")
+    @radios_day7 = Radio.where(station: station).where(start_time: start_time+ day*6...start_time+day*7).order(id: "ASC")
+  end
+
+
 end

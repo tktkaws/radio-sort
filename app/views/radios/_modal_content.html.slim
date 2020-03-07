@@ -7,7 +7,7 @@
     - if radio.length / 60 >= 45 && radio.length / 60 < 90
       = image_tag "#{radio.image}", width: "100%", height: "40px;"
     - if radio.length / 60 < 45
-      span.truncate
+      span.truncate style="font-size:1.5px;"
         = radio.title
   div id="modal#{radio.id}" class="modal"
     .modal-content
@@ -25,8 +25,8 @@
     .modal-footer
       a.modal-close.waves-effect.waves-green.btn-flat href="#!"  閉じる
 - else
-  .blue-grey.lighten-5 style="height:#{radio.length / 60}px;"
-    = link_to "#modal#{radio.id}", class: "collection-item cyan darken-2 modal-trigger tooltipped", data: {position: "top", tooltip: "#{radio.title}"}, style: "height:#{radio.length / 60}px;" do
+  div style="height:#{radio.length / 60}px;"
+    = link_to "#modal#{radio.id}", class: "collection-item modal-trigger tooltipped", data: {position: "top", tooltip: "#{radio.title}"}, style: "height:#{radio.length / 60}px;" do
       |
     div id="modal#{radio.id}" class="modal"
       .modal-content
