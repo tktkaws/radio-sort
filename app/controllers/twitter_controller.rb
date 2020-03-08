@@ -30,7 +30,7 @@ class TwitterController < ApplicationController
     @likes.first(5).each_with_index do |like,i|
       string << "#{i+1}位: #{like.radio.title}\n"
     end
-    string << "\n本番環境のurl\n"
+    string << "\nhttp://radio-sort.xyz/\n"
     string
   end
 end
