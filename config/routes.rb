@@ -2,17 +2,10 @@ Rails.application.routes.draw do
   root 'top#index'
 
   get 'ranking', to: 'radios#ranking'
-  #get 'timetable', to: 'radios#timetable'
-  #get 'timetable_tbs', to: 'radios#timetable_tbs'
-  #get 'timetable_lfr', to: 'radios#timetable_lfr'
-  #get 'timetable_fmj', to: 'radios#timetable_fmj'
-  #get 'timetable_tfm', to: 'radios#timetable_tfm'
-  scope :timetable do
-    get 'tbs', to: 'radios#tbs'
-    get 'lfr', to: 'radios#lfr'
-    get 'fmj', to: 'radios#fmj'
-    get 'tfm', to: 'radios#tfm'
-  end
+  get 'timetable_tbs', to: 'timetable#tbs'
+  get 'timetable_lfr', to: 'timetable#lfr'
+  get 'timetable_fmj', to: 'timetable#fmj'
+  get 'timetable_tfm', to: 'timetable#tfm'
 
   resources :radios do
     resources :comments

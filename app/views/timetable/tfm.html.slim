@@ -3,19 +3,19 @@
   .row
     .col style="width: 230px"
       p.center
-        = link_to tbs_path, class: 'waves-effect waves-light btn search blue-grey darken-4' do
+        = link_to timetable_tbs_path, class: 'waves-effect waves-light btn search blue-grey darken-4' do
           |TBSラジオ
     .col style="width: 230px"
       p.center
-        = link_to lfr_path, class: 'waves-effect waves-light btn search blue-grey darken-4' do
+        = link_to timetable_lfr_path, class: 'waves-effect waves-light btn search blue-grey darken-4' do
           |ニッポン放送
     .col style="width: 230px"
       p.center
-        = link_to fmj_path, class: 'waves-effect waves-light btn search blue-grey darken-4' do
+        = link_to timetable_fmj_path, class: 'waves-effect waves-light btn search blue-grey darken-4' do
           |J-Wave
     .col style="width: 230px"
       p.center
-        = link_to tfm_path, class: 'waves-effect waves-light btn search blue-grey darken-1' do
+        = link_to timetable_tfm_path, class: 'waves-effect waves-light btn search blue-grey darken-1' do
           |TOKYO FM
   .row style="margin-bottom:0px"
     .col style="height:60px; width: 90px"
@@ -42,22 +42,22 @@
     /! 右側の1番目スケジュール
     .col.collection style="height:1440px; width: 120px"
       - @radios_day1.each do |radio|
-        = render partial: 'radios/modal_content', locals: {radio: radio}
+        = render partial: 'timetable/modal_content', locals: {radio: radio}
     .col.collection style="height:1440px; width: 120px"
       - @radios_day2.each do |radio|
-        = render partial: 'radios/modal_content', locals: {radio: radio}
+        = render partial: 'timetable/modal_content', locals: {radio: radio}
     .col.collection style="height:1440px; width: 120px"
       - @radios_day3.each do |radio|
-        = render partial: 'radios/modal_content', locals: {radio: radio}
+        = render partial: 'timetable/modal_content', locals: {radio: radio}
     .col.collection style="height:1440px; width: 120px"
       - @radios_day4.each do |radio|
-        = render partial: 'radios/modal_content', locals: {radio: radio}
+        = render partial: 'timetable/modal_content', locals: {radio: radio}
     .col.collection style="height:1440px; width: 120px"
       - @radios_day5.each do |radio|
-        = render partial: 'radios/modal_content', locals: {radio: radio}
+        = render partial: 'timetable/modal_content', locals: {radio: radio}
     .col.collection style="height:1440px; width: 120px"
       - @radios_day6.each do |radio|
-        = render partial: 'radios/modal_content', locals: {radio: radio}
+        = render partial: 'timetable/modal_content', locals: {radio: radio}
     .col.collection style="height:1440px; width: 120px"
       - @radios_day7.each do |radio|
-        = render partial: 'radios/modal_content', locals: {radio: radio}
+        = render partial: 'timetable/modal_content', locals: {radio: radio}
