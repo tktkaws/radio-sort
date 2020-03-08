@@ -2,7 +2,7 @@ require "csv"
 
 CSV.foreach('db/xml/TBSweekly加工済.csv', headers: true) do |row|
   if row['filename'] == "3cd30990-b9f5-4080-84fa-cc215e99aa94.jpeg"
-    row['filename'] = "tbslogo.jpeg"
+    row['filename'] = "tbslogo.jpg"
   end
   Radio.create(
     title: row['title'],
