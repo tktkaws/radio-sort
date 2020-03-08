@@ -105,6 +105,3 @@ gem 'kaminari'
 gem 'twitter'
 gem 'fog-aws'
 gem 'dotenv-rails'
-
-
-

@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 #dotenv-rails
-.env
+/.env
 
 assets/images
 /public/uploads
