@@ -1,6 +1,9 @@
 require "csv"
 
 CSV.foreach('db/xml/TBSweekly加工済.csv', headers: true) do |row|
+  if row['filename'] == "3cd30990-b9f5-4080-84fa-cc215e99aa94.jpeg"
+    row['filename'] = "tbslogo.jpeg"
+  end
   Radio.create(
     title: row['title'],
     personality: row['pfm'],
@@ -70,6 +73,15 @@ end
                image: File.open("#{Rails.root}/db/images/male/userimage#{rand(1..15)}.jpg")
   )
 end
+
+#ゲストユーザー
+User.create!(email: "guest@example.com",
+             password: "111111",
+             name: "ゲストユーザー",
+             age: 3,
+             gender: 1,
+             image: File.open("#{Rails.root}/db/images/female/userimage9.jpg")
+)
 
 100.times do |n|
   radio_ids = (1..700).to_a.sample(21)
