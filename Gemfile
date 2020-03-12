@@ -49,6 +49,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rubocop'
   gem 'rspec_junit_formatter'
+  gem 'rubocop-rails'
 
   gem 'capistrano', '3.6.0'
   gem 'capistrano-bundler'
