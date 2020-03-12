@@ -47,6 +47,8 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'pry-rails'
+  gem 'rubocop'
+  gem 'rspec_junit_formatter'
 
   gem 'capistrano', '3.6.0'
   gem 'capistrano-bundler'
