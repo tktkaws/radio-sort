@@ -1,9 +1,7 @@
-require "csv"
+require 'csv'
 
 CSV.foreach('db/xml/TBSweekly加工済.csv', headers: true) do |row|
-  if row['filename'] == "3cd30990-b9f5-4080-84fa-cc215e99aa94.jpeg"
-    row['filename'] = "tbslogo.jpg"
-  end
+  row['filename'] = 'tbslogo.jpg' if row['filename'] == '3cd30990-b9f5-4080-84fa-cc215e99aa94.jpeg'
   Radio.create(
     title: row['title'],
     personality: row['pfm'],
@@ -11,8 +9,8 @@ CSV.foreach('db/xml/TBSweekly加工済.csv', headers: true) do |row|
     start_time: row['ft'],
     end_time: row['title'],
     length: row['dur'],
-    image: "TBS/#{row['filename']}",
-    )
+    image: "TBS/#{row['filename']}"
+  )
 end
 
 CSV.foreach('db/xml/LFRnotnill.csv', headers: true) do |row|
@@ -23,8 +21,8 @@ CSV.foreach('db/xml/LFRnotnill.csv', headers: true) do |row|
     start_time: row['ft'],
     end_time: row['title'],
     length: row['dur'],
-    image: "LFR/#{row['filename']}",
-    )
+    image: "LFR/#{row['filename']}"
+  )
 end
 
 CSV.foreach('db/xml/FMJweeklynotnill.csv', headers: true) do |row|
@@ -35,8 +33,8 @@ CSV.foreach('db/xml/FMJweeklynotnill.csv', headers: true) do |row|
     start_time: row['ft'],
     end_time: row['title'],
     length: row['dur'],
-    image: "FMJ/#{row['filename']}",
-    )
+    image: "FMJ/#{row['filename']}"
+  )
 end
 
 CSV.foreach('db/xml/TFMweekly加工済.csv', headers: true) do |row|
@@ -47,56 +45,51 @@ CSV.foreach('db/xml/TFMweekly加工済.csv', headers: true) do |row|
     start_time: row['ft'],
     end_time: row['title'],
     length: row['dur'],
-    image: "TFM/#{row['filename']}",
-    )
+    image: "TFM/#{row['filename']}"
+  )
 end
 
-#femaleuser
+# femaleuser
 50.times do |n|
-
   User.create!(email: "test#{n + 1}@example.com",
-               password: "111111",
+               password: '111111',
                name: Gimei.female.katakana,
                age: rand(1..5),
                gender: 2,
-               image: File.open("#{Rails.root}/db/images/female/userimage#{rand(1..23)}.jpg")
-  )
+               image: File.open("#{Rails.root}/db/images/female/userimage#{rand(1..23)}.jpg"))
 end
 
-#maleuser
+# maleuser
 50.times do |n|
   User.create!(email: "test#{n + 51}@example.com",
-               password: "111111",
+               password: '111111',
                name: Gimei.male.katakana,
                age: rand(1..5),
                gender: 1,
-               image: File.open("#{Rails.root}/db/images/male/userimage#{rand(1..15)}.jpg")
-  )
+               image: File.open("#{Rails.root}/db/images/male/userimage#{rand(1..15)}.jpg"))
 end
 
-#ゲストユーザー
-User.create!(email: "guest@example.com",
-             password: "111111",
-             name: "ゲストユーザー",
+# ゲストユーザー
+User.create!(email: 'guest@example.com',
+             password: '111111',
+             name: 'ゲストユーザー',
              age: 3,
              gender: 1,
-             image: File.open("#{Rails.root}/db/images/female/userimage9.jpg")
-)
+             image: File.open("#{Rails.root}/db/images/female/userimage9.jpg"))
 
 100.times do |n|
   radio_ids = (1..700).to_a.sample(21)
   20.times do |i|
-    if i >= 5
-      point = 1
-    else
-      point =  10 - (i * 2)
-    end
+    point = if i >= 5
+              1
+            else
+              10 - (i * 2)
+            end
 
     Like.create!(user_id: n + 1,
                  radio_id: radio_ids[i],
                  row_order: i + 1,
-                 point: point
-    )
+                 point: point)
   end
 end
 
@@ -105,7 +98,6 @@ end
     follower_id = n + 1
     followed_id = n + i + 2
     Relation.create!(follower_id: follower_id,
-                     followed_id: followed_id,
-                     )
+                     followed_id: followed_id)
   end
 end

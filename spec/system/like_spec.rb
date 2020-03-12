@@ -2,16 +2,16 @@ require 'rails_helper'
 
 RSpec.describe Like, type: :system do
   before(:all) do
-    5.times {@user = create(:user)}
-    5.times {@radio = create(:radio)}
-    5.times {@like = create(:like)}
+    5.times { @user = create(:user) }
+    5.times { @radio = create(:radio) }
+    5.times { @like = create(:like) }
   end
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
     FactoryBot.reload
   end
 
-  describe 'like(お気に入り)機能'do
+  describe 'like(お気に入り)機能' do
     before do
       visit new_user_session_path
       fill_in 'user[email]', with: '1@test.com'
@@ -30,7 +30,7 @@ RSpec.describe Like, type: :system do
       visit radios_path
       find('#likes_buttons_1 a').click
       sleep 1
-        expect(page).to have_selector '#likes_buttons_1', text: '0 Liked'
+      expect(page).to have_selector '#likes_buttons_1', text: '0 Liked'
       expect(page).to_not have_selector '#likes_buttons_1', text: '1 Liked'
     end
   end

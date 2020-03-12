@@ -2,15 +2,15 @@ require 'rails_helper'
 
 RSpec.describe Relation, type: :system do
   before(:all) do
-    5.times {@user = create(:user)}
-    4.times {@relation = create(:relation)}
+    5.times { @user = create(:user) }
+    4.times { @relation = create(:relation) }
   end
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
     FactoryBot.reload
   end
 
-  describe 'follow機能'do
+  describe 'follow機能' do
     before do
       visit new_user_session_path
       fill_in 'user[email]', with: '1@test.com'

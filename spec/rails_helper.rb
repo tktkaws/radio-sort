@@ -5,7 +5,7 @@ ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -65,32 +65,32 @@ end
 
 OmniAuth.config.test_mode = true
 
-  def twitter_mock
-    OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
-                                                                   "provider" => "twitter",
-                                                                   "uid" => "123456",
-                                                                   "info" => {
-                                                                     "name" => "Mock User",
-                                                                     "image" => "http://mock_image_url.com",
-                                                                     "location" => "",
-                                                                     "email" => "mock@example.com",
-                                                                     "urls" => {
-                                                                       "Twitter" => "https://twitter.com/MockUser1234",
-                                                                       "Website" => ""
-                                                                     }
-                                                                   },
-                                                                   "credentials" => {
-                                                                     "token" => "mock_credentails_token",
-                                                                     "secret" => "mock_credentails_secret"
-                                                                   },
-                                                                   "extra" => {
-                                                                     "raw_info" => {
-                                                                       "name" => "Mock User",
-                                                                       "id" => "123456",
-                                                                       "followers_count" => 0,
-                                                                       "friends_count" => 0,
-                                                                       "statuses_count" => 0
-                                                                     }
+def twitter_mock
+  OmniAuth.config.mock_auth[:twitter] = OmniAuth::AuthHash.new({
+                                                                 'provider' => 'twitter',
+                                                                 'uid' => '123456',
+                                                                 'info' => {
+                                                                   'name' => 'Mock User',
+                                                                   'image' => 'http://mock_image_url.com',
+                                                                   'location' => '',
+                                                                   'email' => 'mock@example.com',
+                                                                   'urls' => {
+                                                                     'Twitter' => 'https://twitter.com/MockUser1234',
+                                                                     'Website' => ''
                                                                    }
-                                                                 })
-  end
+                                                                 },
+                                                                 'credentials' => {
+                                                                   'token' => 'mock_credentails_token',
+                                                                   'secret' => 'mock_credentails_secret'
+                                                                 },
+                                                                 'extra' => {
+                                                                   'raw_info' => {
+                                                                     'name' => 'Mock User',
+                                                                     'id' => '123456',
+                                                                     'followers_count' => 0,
+                                                                     'friends_count' => 0,
+                                                                     'statuses_count' => 0
+                                                                   }
+                                                                 }
+                                                               })
+end

@@ -1,3 +1,5 @@
+inherit_from: .rubocop_todo.yml
+
 require:
   - rubocop-rails
 
@@ -10,41 +12,25 @@ AllCops:
     - "node_modules/**/*"
     - "db/migrate/*.rb"
     - "bin/*"
+    - "app/models/user.rb"
   DisplayCopNames: true
   TargetRubyVersion: 2.6.5
 
-Rails:
-  Enabled: true
-
-Style/AndOr:
-  EnforcedStyle: conditionals
-
-Style/AsciiComments:
+# Missing magic comment # frozen_string_literal: true. を無視
+Style/FrozenStringLiteralComment:
   Enabled: false
 
+# Missing top-level class documentation comment. を無視
 Style/Documentation:
   Enabled: false
 
-Style/NumericLiterals:
+# Line is too long を無視
+Metrics/LineLength:
   Enabled: false
 
+# Use nested module/class definitions instead of compact style. を無視
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Bundler/OrderedGems:
+AsciiComments:
   Enabled: false
-
-Lint/ShadowedException:
-  Enabled: false
-
-# For rubocop < 1.0.0
-Style/HashEachMethods:
-  Enabled: true
-
-# For rubocop < 1.0.0
-Style/HashTransformKeys:
-  Enabled: true
-
-# For rubocop < 1.0.0
-Style/HashTransformValues:
-  Enabled: true

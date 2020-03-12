@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :check_guest, only: %i[update destroy edit]
+  before_action :check_guest
 
   def check_guest
-    if resource.email == 'guest@example.com'
-      redirect_to user_path(current_user), alert: 'ゲストユーザーの変更・削除はできません。'
-    end
+    redirect_to user_path(current_user), alert: 'ゲストユーザーの変更・削除はできません。' if resource.email == 'guest@example.com'
   end
 
   def after_sign_up_path_for(user)
-      user_path(user)
+    user_path(user)
   end
 
   def after_update_path_for(user)
@@ -23,9 +21,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
 
-    def auth_params
-      request.env["omniauth.auth"]
-    end
+  def auth_params
+    request.env['omniauth.auth']
+  end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TwitterController < ApplicationController
   before_action :set_twitter_client
   before_action :authenticate_user!
@@ -9,7 +11,7 @@ class TwitterController < ApplicationController
 
   def tweet
     @twitter.update(tweet_rank)
-    redirect_to user_path(current_user), notice: "twitterに投稿しました"
+    redirect_to user_path(current_user), notice: 'twitterに投稿しました'
   end
 
   private
@@ -27,8 +29,8 @@ class TwitterController < ApplicationController
     @likes = current_user.likes.rank(:row_order)
     string = "#ラジオソート\n\n"
 
-    @likes.first(5).each_with_index do |like,i|
-      string << "#{i+1}位: #{like.radio.title}\n"
+    @likes.first(5).each_with_index do |like, i|
+      string << "#{i + 1}位: #{like.radio.title}\n"
     end
     string << "\nhttp://radio-sort.xyz/\n"
     string

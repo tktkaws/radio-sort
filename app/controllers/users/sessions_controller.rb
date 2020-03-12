@@ -9,9 +9,9 @@ class Users::SessionsController < Devise::SessionsController
     redirect_to user_path(user), notice: 'ゲストユーザーとしてログインしました。'
   end
 
-  #GET /resource/sign_in
-   #def new
-   #end
+  # GET /resource/sign_in
+  # def new
+  # end
 
   # POST /resource/sign_in
   # def create

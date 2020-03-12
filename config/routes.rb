@@ -19,14 +19,14 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 
-  resources :users, only: [:index, :show] do
+  resources :users, only: %i[index show] do
     get :relations_index
   end
 
   resources :likes do
     put :sort
   end
-  resources :relations, only: [:create, :destroy]
+  resources :relations, only: %i[create destroy]
 
   post 'tweet', to: 'twitter#tweet'
   post 'confirm', to: 'twitter#confirm'
