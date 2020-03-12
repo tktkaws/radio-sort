@@ -8,6 +8,7 @@ RSpec.describe User, type: :system do
   end
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
+    FactoryBot.reload
   end
 
   describe 'アカウント登録'do
@@ -17,7 +18,7 @@ RSpec.describe User, type: :system do
         fill_in 'user[password]', with: '111111'
         fill_in 'user[password_confirmation]', with: '111111'
         click_on 'save'
-        expect(page).to have_content 'ラジオにお気に入りに登録してみましょう'
+        expect(page).to have_content 'ラジオをお気に入りに登録してみましょう'
     end
   end
 
@@ -28,7 +29,7 @@ RSpec.describe User, type: :system do
         fill_in 'user[email]', with: '1@test.com'
         fill_in 'user[password]', with: '111111'
         click_on 'login'
-        expect(page).to have_content 'ラジオにお気に入りに登録してみましょう'
+        expect(page).to have_content 'Twitterで共有する'
       end
     end
 
@@ -36,7 +37,7 @@ RSpec.describe User, type: :system do
       it 'ユーザー詳細ページに遷移すること' do
         visit new_user_session_path
         click_on 'ゲスト ログイン'
-        expect(page).to have_content 'ラジオにお気に入りに登録してみましょう'
+        expect(page).to have_content 'ラジオをお気に入りに登録してみましょう'
       end
     end
 
@@ -47,7 +48,7 @@ RSpec.describe User, type: :system do
 
         visit new_user_session_path
         click_link "Twitterログイン"
-        expect(page).to have_content 'ラジオにお気に入りに登録してみましょう'
+        expect(page).to have_content 'ラジオをお気に入りに登録してみましょう'
       end
     end
   end
@@ -60,7 +61,7 @@ RSpec.describe User, type: :system do
       click_on 'login'
     end
     context '編集'do
-      it 'ユーザー詳細ページに変更した情報が表祭されること' do
+      it 'ユーザー詳細ページに変更した情報が表示されること' do
         first(:link, '編集').click
         fill_in 'user[name]', with: 'name'
         first(".dropdown-trigger").click

@@ -2,12 +2,14 @@ require 'rails_helper'
 
 RSpec.describe Comment, type: :system do
   before(:all) do
+    FactoryBot.reload
     @user = create(:user)
     @radio = create(:radio)
     @comment = create(:comment)
   end
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
+    FactoryBot.reload
   end
 
   describe 'コメント機能'do

@@ -8,6 +8,7 @@ RSpec.describe Like, type: :system do
   end
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
+    FactoryBot.reload
   end
 
   describe 'like(お気に入り)機能'do

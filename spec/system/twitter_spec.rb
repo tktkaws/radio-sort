@@ -6,6 +6,7 @@ RSpec.describe Twitter, type: :system do
   end
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
+    FactoryBot.reload
   end
 
   describe 'twitter投稿機能'do

@@ -8,6 +8,7 @@ RSpec.describe Radio, type: :system do
   end
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
+    FactoryBot.reload
   end
 
   describe 'ラジオ検索'do

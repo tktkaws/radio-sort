@@ -7,6 +7,7 @@ RSpec.describe Relation, type: :system do
   end
   after(:all) do
     DatabaseCleaner.clean_with(:truncation)
+    FactoryBot.reload
   end
 
   describe 'follow機能'do
