@@ -1,7 +1,19 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  before_action :check_guest
+  before_action :check_guest, only: %i[edit destroy update]
+
+  def edit
+    super
+  end
+
+  def destroy
+    super
+  end
+
+  def update
+    super
+  end
 
   def check_guest
     redirect_to user_path(current_user), alert: 'ゲストユーザーの変更・削除はできません。' if resource.email == 'guest@example.com'
@@ -48,9 +60,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # DELETE /resource
-  # def destroy
-  #   super
-  # end
 
   # GET /resource/cancel
   # Forces the session data which is usually expired after sign

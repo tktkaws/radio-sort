@@ -10,7 +10,8 @@ class TwitterController < ApplicationController
   end
 
   def tweet
-    @twitter.update(tweet_rank)
+    tweet_edited = params[:tweet]
+    @twitter.update(tweet_edited)
     redirect_to user_path(current_user), notice: 'twitterに投稿しました'
   end
 
@@ -27,12 +28,12 @@ class TwitterController < ApplicationController
 
   def tweet_rank
     @likes = current_user.likes.rank(:row_order)
-    string = "#ラジオソート\n\n"
+    tweet_content = "#ラジオソート\n\n"
 
     @likes.first(5).each_with_index do |like, i|
-      string << "#{i + 1}位: #{like.radio.title}\n"
+      tweet_content += "#{i + 1}位: #{like.radio.title}\n"
     end
-    string << "\nhttp://radio-sort.xyz/\n"
-    string
+    tweet_content += "\nhttp://radio-sort.xyz/\n"
+    tweet_content
   end
 end
