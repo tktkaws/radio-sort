@@ -18,8 +18,7 @@
 |ユーザーフォロー | |
 
 ## カタログ設計
-[カタログ設計.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050315/-.1.pdf)
-
+[カタログ設計.pdf](https://github.com/tktkaws/radio-sort/files/4328194/-.2.pdf)
 
 ## テーブル定義
 [テーブル定義.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050138/-.pdf)
@@ -31,12 +30,11 @@
 
 
 ## 画面遷移図
-![画面遷移図proto2](https://user-images.githubusercontent.com/53632056/72213368-45dcf680-3531-11ea-8526-a2a43afc9612.png)
-
+![画面遷移図2 0](https://user-images.githubusercontent.com/53632056/76596050-91674d00-6540-11ea-9e0c-0d6e77469a85.png)
 
 ## ワイヤーフレーム
 [ワイヤーフレーム.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050139/default.pdf)
-
+[ワイヤーフレーム(番組表).pdf](https://github.com/tktkaws/radio-sort/files/4328193/default.pdf)
 
 ## 使用予定Gem
 | gem | usage |
@@ -46,7 +44,6 @@
 |slim-rails |viewファイルをslimに変換 |
 |materialize-sass |CSSフレームワーク |
 |ransack |ラジオ検索・ユーザー検索 |
-|select2-rails |検索可能なセレクトタグ |
 |devise |ログイン機能(twitter認証) |
 |nokogiri |radikoAPIからデータをパース |
 
@@ -55,4 +52,4 @@ ruby '2.6.5'
 
 Rails '5.2.4.1'
 
-PostgreSQL '9.1'
+PostgreSQL '11.5'
