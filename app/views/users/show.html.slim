@@ -12,7 +12,7 @@
     - if @user.likes.blank?
       .collection
         = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do
-          |ラジオにお気に入りに登録してみましょう
+          |ラジオをお気に入りに登録してみましょう
     table.highlight
       |  <tbody id="likes_list", class="ui-sortable">
       - @likes.each_with_index do |like,i|

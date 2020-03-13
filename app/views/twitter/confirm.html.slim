@@ -2,10 +2,11 @@
 .container
   h5 以下の内容で投稿する
   .divider
-  p
-    = simple_format @tweet
-  .divider
-  p
-    = link_to tweet_path, class: 'waves-effect waves-light btn', method: :post
+  = form_with url: tweet_path ,local: true do |form|
+    .input-field
+      = form.label :tweet, for: "textarea1"
+      = form.text_area :tweet, class: "materialize-textarea", id: "textarea1", value: @tweet
+    .actions
+    = button_tag type: 'submit', class: 'waves-effect waves-light btn' do
       i.material-icons.right send
       |投稿
