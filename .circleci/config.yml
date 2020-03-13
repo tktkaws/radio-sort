@@ -12,7 +12,7 @@ jobs:
           POSTGRES_HOST: 127.0.0.1
       - image: circleci/postgres:11.5
         environment:
-          POSTGRES_USER: radio-sort
+          POSTGRES_USER: takayukitakahashi
           POSTGRES_DB: radio-sort_test
           POSTGRES_PASSWORD: ""
     working_directory: ~/repo
@@ -42,53 +42,32 @@ jobs:
           POSTGRES_HOST: 127.0.0.1
       - image: circleci/postgres:11.5
         environment:
-          POSTGRES_USER: radio-sort
+          POSTGRES_USER: takayukitakahashi
           POSTGRES_DB: radio-sort_test
+          POSTGRES_PASSWORD: ""
     working_directory: ~/repo
-  steps: # a collection of executable commands
-    - checkout # special step to check out source code to working directory
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: bundle install --jobs=4 --retry=3 --path vendor/bundle
+      - run: yarn install
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run: bundle exec rake db:schema:load
+      # Rspec
+      - run:
+          name: Rspec
+          command: bundle exec rspec
 
-    # Which version of bundler?
-    - run:
-        name: Which bundler?
-        command: bundle -v
-
-    # Restore bundle cache
-    - restore_cache:
-        keys:
-          - rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-          - rails-demo-bundle-v2-
-
-    - run:
-        name: Bundle Install
-        command: bundle check || bundle install
-
-    # Store bundle cache
-    - save_cache:
-        key: rails-demo-bundle-v2-{{ checksum "Gemfile.lock" }}
-        paths:
-          - vendor/bundle
-
-    - run:
-        name: Wait for DB
-        command: dockerize -wait tcp://localhost:5432 -timeout 1m
-
-    - run:
-        name: Database setup
-        command: bundle exec rake db:schema:load --trace
-
-    - run:
-        name: Run rspec in parallel
-        command: |
-          bundle exec rspec --profile 10 \
-                            --format RspecJunitFormatter \
-                            --out test_results/rspec.xml \
-                            --format progress \
-                            $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
-
-    # Save test results for timing analysis
-    - store_test_results:
-        path: test_results
 workflows:
   version: 2
   rubocop_rspec:
