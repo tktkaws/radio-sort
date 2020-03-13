@@ -1,6 +1,9 @@
 
 ## ラジオソート
-好きなラジオに順位をつけて、twitterで共有しましょう
+
+[RadioSort](http://radio-sort.xyz/)
+
+好きなラジオに順位を着けて共有しましょう
 
 ユーザーがつけた順位を集計した人気ランキングを閲覧しましょう
 
@@ -16,6 +19,7 @@
 |人気ラジオランキング |ユーザーが着けた順位にpointを付与し、それを集計 |
 |ユーザー検索 |ユーザーがTOP5に入れた番組から検索 |
 |ユーザーフォロー | |
+|番組表 |放送局別週間番組表 |
 
 ## カタログ設計
 [カタログ設計.pdf](https://github.com/tktkaws/radio-sort/files/4328194/-.2.pdf)
@@ -34,6 +38,7 @@
 
 ## ワイヤーフレーム
 [ワイヤーフレーム.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050139/default.pdf)
+
 [ワイヤーフレーム(番組表).pdf](https://github.com/tktkaws/radio-sort/files/4328193/default.pdf)
 
 ## 使用予定Gem
