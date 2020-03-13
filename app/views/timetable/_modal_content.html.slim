@@ -29,7 +29,7 @@
     div id="modal#{radio.id}" class="modal"
       .modal-content
         = link_to radio
-        = image_tag "#{radio.image}", width: "100%", height: "300"
+          = image_tag "#{radio.image}", width: "100%", height: "300"
         p #{radio.title}
         p #{radio.personality}
         - if radio.start_time.present?

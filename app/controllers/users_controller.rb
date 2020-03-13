@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-  before_action :set_user, only: %i(show edit update destroy)
-  before_action :set_search, only: %i(index relations_index)
+  before_action :set_user, only: %i[show]
+  before_action :set_search, only: %i[index relations_index]
   skip_before_action :verify_authenticity_token
-  def index
-  end
+  def index; end
 
   def show
     @likes = @user.likes.rank(:row_order)
@@ -14,6 +15,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def set_user
     @user = User.find(params[:id])
   end
@@ -24,9 +26,7 @@ class UsersController < ApplicationController
   end
 
   def set_search
-    if params[:q] != nil
-      params[:q]['likes_radio_title_cont_all'] = params[:q]['likes_radio_title_cont_all'].split(/[\p{blank}\s]+/)
-    end
+    params[:q]['likes_radio_title_cont_all'] = params[:q]['likes_radio_title_cont_all'].split(/[\p{blank}\s]+/) unless params[:q].nil?
     @q = User.ransack(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
     @users = @q.result(distinct: true).page(params[:page])

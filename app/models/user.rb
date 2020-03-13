@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
@@ -12,11 +14,9 @@ class User < ApplicationRecord
   validates :name, length: { maximum: 30 }
 
   enum gender: { unknown: 0, male: 1, female: 2 }
-  enum age: { unanswered: 0, teenage: 1, twenties: 2, thirties: 3, forties: 4, over_fifties: 5}
+  enum age: { unanswered: 0, teenage: 1, twenties: 2, thirties: 3, forties: 4, over_fifties: 5 }
 
   mount_uploader :image, ImageUploader
-
-
 
   def follow!(other_user)
     active_relations.create!(followed_id: other_user.id)
@@ -30,27 +30,23 @@ class User < ApplicationRecord
     active_relations.find_by(followed_id: other_user.id).destroy
   end
 
-
   def self.find_for_oauth(auth)
-    user = User.where(uid: auth.uid, provider: auth.provider).first
-    unless user
-      user = User.create(
-        uid:      auth.uid,
-        provider: auth.provider,
-        email:    User.dummy_email(auth),
-        password: Devise.friendly_token[0, 20],
-        image: auth.info.image,
-        name: auth.info.name,
-        nickname: auth.info.nickname,
-        )
-    end
+    user = User.find_by(uid: auth.uid, provider: auth.provider)
+    user ||= User.create(
+      uid: auth.uid,
+      provider: auth.provider,
+      email: User.dummy_email(auth),
+      password: Devise.friendly_token[0, 20],
+      image: auth.info.image,
+      name: auth.info.name,
+      nickname: auth.info.nickname
+    )
     user
   end
 
-
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
-      user.password = "111111"
+      user.password = '111111'
     end
   end
 
@@ -60,5 +56,3 @@ class User < ApplicationRecord
     "#{auth.uid}-#{auth.provider}@example.com"
     end
 end
-
-

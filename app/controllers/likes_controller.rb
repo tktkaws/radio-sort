@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
-  after_action :reset_row_order, only: [:sort, :create]
+  after_action :reset_row_order, only: %i[sort create]
   skip_before_action :verify_authenticity_token
   before_action :authenticate_user!
 
@@ -36,8 +38,8 @@ class LikesController < ApplicationController
   end
 
   private
+
   def like_params
     params.require(:like).permit(:row_order_position)
   end
-
 end

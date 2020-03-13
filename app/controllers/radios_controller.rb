@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 class RadiosController < ApplicationController
-  before_action :set_radio, only: %i(show edit update destroy)
-  before_action :set_search, only: %i(index show)
+  before_action :set_radio, only: %i[show]
+  before_action :set_search, only: %i[index show]
 
   def index
-    if user_signed_in?
-      @like = current_user.likes
-    end
+    @like = current_user.likes if user_signed_in?
   end
 
   def show
@@ -25,24 +25,18 @@ class RadiosController < ApplicationController
         gender = params[:q][:likes_user_gender_eq]
         @gender = User.genders_i18n.values[gender.to_i]
       else
-        @gender = "性別問わず"
+        @gender = '性別問わず'
       end
       if params[:q][:likes_user_age_eq].present?
         age = params[:q][:likes_user_age_eq]
         @age = User.ages_i18n.values[age.to_i]
       else
-        @age = "全年代"
+        @age = '全年代'
       end
-      if params[:q][:station_eq].present?
-        @station = params[:q][:station_eq]
-      else
-        @station = "全放送局"
-      end
+      @station = params[:q][:station_eq].presence || '全放送局'
 
     end
-    if user_signed_in?
-      @like = current_user.likes
-    end
+    @like = current_user.likes if user_signed_in?
   end
 
   private
