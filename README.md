@@ -1,7 +1,7 @@
 
 ## ラジオソート
 
-[RadioSort](http://radio-sort.xyz/)
+[RadioSort](https://radio-sort.xyz/)
 
 好きなラジオに順位を着けて共有しましょう
 
@@ -22,11 +22,10 @@
 |番組表 |放送局別週間番組表 |
 
 ## カタログ設計
-[カタログ設計.pdf](https://github.com/tktkaws/radio-sort/files/4328194/-.2.pdf)
+[カタログ設計](https://drive.google.com/file/d/18su-bFDk2lm78DGGrAocKHfuGbI8KyJw/view)
 
 ## テーブル定義
-[テーブル定義.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050138/-.pdf)
-
+[テーブル定義](https://drive.google.com/open?id=14TFr-lGAmlESY14Kn3y8R-7Zqiitp3eo)
 
 ## ER図
 ![スクリーンショット 2020-01-12 10 57 22](https://user-images.githubusercontent.com/53632056/72213365-42496f80-3531-11ea-8d37-742a78e9961d.png)
@@ -37,9 +36,9 @@
 ![画面遷移図2 0](https://user-images.githubusercontent.com/53632056/76596050-91674d00-6540-11ea-9e0c-0d6e77469a85.png)
 
 ## ワイヤーフレーム
-[ワイヤーフレーム.pdf](https://github.com/takayuki-takahashi-dic/radio-sort/files/4050139/default.pdf)
+[ワイヤーフレーム.pdf](https://drive.google.com/open?id=1g-u-8UI5Wyv6E817qPA5uoZZWSi0TY0j)
 
-[ワイヤーフレーム(番組表).pdf](https://github.com/tktkaws/radio-sort/files/4328193/default.pdf)
+[ワイヤーフレーム(番組表).pdf](https://drive.google.com/open?id=1-hGSiB2rMStYfM-yRlsYyF0NaUCJlufi)
 
 ## 使用予定Gem
 | gem | usage |

@@ -33,7 +33,7 @@ class TwitterController < ApplicationController
     @likes.first(5).each_with_index do |like, i|
       tweet_content += "#{i + 1}位: #{like.radio.title}\n"
     end
-    tweet_content += "\nhttp://radio-sort.xyz/\n"
+    tweet_content += "\nhttps://radio-sort.xyz/\n"
     tweet_content
   end
 end
