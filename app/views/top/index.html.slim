@@ -1,27 +1,48 @@
 = render partial: 'radios/radio_search', locals: { radio: @radios, q: @q}
-.container
-  h4
-    |Radio Sort
-  .divider
-  p
-    |好きなラジオに順位をつけて、共有しましょう
-    br
-    |人気ランキングを閲覧しましょう
-    br
-    |ユーザーをフォローしましょう
-    br
-    |ラジオにコメントしましょう
-  .slider
-    ul.slides
-      li
-        = image_tag 'number/sortdemo2.jpg'
-      li
-        = image_tag 'number/rankingdemo.jpg'
-      li
-        = image_tag 'number/user_search_demo.jpg'
-      li
-        = image_tag 'number/comment_demo.jpg'
-  p.center
-    = link_to users_guest_sign_in_path, method: :post, class: 'btn waves-effect waves-light' do
-      i.material-icons.right input
-      |ゲスト ログイン
+p.toptitle.center
+  i.material-icons.icon-menu style="font-size: 50px; vertical-align:middle;" radio
+  '
+  |ラジオソート
+p.center style="font-family: 'Noto Sans JP', sans-serif; font-size: 20px;"
+  |お気に入りのラジオに順位をつけて共有するアプリです。
+  br
+  |TBSラジオ/ニッポン放送/J-Wave/TOKYO FMの4局に対応しています。
+
+.row
+  .col.s12.m4.l4
+    = link_to "#modal1", class: "modal-trigger"
+      = image_tag 'number/sortdemo01.jpg', class: "toppage"
+    p.center style="font-family: 'Noto Sans JP', sans-serif;"
+      |ドラッグ&ドロップで順位を入れ替えましょう
+  .col.s12.m4.l4
+    = link_to "#modal2", class: "modal-trigger"
+      = image_tag 'number/rankdemo02.jpg', class: "toppage"
+    p.center style="font-family: 'Noto Sans JP', sans-serif; "
+      |人気ランキングを閲覧しましょう
+  .col.s12.m4.l4
+    = link_to "#modal3", class: "modal-trigger"
+      = image_tag 'number/userdemo01.jpg', class: "toppage"
+    p.center style="font-family: 'Noto Sans JP', sans-serif; "
+      |好みが似ているユーザーをフォローしましょう
+p.center
+  = link_to users_guest_sign_in_path, method: :post, class: 'btn waves-effect waves-light' do
+    i.material-icons.right input
+    |ゲスト ログイン
+
+div id="modal1" class="modal"
+  .modal-content.toppage
+    = image_tag 'number/sortdemo01.jpg', width: "100%"
+    p.center style="font-family: 'Noto Sans JP', sans-serif; "
+      |ドラッグ&ドロップで順位を入れ替えましょう
+
+div id="modal2" class="modal"
+  .modal-content.toppage
+    = image_tag 'number/rankdemo02.jpg', width: "100%"
+    p.center style="font-family: 'Noto Sans JP', sans-serif; "
+      |人気ランキングを閲覧しましょう
+
+div id="modal3" class="modal"
+  .modal-content.toppage
+    = image_tag 'number/userdemo01.jpg', width: "100%"
+    p.center style="font-family: 'Noto Sans JP', sans-serif; "
+      |好みが似ているユーザーをフォローしましょう
