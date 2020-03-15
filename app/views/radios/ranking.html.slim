@@ -23,12 +23,9 @@ table.highlight
           = radio.personality
         td style="width:10%"
           = radio.station
-        td style="width:10%"
+        td style="width:15%"
           - if radio.start_time.present?
             = radio.start_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.start_time.wday]}) %H時%M分")
-        td style="width:5%"
-          - if radio.end_time.present?
-            = radio.end_time.strftime("(#{%w(日 月 火 水 木 金 土)[radio.end_time.wday]}) %H時%M分")
         td style="width:5%"
           = radio.length / 60
           | 分
