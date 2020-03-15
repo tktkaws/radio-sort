@@ -17,7 +17,7 @@
       |  <tbody id="likes_list", class="ui-sortable">
       - @likes.each_with_index do |like,i|
         = content_tag "tr", id: "like-#{like.id}", class: "item ui-sortable-handle", data: {model_name: like.class.name.underscore, update_url: like_sort_path(like.id)} do
-          th
+          th.center
             = "#{i+1}位"
           td
             = link_to like.radio
@@ -38,8 +38,9 @@
           |ラジオにコメントをしてみましょう
 
     - @user.comments.each do |c|
-      .collection
-        = link_to c.radio, class: 'a collection-item collection-header blue-grey lighten-5' do
+      .collection.user
+        = link_to c.radio, class: 'a collection-item collection-header blue-grey lighten-5 center' do
           = c.radio.title
-        = link_to c.radio, class: 'a collection-item' do
-          = c.content
+        = link_to c.radio, class: 'a collection-item center' do
+          span.truncate
+            = c.content

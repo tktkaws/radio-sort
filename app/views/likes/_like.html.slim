@@ -2,9 +2,9 @@
   p
     = link_to like_path(radio.id), method: :delete, remote: true
       i.material-icons.likes star
-      |#{radio.likes.count} Liked
+      |解除
 - else
   p
     = link_to likes_path(radio_id: radio.id), id: radio.id, method: :post, remote: true
       i.material-icons.likes star_border
-      |#{radio.likes.count} Liked
+      |お気に入り
