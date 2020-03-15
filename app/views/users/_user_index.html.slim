@@ -1,11 +1,11 @@
 .col.s12.m6.l6
-  ul.collection
+  ul.collection.user
     li.collection-item.blue-grey.lighten-5
       .row.collection-title
         .col.s2.m2.l2
           = link_to user_path(user.id)
             = image_tag "#{user.image}", size: "45x45", class: "circle"
-        .col.s5.m5.l5
+        .col.s4.m4.l4
           p.truncate
             = link_to user_path(user.id)
               = user.name
@@ -14,7 +14,7 @@
             = user.gender_i18n
             br/
             = user.age_i18n
-        .col.s2.m2.l2
+        .col.s3.m3.l3.user
           - if user_signed_in?
             = render 'follow_form', user: user
     - (0..4).each do |i|

@@ -101,3 +101,13 @@ end
                      followed_id: followed_id)
   end
 end
+
+# Comment
+radio_ids = (1..700).to_a.sample(50)
+user_ids = (1..100).to_a.sample(50)
+sample_comments = %w[生涯ベスト 最近のお気に入り 通勤中に聴いてます 選曲がイイ]
+50.times do |n|
+  Comment.create!(user_id: user_ids[n],
+                  radio_id: radio_ids[n],
+                  content: sample_comments[rand(0..3)])
+end
