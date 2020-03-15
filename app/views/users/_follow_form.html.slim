@@ -2,9 +2,9 @@ div id="follow_form_#{user.id}"
   - unless current_user.following?(user)
     = form_with(model: current_user.active_relations.build(followed_id: user.id)) do |f|
       = f.hidden_field :followed_id
-      = button_tag type: 'submit', class: 'btn-floating waves-effect waves-light' do
-        i.material-icons add
+      = button_tag type: 'submit', class: 'waves-effect waves-light btn-small follow' do
+        |フォロー
   - else
     = form_with(model: current_user.active_relations.find_by(followed_id: user.id), method: :delete) do |f|
-      = button_tag type: 'submit', class: 'btn-floating waves-effect waves-light' do
-        i.material-icons done
+      = button_tag type: 'submit', class: 'waves-effect waves-light btn-small follow' do
+        |解除

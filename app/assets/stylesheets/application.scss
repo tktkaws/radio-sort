@@ -36,6 +36,10 @@ header, main, footer {
   width: 95%;
 }
 
+.btn.follow{
+  width: 95%;
+}
+
 .row.collection-title {
   margin-bottom:0px;
 }
@@ -146,4 +150,8 @@ i.icon-menu {
 
 .sidenav li > a {
   font-weight: bold;
+}
+
+.col.s3.m3.l3.user {
+  margin-top: 7px;
 }

@@ -32,11 +32,9 @@
           = like.user.gender_i18n
         td style="width:20%"
           = like.user.age_i18n
-        td style="width:10%"
-          |#{like.row_order}位
         td style="width:20%"
           |#{like.point}pt
         - if user_signed_in?
-          td style="width:10%"
+          td style="width:20%"
             = render 'users/follow_form', user: like.user
 
