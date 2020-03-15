@@ -15,7 +15,7 @@ li
     = link_to "ログアウト", destroy_user_session_path, class: 'nav-link', method: :delete
   - unless current_user.email == "guest@example.com"
     li
-      = link_to "編集", edit_user_registration_path, class: 'nav-link'
+      = link_to "プロフィール編集", edit_user_registration_path, class: 'nav-link'
 - else
   li
     = link_to "登録", new_user_registration_path, class: 'nav-link'

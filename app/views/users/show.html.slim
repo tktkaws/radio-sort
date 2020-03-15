@@ -10,8 +10,8 @@
         |Twitterで共有する
       br
     - if @user.likes.blank?
-      .collection
-        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do
+      .collection.user
+        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5 center' do
           |ラジオをお気に入りに登録してみましょう
     table.highlight
       |  <tbody id="likes_list", class="ui-sortable">
@@ -33,8 +33,8 @@
 
   .col.s12.m3.l3
     - if @user.comments.blank?
-      .collection
-        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5' do
+      .collection.user
+        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5 center' do
           |ラジオにコメントをしてみましょう
 
     - @user.comments.each do |c|

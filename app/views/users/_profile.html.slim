@@ -23,7 +23,7 @@ ul#sidenav-1.sidenav.sidenav-fixed
     - if current_user.email != "guest@example.com" && user == current_user
       li.center-align
         = link_to edit_user_registration_path
-         |編集
+         |プロフィール編集
     - if user != current_user
       li.collection-item.center-align
         = render 'users/follow_form', user: user
