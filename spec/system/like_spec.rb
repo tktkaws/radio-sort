@@ -11,27 +11,29 @@ RSpec.describe Like, type: :system do
     FactoryBot.reload
   end
 
-  describe 'like(お気に入り)機能' do
+  describe 'お気に入り機能' do
     before do
       visit new_user_session_path
       fill_in 'user[email]', with: '1@test.com'
       fill_in 'user[password]', with: '111111'
       click_on 'login'
     end
-    it 'likeされること' do
+    it 'お気に入りに入ること' do
       visit radios_path
       find('#likes_buttons_2 a').click
       sleep 1
-      expect(page).to have_selector '#likes_buttons_2', text: '2 Liked'
-      expect(page).to_not have_selector '#likes_buttons_2', text: '1 Liked'
+      tr = page.all('td', text: 'title2').first.find(:xpath, '..')
+      expect(tr).to have_content '解除'
+      expect(tr).to_not have_content 'お気に入り'
     end
 
-    it 'likeが削除されること' do
+    it 'お気に入りが解除されること' do
       visit radios_path
       find('#likes_buttons_1 a').click
       sleep 1
-      expect(page).to have_selector '#likes_buttons_1', text: '0 Liked'
-      expect(page).to_not have_selector '#likes_buttons_1', text: '1 Liked'
+      tr = page.all('td', text: 'title1').first.find(:xpath, '..')
+      expect(tr).to have_content 'お気に入り'
+      expect(tr).to_not have_content '解除'
     end
   end
 end
