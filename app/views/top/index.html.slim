@@ -4,45 +4,138 @@ p.toptitle.center
   '
   |ラジオソート
 p.center style="font-family: 'Noto Sans JP', sans-serif; font-size: 20px;"
-  |お気に入りのラジオに順位をつけて共有するアプリです。
+  |お気に入りのラジオに順位をつけて共有するアプリです
   br
-  |TBSラジオ/ニッポン放送/J-Wave/TOKYO FMの4局に対応しています。
-
-.row
-  .col.s12.m4.l4
-    = link_to "#modal1", class: "modal-trigger"
-      = image_tag 'number/sortdemo01.jpg', class: "toppage"
-    p.center style="font-family: 'Noto Sans JP', sans-serif;"
-      |ドラッグ&ドロップで順位を入れ替えましょう
-  .col.s12.m4.l4
-    = link_to "#modal2", class: "modal-trigger"
-      = image_tag 'number/rankdemo02.jpg', class: "toppage"
-    p.center style="font-family: 'Noto Sans JP', sans-serif; "
-      |人気ランキングを閲覧しましょう
-  .col.s12.m4.l4
-    = link_to "#modal3", class: "modal-trigger"
-      = image_tag 'number/userdemo01.jpg', class: "toppage"
-    p.center style="font-family: 'Noto Sans JP', sans-serif; "
-      |好みが似ているユーザーをフォローしましょう
-p.center
-  = link_to users_guest_sign_in_path, method: :post, class: 'btn waves-effect waves-light' do
+  |TBSラジオ/ニッポン放送/J-Wave/TOKYO FMの4局に対応しています
+.row.center
+  br
+  = link_to users_guest_sign_in_path, method: :post, class: 'btn waves-effect waves-light login' do
     i.material-icons.right input
     |ゲスト ログイン
-
-div id="modal1" class="modal"
-  .modal-content.toppage
-    = image_tag 'number/sortdemo01.jpg', width: "100%"
-    p.center style="font-family: 'Noto Sans JP', sans-serif; "
-      |ドラッグ&ドロップで順位を入れ替えましょう
-
-div id="modal2" class="modal"
-  .modal-content.toppage
-    = image_tag 'number/rankdemo02.jpg', width: "100%"
-    p.center style="font-family: 'Noto Sans JP', sans-serif; "
-      |人気ランキングを閲覧しましょう
-
-div id="modal3" class="modal"
-  .modal-content.toppage
-    = image_tag 'number/userdemo01.jpg', width: "100%"
-    p.center style="font-family: 'Noto Sans JP', sans-serif; "
-      |好みが似ているユーザーをフォローしましょう
+  = link_to new_user_session_path, class: 'btn waves-effect waves-light login' do
+    i.material-icons.right input
+    |ログイン
+.row
+  br
+  p.center style="font-family: 'Noto Sans JP', sans-serif; font-size: 30px;"
+    |ログイン無しでもできる事
+  .col.s12.m4.l4
+    = link_to "#modal1", class: "modal-trigger"
+      = image_tag 'number/programdemo.jpg', class: "toppage"
+    p.center style="margin: 0px 25px;"
+      span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+        |番組表
+      br
+      span style="font-family: 'Noto Sans JP', sans-serif;"
+        |放送局別の週間番組表が閲覧できます。
+    div id="modal1" class="modal"
+      .modal-content.toppage
+        = image_tag 'number/programdemo.jpg', width: "100%"
+        p.center style="margin: 0px 25px;"
+          span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+            |番組表
+          br
+          span style="font-family: 'Noto Sans JP', sans-serif;"
+            |放送局別の週間番組表が閲覧できます。
+  .col.s12.m4.l4
+    = link_to "#modal2", class: "modal-trigger"
+      = image_tag 'number/searchdemo2.jpg', class: "toppage"
+    p.center style="margin: 0px 25px;"
+      span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+        |検索
+      br
+      span style="font-family: 'Noto Sans JP', sans-serif;"
+        |ラジオ検索・ユーザー検索ができます。左のタブでキーワードの入力・属性の選択をしましょう。
+  div id="modal2" class="modal"
+    .modal-content.toppage
+      = image_tag 'number/searchdemo2.jpg', width: "100%"
+      p.center style="margin: 0px 25px;"
+        span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+          |検索
+        br
+        span style="font-family: 'Noto Sans JP', sans-serif;"
+          |ラジオ検索・ユーザー検索ができます。左のタブでキーワードの入力・属性の選択をしましょう。
+  .col.s12.m4.l4
+    = link_to "#modal3", class: "modal-trigger"
+      = image_tag 'number/rankingdemo2.jpg', class: "toppage"
+    p.center style="margin: 0px 25px;"
+      span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+        |ランキング
+      br
+      span style="font-family: 'Noto Sans JP', sans-serif;"
+        |ラジオの人気ランキングが閲覧できます。ユーザーがつけた順位に付与されたポイントを集計しています。
+    div id="modal3" class="modal"
+      .modal-content.toppage
+        = image_tag 'number/rankingdemo2.jpg', width: "100%"
+        p.center style="margin: 0px 25px;"
+          span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+            |ランキング
+          br
+          span style="font-family: 'Noto Sans JP', sans-serif;"
+            |ラジオの人気ランキングが閲覧できます。ユーザーがつけた順位に付与されたポイントを集計しています。
+.row
+  br
+  p.center style="font-family: 'Noto Sans JP', sans-serif; font-size: 30px;"
+    |ログイン後にできる事
+  .col.s12.m4.l4
+    = link_to "#modal4", class: "modal-trigger"
+      = image_tag 'number/likedemo.jpg', class: "toppage"
+    p.center style="margin: 0px 25px;"
+      span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+        |お気に入り
+      br
+      span style="font-family: 'Noto Sans JP', sans-serif;"
+        |番組表やラジオ検索でお気に入りのラジオを見つけましょう。お気に入り一覧は"ソート"ページで確認できます。
+    div id="modal4" class="modal"
+      .modal-content.toppage
+        = image_tag 'number/likedemo.jpg', width: "100%"
+      p.center style="margin: 0px 25px;"
+        span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+          |お気に入り
+        br
+        span style="font-family: 'Noto Sans JP', sans-serif;"
+          |番組表やラジオ検索でお気に入りのラジオを見つけましょう。お気に入り一覧は"ソート"ページで確認できます。
+  .col.s12.m4.l4
+    = link_to "#modal5", class: "modal-trigger"
+      = image_tag 'number/sortdemo01.jpg', class: "toppage"
+    p.center style="margin: 0px 25px;"
+      span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+        |ソート
+      br
+      span style="font-family: 'Noto Sans JP', sans-serif;"
+        |お気に入りのラジオに順位をつけましょう。"ソート"ページで、ドラッグ&ドロップをすると順位が入れ替わります。
+    div id="modal5" class="modal"
+      .modal-content.toppage
+        = image_tag 'number/sortdemo01.jpg', width: "100%"
+        p.center style="margin: 0px 25px;"
+          span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+            |ソート
+          br
+          span style="font-family: 'Noto Sans JP', sans-serif;"
+            |お気に入りのラジオに順位をつけましょう。"ソート"ページで、ドラッグ&ドロップをすると順位が入れ替わります。
+  .col.s12.m4.l4
+    = link_to "#modal6", class: "modal-trigger"
+      = image_tag 'number/commentdemo.jpg', class: "toppage"
+    p.center style="margin: 0px 25px;"
+      span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+        |コメント
+      br
+      span style="font-family: 'Noto Sans JP', sans-serif;"
+        |ラジオの詳細ページから、お気に入りのラジオにコメントをしましょう。
+    div id="modal6" class="modal"
+      .modal-content.toppage
+        = image_tag 'number/commentdemo.jpg', width: "100%"
+        p.center style="margin: 0px 25px;"
+          span style="font-family: 'Noto Sans JP', sans-serif; font-weight: bold; font-size: 20px;"
+            |コメント
+          br
+          span style="font-family: 'Noto Sans JP', sans-serif;"
+            |ラジオの詳細ページから、お気に入りのラジオにコメントをしましょう。
+.row.center
+  br
+  = link_to users_guest_sign_in_path, method: :post, class: 'btn waves-effect waves-light login' do
+    i.material-icons.right input
+    |ゲスト ログイン
+  = link_to new_user_session_path, class: 'btn waves-effect waves-light login' do
+    i.material-icons.right input
+    |ログイン
