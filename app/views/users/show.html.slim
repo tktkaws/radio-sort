@@ -3,12 +3,19 @@
 .row
   .col.s12.m9.l9
     - if @user == current_user && @user.likes.present?
-      br
-      = link_to confirm_path, method: :post do
-        = image_tag 'number/Twitter3.png', width: "4%", style: "vertical-align:middle; margin-left:10px"
-        '
-        |Twitterで共有する
-      br
+      - if current_user.uid.present?
+        br
+        = link_to confirm_path, method: :post do
+          = image_tag 'number/Twitter3.png', width: "4%", style: "vertical-align:middle; margin-left:10px"
+          '
+          |Twitterで共有する
+        br
+      - else
+        br
+        = link_to user_rank_share_path(@user), :onclick => "window.open(this.href,'hoge', 'height=400, width=600');return false;" do
+          = image_tag 'number/Twitter3.png', width: "4%", style: "vertical-align:middle; margin-left:10px"
+          '
+          |Twitterで共有する
     - if @user.likes.blank?
       .collection.usercomment
         = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5 center' do
