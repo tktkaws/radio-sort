@@ -17,7 +17,7 @@
       br
       = f.password_field :password_confirmation, autocomplete: "new-password"
     .actions
-      = button_tag type: 'submit', class: 'btn waves-effect waves-light', value: "save" do
+      = button_tag type: 'submit', class: 'btn waves-effect waves-light login', value: "save" do
         i.material-icons.right input
         |登録
   = render "devise/shared/links"
