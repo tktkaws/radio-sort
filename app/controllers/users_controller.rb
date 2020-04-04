@@ -6,6 +6,11 @@ class UsersController < ApplicationController
   skip_before_action :verify_authenticity_token
   def index; end
 
+  def rank_share
+    url = 'https://twitter.com/share?url=https://radio-sort.xyz&amp;text=' + share_contnets
+    redirect_to url
+  end
+
   def show
     @likes = @user.likes.rank(:row_order)
   end
@@ -30,5 +35,15 @@ class UsersController < ApplicationController
     @q = User.ransack(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
     @users = @q.result(distinct: true).page(params[:page])
+  end
+
+  def share_contnets
+    @likes = current_user.likes.rank(:row_order)
+    tweet_content = '%23ラジオソート%0a%0a'
+
+    @likes.first(5).each_with_index do |like, i|
+      tweet_content += "#{i + 1}位: #{like.radio.title}%0a"
+    end
+    tweet_content += '%0a'
   end
 end
