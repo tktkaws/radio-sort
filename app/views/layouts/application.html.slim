@@ -13,9 +13,14 @@ html
         .nav-wrapper
           a.left.sidenav-trigger data-target="sidenav-1" href="#"
             i.material-icons.icon-menu menu
-          = link_to root_path, class: 'brand-logo' do
-            i.material-icons.icon-menu radio
-            |ラジオソート
+          - if user_signed_in?
+            = link_to user_path(current_user.id), class: 'brand-logo' do
+              i.material-icons.icon-menu radio
+              |ラジオソート
+          - else
+            = link_to root_path, class: 'brand-logo' do
+              i.material-icons.icon-menu radio
+              |ラジオソート
           a.right.sidenav-trigger data-target="sidenav-2" href="#"
             i.material-icons.icon-menu menu
           ul.right.hide-on-med-and-down
