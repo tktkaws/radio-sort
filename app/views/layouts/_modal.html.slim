@@ -1,0 +1,25 @@
+div id="modal#{radio.id}" class="modal"
+  .modal-content
+    = link_to radio
+      = image_tag "#{radio.image}", width: "100%", height: "300"
+    .row.show
+      p.rank-font
+        i.material-icons.tiny radio
+        '
+        |#{radio.title}
+      p.rank-font
+        i.material-icons.tiny face
+        '
+        |#{radio.personality}
+      - if radio.start_time.present?
+        p.rank-font
+          i.material-icons.tiny access_time
+          '
+          |#{l radio.start_time} ~ #{l radio.start_time + radio.length}
+        p.rank-font
+          i.material-icons.tiny settings_input_antenna
+          '
+          |#{radio.station}
+          span.right
+            a.modal-close href="#!"
+              i.material-icons close

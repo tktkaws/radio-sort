@@ -1,0 +1,14 @@
+- if radio.length / 60 >= 30
+  = link_to "#modal#{radio.id}", class: "collection-item modal-trigger tooltipped", data: {position: "top", tooltip: "#{radio.title}"}, style: "height:#{radio.length / 60}px;"  do
+    - if radio.length / 60 >= 90
+      = image_tag "#{radio.image}", width: "100%", height: "50px;"
+    - if radio.length / 60 >= 45 && radio.length / 60 < 90
+      = image_tag "#{radio.image}", width: "100%", height: "40px;"
+    - if radio.length / 60 < 45
+      span.truncate style="font-size:1.5px;"
+        = radio.title
+- else
+  div style="height:#{radio.length / 60}px;"
+    = link_to "#modal#{radio.id}", class: "collection-item modal-trigger tooltipped", data: {position: "top", tooltip: "#{radio.title}"}, style: "height:#{radio.length / 60}px;" do
+
+= render partial: 'layouts/modal', locals: {radio: radio}
