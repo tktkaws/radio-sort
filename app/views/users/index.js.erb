@@ -1,0 +1,9 @@
+$('#user-list').append("<%= escape_javascript(render 'users/user_index', object: @users) %>");
+
+$("#view_more").replaceWith("<%= escape_javascript(
+link_to_next_page(@users, '続きを見る', remote: true, id: 'view_more', class: 'btn waves-effect waves-light login')) %>");
+
+$('#counter').html('<%= escape_javascript(page_entries_info(@users).to_s) %>');
+
+
+$('.modal').modal();
