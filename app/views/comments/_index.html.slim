@@ -1,13 +1,13 @@
-  - comments.each do |comment|
-    table
+- comments.each do |comment|
+  table
+    tr style="border-bottom:0px;"
       - if comment.id.present?
-        td style="width:10%"
+        td style="width:10%;"
           = link_to user_path(comment.user.id)
             = image_tag "#{comment.user.image}", size: '30x30', class: "circle"
-        td style="width:25%"
-          = link_to user_path(comment.user.id)
-            = "#{comment.user.name}"
-        td style="width:60%"
+        td.rank-font style="width:35%; word-break: break-all;"
+          = "#{comment.user.name}"
+        td.rank-font style="width:50%; word-break: break-all;"
           = comment.content
       - if comment.user == current_user && user_signed_in?
         td style="width:5%"

@@ -13,8 +13,7 @@ $(function(){
             });
         },
         stop: function(e, ui){
-            ui.item.children('td').not('.item__status').effect('highlight', { color: "#0097a7" }, 500)
-            ui.item.children('th').not('.item__status').effect('highlight', { color: "#0097a7" }, 500)
+            $('#likes_list').find('[name="num_data"]').effect('highlight', { color: "#b2dfdb" }, 500)
             $('#likes_list').find('[name="num_data"]').each(function(idx){
                 $(this).html(`${idx+1}位`);
             });

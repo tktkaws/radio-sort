@@ -7,10 +7,14 @@
       ul
         - comment.errors.full_messages.each do |message|
           li= message
-  .input-field
-    = form.label :comment, for: "textarea1"
-    = form.text_area :content, class: "materialize-textarea", id: "textarea1"
-  .actions
-    = button_tag type: 'submit', class: 'waves-effect waves-light btn' do
-      i.material-icons.right send
-      |投稿
+  .row
+    .col.s9.m9.l9
+      .input-field
+        = form.label :コメントを入力, for: "textarea1"
+        = form.text_area :content, class: "materialize-textarea", id: "textarea1"
+    .col.s3.m3.l3
+      br
+      .actions.center
+        = button_tag type: 'submit', class: 'waves-effect waves-light btn' do
+          i.material-icons.right send
+          |投稿
