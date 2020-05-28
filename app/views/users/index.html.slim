@@ -1,5 +1,20 @@
 = render partial: 'user_search', locals: {user: @user, q: @q}
-.row
-  - @users.each do |user|
-    = render partial: 'user_index', locals: {user: user}
-= paginate @users
+
+.row.show
+  br
+  .title-text
+    - if params[:q].present?
+      |検索結果
+    - else
+      |全てのユーザー
+      i.material-icons.tooltipped data-position="bottom" data-tooltip=("左のタブで属性からユーザーを検索できます") style="margin-left: 10px;"
+        |info
+br
+.row.show
+  #user-list
+    = render partial: 'user_index', locals: {user: @user}
+.row.show
+  #counter.center.next-page-info
+    = page_entries_info @users
+  .more.center
+    = link_to_next_page @users, '続きを見る', remote: true, id: 'view_more', class: 'btn waves-effect waves-light login'

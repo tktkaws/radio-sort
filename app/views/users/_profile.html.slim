@@ -42,14 +42,13 @@ ul#sidenav-1.sidenav.sidenav-fixed
     li.center-align
       .profile
         = user.age_i18n
-
-  li.center-align.follow
-    = link_to user_relations_index_path(user.id)
-      |フォロイー：#{user.following.count}人
-  li.center-align.follow
-    = link_to user_relations_index_path(user.id)
-      |フォロワー：#{user.followers.count}人
-
+  p.center
+    li.center-align
+      .profile style="font-size: 1.3rem;"
+        |フォロー中：#{user.following.count}
+    li.center-align
+      .profile style="font-size: 1.3rem;"
+        |フォロワー：#{user.followers.count}
   - if user_signed_in?
     - if user != current_user
       li.collection-item.center-align

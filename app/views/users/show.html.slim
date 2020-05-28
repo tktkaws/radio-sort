@@ -8,7 +8,7 @@
         i.material-icons.tooltipped data-position="bottom" data-tooltip=("ラジオをお気に入りに入れましょう") style="margin-left: 10px;"
           |info
       - else
-        i.material-icons.tooltipped data-position="bottom" data-tooltip=("ドラッグ&ドロップで順番を入れ替えましょう") style="margin-left: 10px;"
+        i.material-icons.tooltipped data-position="bottom" data-tooltip=("ドラッグ&ドロップでランキングを入れ替えましょう") style="margin-left: 10px;"
           |info
   .col.s12.m3.l3
     .right
@@ -56,12 +56,18 @@ br
 .row.show
   .col.s12
     ul.tabs
-      li.tab.col.s12.m6
+      li.tab.col.s12.m3
         a.active href="#my-comment"
-          |#{@user.name}のコメント
-      li.tab.col.s12.m6
+          |コメント : #{@user.name}
+      li.tab.col.s12.m3
         a href="#others-comment"
-          |フォロイーのコメント
+          |コメント : フォロー中
+      li.tab.col.s12.m3
+        a href="#following"
+          |フォロー中
+      li.tab.col.s12.m3
+        a href="#follower"
+          |フォロワー
 
     #my-comment.col.s12
       ul
@@ -97,15 +103,22 @@ br
                         = image_tag "#{c.radio.image}"
                 .col.s7.m7.l7
                   p
-                    .row.user-index
-                      .col.s3.m3.l3
-                        = link_to u
-                          = image_tag "#{c.user.image}", class: "circle", width: "35%"
-                      .col.s9.m9.l9
-                        = link_to u
-                          = c.user.name
+                    = link_to u, class: "left"
+                      = image_tag "#{c.user.image}", class: "circle left", style: "vertical-align:middle;margin-right: 5px; width: 30px"
+                    '
+                    span
+                      = link_to u
+                        = c.user.name
                   .container.multi-truncate
                     p.multi-truncate
                       = c.content
               br
             = render partial: 'layouts/modal', locals: {radio: c.radio}
+
+    #following.col.s12
+      - @user.following.each do |user|
+        = render partial: "user_list", locals: {user: user}
+
+    #follower.col.s12
+      - @user.followers.each do |user|
+        = render partial: "user_list", locals: {user: user}
