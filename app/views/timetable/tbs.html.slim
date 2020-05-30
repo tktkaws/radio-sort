@@ -1,63 +1,54 @@
 = render partial: 'radios/radio_search', locals: {radio: @radios, q: @q}
 .container.timetable
-  .row
-    .col style="width: 230px"
+  .row.margin-btm-0
+    .col style="width: 222px"
       p.center
-        = link_to timetable_tbs_path, class: 'waves-effect waves-light btn search blue-grey darken-1' do
+        = link_to timetable_tbs_path, class: 'button-6', style:"width: 200px" do
           |TBSラジオ
-    .col style="width: 230px"
+    .col style="width: 222px"
       p.center
-        = link_to timetable_lfr_path, class: 'waves-effect waves-light btn search blue-grey darken-4' do
+        = link_to timetable_lfr_path, class: 'button-1', style:"width: 200px" do
           |ニッポン放送
-    .col style="width: 230px"
+    .col style="width: 222px"
       p.center
-        = link_to timetable_fmj_path, class: 'waves-effect waves-light btn search blue-grey darken-4' do
+        = link_to timetable_fmj_path, class: 'button-1', style:"width: 200px" do
           |J-Wave
-    .col style="width: 230px"
+    .col style="width: 222px"
       p.center
-        = link_to timetable_tfm_path, class: 'waves-effect waves-light btn search blue-grey darken-4' do
+        = link_to timetable_tfm_path, class: 'button-1', style:"width: 200px" do
           |TOKYO FM
-  .row style="margin-bottom:0px"
-    .col style="height:60px; width: 90px"
-      .hour-name.title style="height:60px;"  時刻
-    .col style="height:60px; width: 120px"
-      .hour-name.title style="height:60px;"  月曜日
-    .col style="height:60px; width: 120px"
-      .hour-name.title style="height:60px;"  火曜日
-    .col style="height:60px; width: 120px"
-      .hour-name.title style="height:60px;"  水曜日
-    .col style="height:60px; width: 120px"
-      .hour-name.title style="height:60px;"  木曜日
-    .col style="height:60px; width: 120px"
-      .hour-name.title style="height:60px;"  金曜日
-    .col style="height:60px; width: 120px"
-      .hour-name.title style="height:60px;"  土曜日
-    .col style="height:60px; width: 120px"
-      .hour-name.title style="height:60px;"  日曜日
+  .row.margin-btm-0
+    .col.week style="width: 45px"
+      p 時刻
+    - array = ["月曜","火曜","水曜","木曜","金曜","土曜","日曜"]
+    - array.each do |a|
+      .col.week
+        p #{a}
   .row
     /! 左側の時間帯
-    .col style="height:1440px; width: 90px"
+    .col style="height:1440px; width: 45px"
       - 5.upto(28) do |n|
-        .hour-name.title style="height:60px;"  #{n}時
-    /! 右側の1番目スケジュール
-    .col.collection style="height:1440px; width: 120px"
+        .hour-name
+          p #{n}
+    /! 日毎のタイムテーブル
+    .col.collection
       - @radios_day1.each do |radio|
         = render partial: 'timetable/timetable_content', locals: {radio: radio}
-    .col.collection style="height:1440px; width: 120px"
+    .col.collection
       - @radios_day2.each do |radio|
         = render partial: 'timetable/timetable_content', locals: {radio: radio}
-    .col.collection style="height:1440px; width: 120px"
+    .col.collection
       - @radios_day3.each do |radio|
         = render partial: 'timetable/timetable_content', locals: {radio: radio}
-    .col.collection style="height:1440px; width: 120px"
+    .col.collection
       - @radios_day4.each do |radio|
         = render partial: 'timetable/timetable_content', locals: {radio: radio}
-    .col.collection style="height:1440px; width: 120px"
+    .col.collection
       - @radios_day5.each do |radio|
         = render partial: 'timetable/timetable_content', locals: {radio: radio}
-    .col.collection style="height:1440px; width: 120px"
+    .col.collection
       - @radios_day6.each do |radio|
         = render partial: 'timetable/timetable_content', locals: {radio: radio}
-    .col.collection style="height:1440px; width: 120px"
+    .col.collection
       - @radios_day7.each do |radio|
         = render partial: 'timetable/timetable_content', locals: {radio: radio}
