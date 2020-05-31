@@ -1,2 +1,19 @@
-= render partial: 'radios/radio_search', locals: { radio: @radios, q: @q}
-= render partial: 'radios/radio_index', locals: { radio: @radios, q: @q}
+= render partial: 'radios/sidenav_radio_search', locals: { radio: @radios, q: @q}
+
+.row.show
+  br
+  .title-text
+    - if params[:q].present?
+      |検索結果
+    - else
+      |全てのラジオ
+      i.material-icons.tooltipped data-position="bottom" data-tooltip=("左のタブで属性からラジオを検索できます") style="margin-left: 10px;"
+        |info
+.row.show
+  #radio-list
+    = render partial: 'radios/radio_index', locals: {radio: @radios, q: @q}
+.row.show
+  #counter.center.next-page-info
+    = page_entries_info @radios
+  .more.center
+    = link_to_next_page @radios, '続きを見る', remote: true, id: 'view_more', class: 'btn waves-effect waves-light login'

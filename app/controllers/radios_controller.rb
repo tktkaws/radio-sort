@@ -55,6 +55,6 @@ class RadiosController < ApplicationController
   def set_search
     @q = Radio.ransack(params[:q])
     @q.sorts = 'start_time asc' if @q.sorts.empty?
-    @radios = @q.result(distinct: true).page(params[:page]).per(10)
+    @radios = @q.result(distinct: true).page(params[:page]).per(20)
   end
 end
