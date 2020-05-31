@@ -1,6 +1,7 @@
-= render partial: 'users/profile', locals: {user: @user, q: @q}
+= render partial: 'users/sidenav_profile', locals: {user: @user, q: @q}
 .container
-  h5 以下の内容で投稿する
+  .title-text 以下の内容で投稿する
+  br
   .divider
   = form_with url: tweet_path ,local: true do |form|
     .input-field

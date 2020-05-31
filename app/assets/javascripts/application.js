@@ -34,13 +34,20 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-    $('.slider').slider();
-});
-
-$(document).ready(function(){
     $('.modal').modal();
 });
 
 $(document).ready(function(){
-    $('.tooltipped').tooltip();
+    $('.tooltipped').tooltip({});
+});
+
+$(document).ready(function(){
+    $(".dropdown-trigger").dropdown({ hover: false, constrainWidth: false });
+});
+
+$(document).ready(function(){
+    $('.slider').slider({
+        indicators: false,
+        height: 300,
+    });
 });

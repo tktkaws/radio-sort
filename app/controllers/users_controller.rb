@@ -31,10 +31,9 @@ class UsersController < ApplicationController
   end
 
   def set_search
-    params[:q]['likes_radio_title_cont_all'] = params[:q]['likes_radio_title_cont_all'].split(/[\p{blank}\s]+/) unless params[:q].nil?
     @q = User.ransack(params[:q])
     @q.sorts = 'id asc' if @q.sorts.empty?
-    @users = @q.result(distinct: true).page(params[:page])
+    @users = @q.result(distinct: true).page(params[:page]).per(8)
   end
 
   def share_contnets

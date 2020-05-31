@@ -6,6 +6,10 @@ class RadiosController < ApplicationController
 
   def index
     @like = current_user.likes if user_signed_in?
+
+    return unless request.xhr?
+
+    render 'radios/index'
   end
 
   def show
@@ -16,8 +20,8 @@ class RadiosController < ApplicationController
   def ranking
     @q = Radio.ransack(params[:q])
     @result = @q.result
-    @points = @result.joins(:likes).limit(10).order('sum_point desc').group(:radio_id).sum(:point).values
-    @radios = Radio.find(@result.joins(:likes).limit(10).order('sum_point desc').group(:radio_id).sum(:point).keys)
+    @points = @result.joins(:likes).limit(20).order('sum_point desc').group(:radio_id).sum(:point).values
+    @radios = Radio.find(@result.joins(:likes).limit(20).order('sum_point desc').group(:radio_id).sum(:point).keys)
     @radios = Kaminari.paginate_array(@radios).page(params[:page])
 
     if params[:q].present?
@@ -52,6 +56,6 @@ class RadiosController < ApplicationController
   def set_search
     @q = Radio.ransack(params[:q])
     @q.sorts = 'start_time asc' if @q.sorts.empty?
-    @radios = @q.result(distinct: true).page(params[:page])
+    @radios = @q.result(distinct: true).page(params[:page]).per(20)
   end
 end

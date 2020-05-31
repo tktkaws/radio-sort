@@ -1,0 +1,15 @@
+= link_to "#modal#{radio.id}", class: "collection-item modal-trigger tooltipped", data: {position: "top", tooltip: "#{radio.title}"}, style: "height:#{radio.length / 60}px;"  do
+  - if radio.length / 30 >= 15
+    - if radio.length / 30 >= 100
+      .container.multi-truncate-timetable
+        p.multi-truncate-timetable
+          = radio.title
+    - else
+      - if radio.length / 30 >= 30
+        span.truncate style="font-size:1px;"
+          = radio.title
+      - else
+  - else
+    |
+
+= render partial: 'layouts/modal', locals: {radio: radio}

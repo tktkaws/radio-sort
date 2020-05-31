@@ -1,0 +1,25 @@
+ul#sidenav-1.sidenav.sidenav-fixed
+  = render("layouts/sidenav_header")
+  .container
+    = search_form_for q do |f|
+      p
+        = f.label :gender_eq, User.human_attribute_name(:gender)
+        = f.select :gender_eq, User.genders.map{|k, v| [User.genders_i18n[k], v]}, include_blank: true
+      p
+        = f.label :age_eq, User.human_attribute_name(:age)
+        = f.select :age_eq, User.ages.map { |k, v| [User.ages_i18n[k], v] }, include_blank: true
+      .input-field
+        = f.label :likes_radio_title_cont_all, "お気に入りの番組"
+        = f.search_field :likes_radio_title_cont_all
+      p
+          = button_tag type: 'submit', class: 'waves-effect waves-light btn search' do
+            i.material-icons.right search
+            |ユーザー検索
+
+      - if params[:q].present?
+        p
+          = link_to users_path, class: 'waves-effect waves-light btn search' do
+            i.material-icons.right clear
+            |クリア
+
+  = render("layouts/sidenav_footer")

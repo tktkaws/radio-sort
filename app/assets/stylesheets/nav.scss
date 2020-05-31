@@ -1,0 +1,95 @@
+//nav
+
+a.nav-link{
+  color: $base-font-color;
+  font-weight: bold;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+a.brand-logo{
+  //color: black;
+  color: $base-font-color;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'days';
+}
+
+i.material-icons.icon-menu {
+  color: $base-font-color;
+}
+
+.sidenav {
+  background-color: $sidenav-background-color;
+  //background-color: white;
+  box-shadow: 1px 1px #efefef;
+  //box-shadow: 0px 0px #efefef;
+}
+nav.side {
+  background-color: #F6F7F8;
+  //background-color: white;
+}
+
+nav {
+  //box-shadow: 1px 1px #efefef;
+  box-shadow: 0px 0px #efefef;
+  //border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 0px solid rgba(0, 0, 0, 0.12);
+  background-color: #F6F7F8;
+}
+
+input[type=search]:not(.browser-default) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.select-wrapper input.select-dropdown  {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.divider.nav {
+  height: 1px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.12);
+}
+
+h5 a {
+  color: black;
+}
+
+i.material-icons.left.navcontent {
+  margin-right: 2px;
+}
+
+.sidenav li > a {
+  font-weight: bold;
+  color: $base-font-color;
+  padding: 0px;
+}
+
+
+.profile {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 900;
+  color: $base-font-color;
+  font-size: 1.2rem;
+  line-height: 110%;
+  margin: 1.0933333333rem 0 0.656rem 0;
+  a {
+    color: $base-font-color;
+  }
+}
+
+li.center-align.follow a {
+  color: $base-font-color;
+}
+
+ul#dropdown1.dropdown-content   {
+  width: 160px;
+}
+
+.sidenav li a.dropdown {
+  line-height: 10px;
+}
+
+
+.input-field label {
+  color: $base-font-color;
+}

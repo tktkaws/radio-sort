@@ -1,51 +1,124 @@
-= render partial: 'profile', locals: {user: @user, q: @q}
-
-.row
+= render partial: 'sidenav_profile', locals: {user: @user, q: @q}
+.row.show
+  br
   .col.s12.m9.l9
+    .title-text
+      |#{@user.name}のランキング
+      - if @user.likes.blank?
+        i.material-icons.tooltipped data-position="bottom" data-tooltip=("ラジオをお気に入りに入れましょう") style="margin-left: 10px;"
+          |info
+      - else
+        i.material-icons.tooltipped data-position="bottom" data-tooltip=("ドラッグ&ドロップでランキングを入れ替えましょう") style="margin-left: 10px;"
+          |info
+  .col.s12.m3.l3
+    .right
     - if @user == current_user && @user.likes.present?
       - if current_user.uid.present?
         br
-        = link_to confirm_path, method: :post do
-          = image_tag 'number/Twitter3.png', width: "4%", style: "vertical-align:middle; margin-left:10px"
+        = link_to confirm_path, method: :post ,class:"right" do
+          = image_tag 'number/Twitter3.png', width: "20x20", style: "vertical-align:middle; margin-left:10px",class:"right"
           '
-          |Twitterで共有する
+          span.right
+            |Twitterで共有する
         br
       - else
         br
-        = link_to user_rank_share_path(@user), :onclick => "window.open(this.href,'hoge', 'height=400, width=600');return false;" do
-          = image_tag 'number/Twitter3.png', width: "4%", style: "vertical-align:middle; margin-left:10px"
+        = link_to user_rank_share_path(@user), :onclick => "window.open(this.href,'hoge', 'height=400, width=600');return false;",class:"right" do
+          = image_tag 'number/Twitter3.png', width: "20x20", style: "vertical-align:middle; margin-left:10px",class:"right"
           '
-          |Twitterで共有する
-    - if @user.likes.blank?
-      .collection.usercomment
-        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5 center' do
-          |ラジオをお気に入りに登録してみましょう
-    table.highlight style="margin:5px 5px;"
-      |  <tbody id="likes_list", class="ui-sortable">
-      - @likes.each_with_index do |like,i|
-        = content_tag "tr", id: "like-#{like.id}", class: "item ui-sortable-handle", data: {model_name: like.class.name.underscore, update_url: like_sort_path(like.id)} do
-          th.center name="num_data"
+          span.right
+            |Twitterで共有する
+.row.show
+  / .divider.nav
+
+.row.show
+  ul#likes_list class="ui-sortable"
+    - @likes.each_with_index do |like,i|
+      = content_tag "li", id: "like-#{like.id}", class: "item ui-sortable-handle col s6 m5ths", data: {model_name: like.class.name.underscore, update_url: like_sort_path(like.id)} do
+        p.sortable-item
+          .card style="width: 90%;"
+            figure
+              .card-image
+                = link_to "#modal#{like.radio.id}", class: "modal-trigger"
+                  = image_tag "#{like.radio.image}"
+              - if user_signed_in?
+                figcaption
+                  div id="likes_buttons_#{like.radio.id}"
+                    = render partial: 'likes/like', locals: {radio: like.radio}
+        p.sortable-item.center
+          span.rank-font name="num_data"
             = "#{i+1}位"
-          td
-            = link_to like.radio
-              = image_tag "#{like.radio.image}", size: '90x45'
-          td
-            = like.radio.title
-          - if user_signed_in?
-            td
-              div id="likes_buttons_#{like.radio.id}"
-                = render partial: 'likes/like', locals: {radio: like.radio}
 
-  .col.s12.m3.l3
-    - if @user.comments.blank?
-      .collection.usercomment
-        = link_to radios_path, class: 'a collection-item collection-header blue-grey lighten-5 center' do
-          |ラジオにコメントをしてみましょう
+        = render partial: 'layouts/modal', locals: {radio: like.radio}
+br
+br
+br
+.row.show
+  .col.s12
+    ul.tabs
+      li.tab.col.s12.m3
+        a.active href="#my-comment"
+          |コメント : #{@user.name}
+      li.tab.col.s12.m3
+        a href="#others-comment"
+          |コメント : フォロー中
+      li.tab.col.s12.m3
+        a href="#following"
+          |フォロー中
+      li.tab.col.s12.m3
+        a href="#follower"
+          |フォロワー
 
-    - @user.comments.each do |c|
-      .collection.usercomment
-        = link_to c.radio, class: 'a collection-item collection-header blue-grey lighten-5 center' do
-          = c.radio.title
-        = link_to c.radio, class: 'a collection-item center' do
-          span.truncate
-            = c.content
+    #my-comment.col.s12
+      ul
+        - @user.comments.each do |c|
+          .col.s12.m6.l6
+            br
+            .row.user-index
+              .col.s5.m5.l5
+                .card style="width: 90%;"
+                    .card-image
+                      = link_to "#modal#{c.radio.id}", class: "modal-trigger"
+                        = image_tag "#{c.radio.image}"
+              .col.s7.m7.l7
+                br
+                .container.multi-truncate
+                  p.multi-truncate
+                    = c.content
+            br
+          = render partial: 'layouts/modal', locals: {radio: c.radio}
+
+    #others-comment.col.s12
+      ul
+        - @following = @user.following
+        - @following.each do |u|
+          - u.comments.each do |c|
+            .col.s12.m6.l6
+              br
+              .row.user-index
+                .col.s5.m5.l5
+                  .card style="width: 90%;"
+                    .card-image
+                      = link_to "#modal#{c.radio.id}", class: "modal-trigger"
+                        = image_tag "#{c.radio.image}"
+                .col.s7.m7.l7
+                  p
+                    = link_to u, class: "left"
+                      = image_tag "#{c.user.image}", class: "circle left", style: "vertical-align:middle;margin-right: 5px; width: 30px"
+                    '
+                    span
+                      = link_to u
+                        = c.user.name
+                  .container.multi-truncate
+                    p.multi-truncate
+                      = c.content
+              br
+            = render partial: 'layouts/modal', locals: {radio: c.radio}
+
+    #following.col.s12
+      - @user.following.each do |user|
+        = render partial: "user_list", locals: {user: user}
+
+    #follower.col.s12
+      - @user.followers.each do |user|
+        = render partial: "user_list", locals: {user: user}

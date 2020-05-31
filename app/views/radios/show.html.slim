@@ -1,40 +1,57 @@
-= render partial: 'radios/radio_search', locals: { radio: @radios, q: @q}
+= render partial: 'radios/sidenav_radio_search', locals: { radio: @radios, q: @q}
 .container
-  ul.collection
-    = image_tag "#{@radio.image}", width: "100%", height: "300"
-    li.collection-item #{@radio.title}
-    li.collection-item #{@radio.personality}
-    - if @radio.start_time.present?
-      li.collection-item #{@radio.start_time.strftime("(#{%w(日 月 火 水 木 金 土)[@radio.start_time.wday]}) %H時%M分")}~
-    - if @radio.end_time.present?
-      li.collection-item #{@radio.end_time.strftime("(#{%w(日 月 火 水 木 金 土)[@radio.end_time.wday]}) %H時%M分")}
-    li.collection-item #{@radio.length / 60}分
-    li.collection-item #{@radio.station}
-
-  .divider
+  = image_tag "#{@radio.image}", class:"radio-show", width: "100%", height: "auto"
+  .row
+    .col.s12.m10.l10
+      p.rank-font
+        i.material-icons.tiny radio
+        '
+        |#{@radio.title}
+      p.rank-font
+        i.material-icons.tiny face
+        '
+        |#{@radio.personality}
+      - if @radio.start_time.present?
+        p.rank-font
+          i.material-icons.tiny access_time
+          '
+          |#{l @radio.start_time} ~ #{l @radio.start_time + @radio.length}
+        p.rank-font
+          i.material-icons.tiny settings_input_antenna
+          '
+          |#{@radio.station}
+    .col.s12.m2.l2
+      p
+        .right
+          - if user_signed_in?
+            div id="likes_buttons_#{@radio.id}"
+              = render partial: 'likes/like', locals: {radio: @radio}
+    br
+    br
+  .title-text コメント
+  br
   #comments_area
     = render partial: 'comments/index', locals: {comments: @comments, radio: @radio}
   - if user_signed_in?
     = render partial: 'comments/form', locals: {comment: @comment, radio: @radio}
-    div id="likes_buttons_#{@radio.id}"
-      = render partial: 'likes/like', locals: {radio: @radio}
-  .divider
-  table
-    - @radio.likes.each do |like|
-      tr
-        td style="width:10%"
-          = link_to like.user
-            = image_tag "#{like.user.image}", size: '30x30', class: "circle"
-        td style="width:20%"
-          = link_to like.user
-            = like.user.name
-        td style="width:10%"
-          = like.user.gender_i18n
-        td style="width:20%"
-          = like.user.age_i18n
-        td style="width:20%"
-          |#{like.point}点
-        - if user_signed_in?
-          td style="width:20%"
-            = render 'users/follow_form', user: like.user
-
+    br
+    br
+  .title-text ファン
+  br
+  .row
+    - if @radio.likes.present?
+      - @likes = @radio.likes.rank(:row_order)
+      - @likes.each do |like|
+        table
+          tr style="border-bottom:0px;"
+            td style="width:10%;"
+              = link_to user_path(like.user.id)
+                = image_tag "#{like.user.image}", size: '30x30', class: "circle"
+            td.rank-font style="width:30%; word-break: break-all;"
+              = link_to user_path(like.user.id)
+                = like.user.name
+            td.rank-font style="width:20%; word-break: break-all;"
+              = "#{like.row_order}位"
+            - if user_signed_in?
+              td style="width:40%"
+                = render partial: 'users/follow_form', locals: {user: like.user}

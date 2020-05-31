@@ -1,0 +1,63 @@
+ul#sidenav-1.sidenav.sidenav-fixed
+  = render("layouts/sidenav_header")
+  .divider.nav
+  .container
+    - if user_signed_in?
+      - if current_user.email != "guest@example.com" && user == current_user
+          p
+            = link_to edit_user_registration_path
+              = image_tag "#{user.image}", size: '150x150', class: "sidnav circle", style: "margin:-2px;"
+          li
+            .profile
+              = link_to edit_user_registration_path
+                = user.name
+          li
+            .profile
+              = link_to edit_user_registration_path
+                = user.gender_i18n
+          li
+            .profile
+              = link_to edit_user_registration_path
+                = user.age_i18n
+      - else
+          p
+            = image_tag "#{user.image}", size: '150x150', class: "sidnav circle", style: "margin:-2px;"
+          li
+            .profile
+              = user.name
+          li
+            .profile
+              = user.gender_i18n
+          li
+            .profile
+              = user.age_i18n
+          li
+            .profile style="font-size: 1rem;"
+              |フォロー中：#{user.following.count}
+          li
+            .profile style="font-size: 1rem;"
+              |フォロー中：#{user.following.count}
+    - else
+      p
+        = image_tag "#{user.image}", size: '150x150', class: "sidnav circle", style: "margin:-2px;"
+      li
+        .profile
+          = user.name
+      li
+        .profile
+          = user.gender_i18n
+      li
+        .profile
+          = user.age_i18n
+      li
+        .profile style="font-size: 1rem;"
+          |フォロー中：#{user.following.count}
+      li
+        .profile style="font-size: 1rem;"
+          |フォロー中：#{user.following.count}
+    - if user_signed_in?
+      - if user != current_user
+        li.collection-item
+          = render 'users/follow_form', user: user
+
+  = render("layouts/sidenav_footer")
