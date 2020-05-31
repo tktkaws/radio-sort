@@ -1,4 +1,4 @@
-= render partial: 'radios/radio_search', locals: { radio: @radios, q: @q}
+= render partial: 'radios/sidenav_radio_search', locals: { radio: @radios, q: @q}
 .container
   = image_tag "#{@radio.image}", class:"radio-show", width: "100%", height: "auto"
   .row
@@ -36,7 +36,7 @@
     = render partial: 'comments/form', locals: {comment: @comment, radio: @radio}
     br
     br
-  .title-text お気に入り
+  .title-text ファン
   br
   .row
     - if @radio.likes.present?
