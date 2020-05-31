@@ -16,11 +16,9 @@ html
             i.material-icons.icon-menu menu
           - if user_signed_in?
             = link_to user_path(current_user.id), class: 'brand-logo tooltipped', data: {position: "right", tooltip: "ソート(マイページ)"} do
-              i.material-icons.icon-menu radio
               |RADIO SORT
           - else
             = link_to root_path, class: 'brand-logo tooltipped', data: {position: "right", tooltip: "TOPページ"} do
-              i.material-icons.icon-menu radio
               |RADIO SORT
           a.right.sidenav-trigger data-target="sidenav-2" href="#"
             i.material-icons.icon-menu menu

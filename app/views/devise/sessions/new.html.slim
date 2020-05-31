@@ -3,11 +3,11 @@
   .title-text ログイン
   br
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .field
+    .input-field
       = f.label :email
       br
       = f.email_field :email, autofocus: true, autocomplete: "email"
-    .field
+    .input-field
       = f.label :"パスワード(6文字以上)"
       br
       = f.password_field :password, autocomplete: "current-password"
