@@ -1,7 +1,7 @@
-= render partial: 'radios/radio_search', locals: {radio: @radios, q: @q}
-.container
-  h5 ログイン
-  .divider
+= render partial: 'radios/sidenav_radio_search', locals: {radio: @radios, q: @q}
+.container style="max-width: 500px;"
+  .title-text ログイン
+  br
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
       = f.label :email
