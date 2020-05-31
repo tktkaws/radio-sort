@@ -1,0 +1,37 @@
+ul#sidenav-1.sidenav.sidenav-fixed
+  = render("layouts/sidenav_header")
+  .container
+    = search_form_for q do |f|
+      .input-field
+        = f.label :title_cont, Radio.human_attribute_name(:title), for: "textarea1"
+        = f.search_field :title_cont, class: "materialize-textarea", id: "textarea1"
+      .input-field
+        = f.label :personality_cont, Radio.human_attribute_name(:personality), for: "textarea2"
+        = f.search_field :personality_cont, class: "materialize-textarea", id: "textarea2"
+      p
+        = f.label :station_eq, Radio.human_attribute_name(:station)
+        = f.select :station_eq, Radio.pluck(:station).uniq, include_blank: true, selected: ""
+      .input-field
+        = button_tag type: 'submit', class: 'waves-effect waves-light btn search' do
+          i.material-icons.right search
+          |ラジオ検索
+
+      - if params[:q].present?
+        .input-field
+          = link_to radios_path, class: 'waves-effect waves-light btn search' do
+            i.material-icons.right clear
+            |クリア
+
+        a.dropdown-trigger.btn.search data-target="dropdown1" href="#"
+          i.material-icons.right arrow_drop_down
+          |並び替え
+        ul#dropdown1.dropdown-content style="width;300px;"
+          li = sort_link(@q, :title, "番組名")
+          li = sort_link(@q, :personality, "パーソナリティ")
+          li = sort_link(@q, :station, "放送局")
+          li = sort_link(@q, :start_time, "開始時間")
+      - else
+
+  = render("layouts/sidenav_footer")
+
+
