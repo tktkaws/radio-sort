@@ -8,6 +8,6 @@ class TopController < ApplicationController
     @radios = Radio.find(@result.joins(:likes).limit(10).order('sum_point desc').group(:radio_id).sum(:point).keys)
     @radios = Kaminari.paginate_array(@radios).page(params[:page])
 
-    @users = User.order("RANDOM()").limit(4)
+    @users = User.order('RANDOM()').limit(4)
   end
 end

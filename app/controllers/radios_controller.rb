@@ -8,7 +8,8 @@ class RadiosController < ApplicationController
     @like = current_user.likes if user_signed_in?
 
     return unless request.xhr?
-    render "radios/index"
+
+    render 'radios/index'
   end
 
   def show
