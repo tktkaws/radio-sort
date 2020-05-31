@@ -1,23 +1,42 @@
-li
-  = link_to "番組表", timetable_tbs_path, class: 'nav-link'
-li
-  = link_to "ラジオ", radios_path, class: 'nav-link'
-li
-  = link_to "ユーザー", users_path, class: 'nav-link'
-li
-  = link_to "ランキング", ranking_path, class: 'nav-link'
-- if user_signed_in?
+.container
+  br
   li
-    = link_to "ソート", user_path(current_user.id) , class: 'nav-link'
+    = link_to timetable_tbs_path, class: 'nav-link' do
+      i.material-icons.left.navcontent grid_on
+      |番組表
   li
-    = link_to "フォロワー", user_relations_index_path(current_user.id), class: 'nav-link'
+    = link_to ranking_path, class: 'nav-link' do
+      i.material-icons.left.navcontent equalizer
+      |ランキング
   li
-    = link_to "ログアウト", destroy_user_session_path, class: 'nav-link', method: :delete
-  - unless current_user.email == "guest@example.com"
+    = link_to radios_path, class: 'nav-link' do
+      i.material-icons.left.navcontent list
+      |ラジオ
+  li
+    = link_to users_path, class: 'nav-link' do
+      i.material-icons.left.navcontent people
+      |ユーザー
+  - if user_signed_in?
     li
-      = link_to "プロフィール編集", edit_user_registration_path, class: 'nav-link'
-- else
+      = link_to user_path(current_user.id), class: 'nav-link' do
+        i.material-icons.left.navcontent swap_vert
+        |ソート
+    li
+      = link_to destroy_user_session_path, class: 'nav-link', method: :delete do
+        i.material-icons.left.navcontent keyboard_tab
+        |ログアウト
+  - else
+    li
+      = link_to new_user_registration_path, class: 'nav-link' do
+        i.material-icons.left.navcontent person_add
+        |登録
+    li
+      = link_to new_user_session_path, class: 'nav-link' do
+        i.material-icons.left.navcontent input
+        |ログイン
+
+.divider.nav
+.container
   li
-    = link_to "登録", new_user_registration_path, class: 'nav-link'
-  li
-    = link_to "ログイン", new_user_session_path, class: 'nav-link'
+    = link_to "https://github.com/tktkaws/radio-sort", target: :_blank, class: 'nav-link'  do
+      | © tktkaws

@@ -1,11 +1,11 @@
-nav.white
-  .nav-wrapper
-    - if user_signed_in?
-      = link_to user_path(current_user.id), class: 'brand-logo center' do
-        i.material-icons.icon-menu radio
-        |ラジオソート
-    - else
-      = link_to root_path, class: 'brand-logo center' do
-        i.material-icons.icon-menu radio
-        |ラジオソート
-
+nav.side
+  .container
+    .nav-wrapper
+      - if user_signed_in?
+        = link_to user_path(current_user.id), class: 'brand-logo tooltipped', data: {position: "right", tooltip: "ソート(マイページ)"} do
+          i.material-icons.icon-menu radio
+          |RADIO SORT
+      - else
+        = link_to root_path, class: 'brand-logo tooltipped', data: {position: "right", tooltip: "TOPページ"} do
+          i.material-icons.icon-menu radio
+          |RADIO SORT

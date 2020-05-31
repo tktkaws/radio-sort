@@ -1,0 +1,24 @@
+ul#sidenav-1.sidenav.sidenav-fixed
+  = render("layouts/sidenav_header")
+  .container
+    = search_form_for q ,url: ranking_path do |f|
+      p
+        = f.label :station_eq, Radio.human_attribute_name(:station)
+        = f.select :station_eq, Radio.pluck(:station).uniq, include_blank: true, selected: ""
+      p
+        = f.label :likes_user_gender_eq, User.human_attribute_name(:gender)
+        = f.select :likes_user_gender_eq, User.genders.map { |k, v| [User.genders_i18n[k], v] }, include_blank: true
+      p
+        = f.label :likes_user_age_eq, User.human_attribute_name(:age)
+        = f.select :likes_user_age_eq, User.ages.map { |k, v| [User.ages_i18n[k], v] }, include_blank: true
+
+      p
+        = button_tag type: 'submit', class: 'waves-effect waves-light btn search' do
+          i.material-icons.right search
+          |絞り込み
+      - if params[:q].present?
+        p
+          = link_to ranking_path, class: 'waves-effect waves-light btn search' do
+            i.material-icons.right clear
+            |クリア
+  = render("layouts/sidenav_footer")
