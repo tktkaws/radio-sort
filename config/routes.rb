@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: %i[index show] do
-    get :relations_index
     get :rank_share
   end
 

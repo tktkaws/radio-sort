@@ -1,0 +1,60 @@
+
+p.sortable-item {
+  width: 90%;
+}
+
+.inline-block {
+  display: inline-block;
+  margin: auto;
+}
+
+.title-text {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+  color: $base-font-color;
+}
+
+.rank-font {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  color: $base-font-color;
+}
+
+.modal .modal-content {
+  padding: 0px;
+}
+
+.row {
+  .col {
+    &.s5ths {
+      width: 20%;
+    }
+    &.m5ths {
+      @media only screen and (min-width: 601px) {width: 20%;}
+    }
+    &.l5ths {
+      @media only screen and (min-width: 993px) {width: 20%;}
+    }
+  }
+}
+
+
+// Multiline text with ellipsis
+  // Reset
+p.multi-truncate {
+  margin: 0;
+}
+
+.container.multi-truncate {
+  overflow: hidden;
+  width: 100%;
+  p.multi-truncate {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    color: $base-font-color;
+    vertical-align: middle;
+  }
+}
