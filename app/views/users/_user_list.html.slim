@@ -2,31 +2,42 @@
   .user-index-item-list
     .card
       .card-image.waves-effect.waves-block.waves-light
-        = image_tag "#{user.image}", class: "activator user-index-item"
+        = link_to user_path(user.id)
+          = image_tag "#{user.image}", class: "user-index-item"
       .card-content
-        span.card-title.activator.truncate.center.rank-font.tooltipped data-position="bottom" data-tooltip=("#{user.name}")
-          - if user.name.blank?
-            |氏名無し
-          = user.name
-        span.card-title.activator.truncate.center.rank-font
-          = user.gender_i18n
-        span.card-title.activator.truncate.center.rank-font
-          = user.age_i18n
+        span.card-title.truncate.center.rank-font.tooltipped data-position="bottom" data-tooltip=("#{user.name}")
+          = link_to user_path(user.id)
+            - if user.name.blank?
+              |氏名無し
+            = user.name
+
+        span.card-title.truncate.center.rank-font
+          = link_to user_path(user.id)
+            = user.gender_i18n
+        span.card-title.truncate.center.rank-font
+          = link_to user_path(user.id)
+            = user.age_i18n
       .card-action.user-index-item
         .row.user-index
           - if user_signed_in?
             .col.s12.m12.l12.xl6
               .center
-                = render 'follow_form', user: user
+                = render 'users/follow_form', { user: user }
             .col.s12.m12.l12.xl6
               .center
-                = link_to user_path(user.id), class: 'btn button-1 follow-button' do
-                  |詳細
+                p.activator.btn.button-1.follow-button
+                  |TOP5
+              / .center
+              /   = link_to user_path(user.id), class: 'btn button-1 follow-button' do
+              /     |詳細
           - else
             .col.s12
               .center
-                = link_to user_path(user.id), class: 'btn button-1 follow-button' do
-                  |詳細
+                p.activator.btn.button-1.follow-button
+                  |TOP5
+              / .center
+              /   = link_to user_path(user.id), class: 'btn button-1 follow-button' do
+              /     |詳細
       .card-reveal
         .card-title.btn.button-1.follow-button.center
           |閉じる
