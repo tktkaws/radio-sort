@@ -1,15 +1,14 @@
 = render partial: 'sidenav_profile', locals: {user: @user, q: @q}
 .row.show
-  br
   .col.s12.m9.l9
     .title-text
       |#{@user.name}のランキング
       - if @user.likes.blank?
         i.material-icons.tooltipped data-position="bottom" data-tooltip=("ラジオをお気に入りに入れましょう") style="margin-left: 10px;"
-          |info
+          |info_outline
       - else
-        i.material-icons.tooltipped data-position="bottom" data-tooltip=("ドラッグ&ドロップでランキングを入れ替えましょう") style="margin-left: 10px;"
-          |info
+        i.material-icons.tooltipped.teal-text data-position="bottom" data-tooltip=("ドラッグ&ドロップでランキングを入れ替えましょう") style="margin-left: 10px;"
+          |info_outline
   .col.s12.m3.l3
     .right
     - if @user == current_user && @user.likes.present?
