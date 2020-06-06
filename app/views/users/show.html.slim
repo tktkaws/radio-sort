@@ -1,15 +1,14 @@
 = render partial: 'sidenav_profile', locals: {user: @user, q: @q}
 .row.show
-  br
   .col.s12.m9.l9
     .title-text
       |#{@user.name}のランキング
       - if @user.likes.blank?
         i.material-icons.tooltipped data-position="bottom" data-tooltip=("ラジオをお気に入りに入れましょう") style="margin-left: 10px;"
-          |info
+          |info_outline
       - else
-        i.material-icons.tooltipped data-position="bottom" data-tooltip=("ドラッグ&ドロップでランキングを入れ替えましょう") style="margin-left: 10px;"
-          |info
+        i.material-icons.tooltipped.teal-text data-position="bottom" data-tooltip=("ドラッグ&ドロップでランキングを入れ替えましょう") style="margin-left: 10px;"
+          |info_outline
   .col.s12.m3.l3
     .right
     - if @user == current_user && @user.likes.present?
@@ -56,43 +55,28 @@ br
 .row.show
   .col.s12
     ul.tabs
-      li.tab.col.s12.m3
-        a.active href="#my-comment"
-          |コメント : #{@user.name}
-      li.tab.col.s12.m3
-        a href="#others-comment"
-          |コメント : フォロー中
-      li.tab.col.s12.m3
-        a href="#following"
-          |フォロー中
-      li.tab.col.s12.m3
+
+      li.tab.col.s12.m4
+        a.active href="#following"
+          |#{@user.name} がフォロー中のユーザー
+      li.tab.col.s12.m4
         a href="#follower"
-          |フォロワー
+          |#{@user.name} のフォロワー
+      li.tab.col.s12.m4
+        a href="#comment"
+          |コメント
 
-    #my-comment.col.s12
-      ul
-        - @user.comments.each do |c|
-          .col.s12.m6.l6
-            br
-            .row.user-index
-              .col.s5.m5.l5
-                .card style="width: 90%;"
-                    .card-image
-                      = link_to "#modal#{c.radio.id}", class: "modal-trigger"
-                        = image_tag "#{c.radio.image}"
-              .col.s7.m7.l7
-                br
-                .container.multi-truncate
-                  p.multi-truncate
-                    = c.content
-            br
-          = render partial: 'layouts/modal', locals: {radio: c.radio}
-
-    #others-comment.col.s12
-      ul
-        - @following = @user.following
-        - @following.each do |u|
-          - u.comments.each do |c|
+    #following.col.s12
+      - @user.following.each do |user|
+        = render partial: "user_list", locals: {user: user}
+    #follower.col.s12
+      - @user.followers.each do |user|
+        = render partial: "user_list", locals: {user: user}
+    #comment
+      .col.s12
+        ul
+          - @user.comments.each do |c|
+            = render partial: 'layouts/modal', locals: {radio: c.radio}
             .col.s12.m6.l6
               br
               .row.user-index
@@ -103,22 +87,33 @@ br
                         = image_tag "#{c.radio.image}"
                 .col.s7.m7.l7
                   p
-                    = link_to u, class: "left"
-                      = image_tag "#{c.user.image}", class: "circle left", style: "vertical-align:middle;margin-right: 5px; width: 30px"
+                    = image_tag "#{c.user.image}", class: "circle left", style: "vertical-align:middle;margin-right: 5px; width: 30px"
                     '
                     span
-                      = link_to u
-                        = c.user.name
+                      = c.user.name
                   .container.multi-truncate
                     p.multi-truncate
                       = c.content
-              br
-            = render partial: 'layouts/modal', locals: {radio: c.radio}
 
-    #following.col.s12
-      - @user.following.each do |user|
-        = render partial: "user_list", locals: {user: user}
-
-    #follower.col.s12
-      - @user.followers.each do |user|
-        = render partial: "user_list", locals: {user: user}
+          - @user.following.each do |u|
+            - u.comments.each do |c|
+              = render partial: 'layouts/modal', locals: {radio: c.radio}
+              .col.s12.m6.l6
+                br
+                .row.user-index
+                  .col.s5.m5.l5
+                    .card style="width: 90%;"
+                      .card-image
+                        = link_to "#modal#{c.radio.id}", class: "modal-trigger"
+                          = image_tag "#{c.radio.image}"
+                  .col.s7.m7.l7
+                    p
+                      = link_to u, class: "left"
+                        = image_tag "#{c.user.image}", class: "circle left", style: "vertical-align:middle;margin-right: 5px; width: 30px"
+                      '
+                      span
+                        = link_to u
+                          = c.user.name
+                    .container.multi-truncate
+                      p.multi-truncate
+                        = c.content
