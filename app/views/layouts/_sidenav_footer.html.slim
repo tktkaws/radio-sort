@@ -26,6 +26,10 @@ br
       = link_to destroy_user_session_path, class: 'nav-link', method: :delete do
         i.material-icons.left.navcontent keyboard_tab
         |ログアウト
+    li
+      = link_to rails_admin_path, class: 'nav-link tooltipped' do
+        i.material-icons.left.navcontent build
+        |管理者画面
   - else
     li
       = link_to new_user_registration_path, class: 'nav-link' do
