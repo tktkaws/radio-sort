@@ -42,6 +42,9 @@ html
               li
                 = link_to destroy_user_session_path, class: 'nav-link tooltipped', data: {position: "left", tooltip: "ログアウト"}, method: :delete do
                   i.material-icons.left.navcontent keyboard_tab
+              li
+                = link_to rails_admin_path, class: 'nav-link tooltipped', data: {position: "left", tooltip: "管理者画面(閲覧のみ)"} do
+                  i.material-icons.left.navcontent build
             - else
               li
                 = link_to new_user_registration_path, class: 'nav-link tooltipped', data: {position: "left", tooltip: "アカウント登録"} do
@@ -49,6 +52,9 @@ html
               li
                 = link_to new_user_session_path, class: 'nav-link tooltipped', data: {position: "left", tooltip: "ログイン"} do
                   i.material-icons.left.navcontent input
+
+
+
 
     ul#sidenav-2.sidenav
       = render("layouts/nav_contents")
