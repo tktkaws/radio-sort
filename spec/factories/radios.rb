@@ -7,7 +7,9 @@ FactoryBot.define do
     length { 3600 }
     sequence(:image) { |n| "/assets/images/fixtures/radiosample#{n}.jpg" }
 
-    #image '/assets/images/fixtures/radiosample1.jpg'
+    #image {'/assets/images/fixtures/radiosample1.jpg'}
+    #
+    #
     #image_1 '/assets/images/test_image.jpeg'
     #image_2 '/assets/images/test_image.jpeg'
     #image_3 '/assets/images/test_image.jpeg'
