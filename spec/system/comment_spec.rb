@@ -19,9 +19,9 @@ RSpec.describe Comment, type: :system do
       fill_in 'user[password]', with: '111111'
       click_on 'login'
     end
-    it'コメントが投稿されること' do
+    it 'コメントが投稿されること' do
       visit radio_path(@user)
-      find("textarea.materialize-textarea").set("テストコメント")
+      find('textarea.materialize-textarea').set('テストコメント')
       click_on '投稿'
       sleep 1
       expect(page).to have_content 'テストコメント'
