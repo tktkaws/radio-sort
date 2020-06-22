@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   def show
     @likes = @user.likes.rank(:row_order)
+    @tweet = share_contnets
   end
 
   def relations_index
@@ -37,12 +38,14 @@ class UsersController < ApplicationController
   end
 
   def share_contnets
-    @likes = current_user.likes.rank(:row_order)
-    tweet_content = '%23ラジオソート%0a%0a'
+    if @user == current_user
+      @likes = current_user.likes.rank(:row_order)
+      tweet_content = "#ラジオソート\n\n"
 
-    @likes.first(5).each_with_index do |like, i|
-      tweet_content += "#{i + 1}位: #{like.radio.title}%0a"
+      @likes.first(5).each_with_index do |like, i|
+        tweet_content += "#{i + 1}位: #{like.radio.title}\n"
+      end
+      tweet_content += "\n"
     end
-    tweet_content += '%0a'
-  end
+    end
 end
