@@ -22,14 +22,9 @@
         br
       - else
         br
-        = link_to user_rank_share_path(@user), :onclick => "window.open(this.href,'hoge', 'height=400, width=600');return false;",class:"right" do
-          = image_tag 'number/Twitter3.png', width: "20x20", style: "vertical-align:middle; margin-left:10px",class:"right"
-          '
-          span.right
-            |Twitterで共有する
-.row.show
-  / .divider.nav
-
+        .right
+          a.twitter-share-button data-show-count="false" data-text="#{@tweet}" Tweet
+          script async="" charset="utf-8" src="https://platform.twitter.com/widgets.js"
 .row.show
   ul#likes_list class="ui-sortable"
     - @likes.each_with_index do |like,i|
