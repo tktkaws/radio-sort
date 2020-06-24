@@ -1,7 +1,0 @@
-pkg/*
-*.gem
-.bundle
-*.un~
-
-Gemfile.lock
-*.gemfile.lock
