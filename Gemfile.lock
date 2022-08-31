@@ -175,7 +175,7 @@ GEM
     haml (5.1.2)
       temple (>= 0.8.0)
       tilt
-    hashie (4.1.0)
+    hashie (5.0.0)
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
@@ -260,13 +260,16 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.9)
       mini_portile2 (~> 2.4.0)
-    oauth (0.5.4)
-    omniauth (1.9.1)
+    oauth (0.6.2)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1)
+    omniauth (2.1.0)
       hashie (>= 3.4.6)
-      rack (>= 1.6.2, < 3)
-    omniauth-oauth (1.1.0)
+      rack (>= 2.2.3)
+      rack-protection
+    omniauth-oauth (1.2.0)
       oauth
-      omniauth (~> 1.0)
+      omniauth (>= 1.0, < 3)
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
@@ -284,10 +287,12 @@ GEM
       pry (>= 0.10.4)
     public_suffix (4.0.5)
     puma (3.12.6)
-    rack (2.2.3)
+    rack (2.2.4)
     rack-pjax (1.1.0)
       nokogiri (~> 1.5)
       rack (>= 1.1)
+    rack-protection (2.2.2)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.3)
@@ -419,6 +424,9 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 5.0)
+    snaky_hash (2.0.0)
+      hashie
+      version_gem (~> 1.1)
     spring (2.1.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -464,6 +472,7 @@ GEM
     unicorn (5.5.5)
       kgio (~> 2.6)
       raindrops (~> 0.7)
+    version_gem (1.1.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (3.7.0)
